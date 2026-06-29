@@ -1,0 +1,64 @@
+<think>
+We need to "repair" the Python function. The requirements: count word frequencies, ignore case, remove English punctuation; return top k words by count descending, ties ascending by word. Only output full code.
+
+The given code splits on space only, not handling punctuation like commas, periods, etc. Also ignoring case but not lowercasing? It says ignore size case, so we should convert to lower case. Also need to remove English punctuation characters (like . , ! ? etc). Could use string.punctuation or regex.
+
+Thus we need to import re or string. Approach: normalize text: lower case, replace punctuation with space, split on whitespace. Then count.
+
+Edge cases: k may be larger than number of unique words; sorted returns all items if less than k.
+
+Return list of tuples (word, count). That's fine.
+
+We must output only the code, no extra explanation. Provide corrected function.
+
+Let's craft:
+
+import string
+from collections import Counter
+
+def top_k_words(text, k):
+    # Normalize: lower case and remove punctuation
+    text = text.lower()
+    for ch in string.punctuation:
+        text = text.replace(ch, ' ')
+    words = text.split()
+    counts = Counter(words)
+    return sorted(counts.items(), key=lambda x: (-x[1], x[0]))[:k]
+
+That's concise. Or we could use regex: re.sub(r'[^\w\s]', '', text) but punctuation removal simpler.
+
+Make sure to include import statements at top.
+
+Thus final answer:
+
+```python
+import string
+from collections import Counter
+
+def top_k_words(text, k):
+    # Convert to lower case and strip English punctuation
+    text = text.lower()
+    for ch in string.punctuation:
+        text = text.replace(ch, ' ')
+    words = text.split()
+    counts = Counter(words)
+    # Sort by count descending, then word ascending
+    return sorted(counts.items(), key=lambda item: (-item[1], item[0]))[:k]
+```
+
+That's the code. Ensure no extra commentary.
+</think>
+```python
+import string
+from collections import Counter
+
+def top_k_words(text, k):
+    # Convert to lower case and remove English punctuation
+    text = text.lower()
+    for ch in string.punctuation:
+        text = text.replace(ch, ' ')
+    words = text.split()
+    counts = Counter(words)
+    # Sort by count descending, then word ascending, and return top k
+    return sorted(counts.items(), key=lambda item: (-item[1], item[0]))[:k]
+```

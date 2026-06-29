@@ -1,0 +1,1 @@
+To reduce the P95 latency, we are caching RAG results for 10 minutes but cannot reuse across different tenant_ids. Fine-tuning is only allowed with LoRA; online reasoning must monitor KV cache hit rate.

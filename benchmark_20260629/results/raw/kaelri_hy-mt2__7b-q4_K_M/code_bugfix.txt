@@ -1,0 +1,15 @@
+```python
+import re
+
+def top_k_words(text, k):
+    # 去掉英文标点，保留中文和数字
+    text = re.sub(r'[^\w\s]', '', text)
+    # 统计单词频次，忽略大小写
+    counts = {}
+    for word in text.split():
+        word = word.lower()
+        counts[word] = counts.get(word, 0) + 1
+    # 排序：先按count降序，再按word升序
+    sorted_counts = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
+    return sorted_counts[:k]
+```

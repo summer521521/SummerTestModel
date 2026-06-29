@@ -1,0 +1,27 @@
+<think>
+We need to find the unique project that satisfies: status is PAUSED, owner is Lin, region is not APAC.
+
+List entries:
+
+1. Atlas - owner Chen, region APAC -> fails owner.
+2. Boreal - owner Lin, region APAC -> fails region.
+3. Cinder - owner Mei, region EU, status PAUSED -> owner not Lin.
+4. Delta - owner Lin, region NA, status ACTIVE -> status not PAUSED.
+5. Ember - owner Rao, region EU, status ACTIVE -> no.
+6. Fjord - owner Lin, region APAC, status ACTIVE -> fails region and status.
+7. Helios - owner Lin, region EU, status PAUSED -> meets: status PAUSED, owner Lin, region not APAC (EU). So qualifies.
+8. Ion - owner Qiu, region NA, status PAUSED -> owner not Lin.
+9. Juno - owner Lin, region LATAM, status DONE -> status not PAUSED.
+10. Kestrel - owner An, region EU, status PAUSED -> owner not Lin.
+11. Luna - owner Lin, region APAC, status PAUSED -> region APAC fails.
+12. Meridian - owner Sun, region NA, status ACTIVE -> no.
+13. Nova - owner Lin, region EU, status ACTIVE -> no.
+14. Orion - owner Lin, region NA, status PAUSED_BUT_ARCHIVED -> status not exactly PAUSED? It's "PAUSED_BUT_ARCHIVED". Probably not considered PAUSED. So fails.
+15. Pulse - owner Zed, region EU, status PAUSED -> owner not Lin.
+16. Quartz - owner Lin, region APAC, status DONE -> no.
+
+Thus only one: Helios. Output: "Helios – owner Lin, region EU, status PAUSED". The instruction: output project name and a sentence reason. So just that line.
+
+Thus final answer: Helios – owner Lin, region EU, status PAUSED.
+</think>
+Helios – owner Lin, region EU, status PAUSED

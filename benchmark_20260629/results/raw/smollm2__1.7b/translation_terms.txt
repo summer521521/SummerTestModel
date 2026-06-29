@@ -1,0 +1,1 @@
+To reduce p95 latency, we will cache RAG results for 10 minutes, but not allow cross-tenant caching. Micro-tuning only allows the use of LoRA, while online reasoning must monitor KV cache hit rate.

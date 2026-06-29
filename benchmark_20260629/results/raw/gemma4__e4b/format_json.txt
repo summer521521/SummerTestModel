@@ -1,0 +1,1 @@
+{"total": 164.70, "valid": true, "code": "OK-16470", "summary": 164.70}

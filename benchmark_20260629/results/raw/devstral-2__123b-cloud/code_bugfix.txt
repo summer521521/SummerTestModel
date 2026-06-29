@@ -1,0 +1,14 @@
+```python
+import re
+from collections import defaultdict
+
+def top_k_words(text, k):
+    # 去掉标点并转换为小写
+    words = re.findall(r'\b\w+\b', text.lower())
+    counts = defaultdict(int)
+    for word in words:
+        counts[word] += 1
+    # 按 count 降序、word 升序排序
+    sorted_counts = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
+    return sorted_counts[:k]
+```

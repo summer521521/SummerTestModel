@@ -1,0 +1,21 @@
+ Here is the modified Python function that meets your requirements:
+
+```python
+import re
+from collections import Counter
+
+def top_k_words(text, k):
+    # Remove punctuation and convert to lowercase
+    text = re.sub(r'[^\w\s]', '', text).lower()
+
+    # Count word frequencies
+    counts = Counter(text.split())
+
+    # Sort by count in descending order, then by word in ascending order for ties
+    sorted_counts = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
+
+    # Return the top k items
+    return sorted_counts[:k]
+```
+
+This function uses the `re` module to remove punctuation, the `Counter` class from the `collections` module to count word frequencies, and a custom sorting key to sort by count in descending order and word in ascending order for ties.

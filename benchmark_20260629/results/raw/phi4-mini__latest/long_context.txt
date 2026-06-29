@@ -1,0 +1,3 @@
+Boreal || Boreal 的 owner 是 Lin，region 不是 APAC，并且其 status 为 PAUSED。
+
+Nova || Nova 的 owner 是 Lin，但它的 region 是 EU，而不满足条件。

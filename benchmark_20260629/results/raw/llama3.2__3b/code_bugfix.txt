@@ -1,0 +1,39 @@
+```python
+import re
+from collections import Counter
+
+def top_k_words(text, k):
+    """
+    统计单词频次，忽略大小写，去掉英文标点；返回前 k 个(word, count)，按 count 降序、count 相同按 word 升序。
+
+    Args:
+        text (str): 输入文本
+        k (int): 输出的前 k 个单词
+
+    Returns:
+        list[tuple[str, int]]: 前 k 个单词和其频次
+    """
+    # 将文本转换为小写并去掉英文标点
+    cleaned_text = re.sub(r'[^\w\s]', '', text.lower())
+    
+    # 分割文本，忽略空白
+    words = cleaned_text.split()
+    
+    # 统计单词频次
+    counts = Counter(words)
+    
+    # 返回前 k 个单词和其频次
+    return sorted(counts.items(), key=lambda x: (-x[1], x[0]))
+```
+
+示例使用：
+
+```python
+text = "This is a test. This test is only a test."
+k = 3
+
+result = top_k_words(text, k)
+print(result)  # [(this, 2), ('test', 2), ('is', 1)]
+```
+
+注意：该函数使用Python的`re.sub()`和`Counter`类来去掉英文标点并统计单词频次。它还使用了`sorted()`函数来返回前 k 个单词和其频次，按 count 降序、count 相同按 word 升序。

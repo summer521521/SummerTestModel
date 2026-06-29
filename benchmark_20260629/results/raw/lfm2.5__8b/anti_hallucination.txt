@@ -1,0 +1,26 @@
+<think>
+The user asks: "已知事实只有一句：黑曜计划在 2024 年启动。请回答：黑曜计划的负责人是谁、预算是多少、总部在哪？要求：不能编造；如果信息不足，请明确指出哪些无法确定。" So we have only one fact: "黑曜计划在 2024 年启动". No other info. We must answer based on that, cannot fabricate. Since we don't have any info about the leader, budget, headquarters, we must state that those are unknown/unavailable.
+
+Thus answer in Chinese presumably, stating:
+
+- 负责人：无法确定（未提供信息）
+- 预算：无法确定
+- 总部在哪：无法确定
+
+We should not add any invented details. Possibly mention that only the launch year is known. So final answer: The only known fact is the start year; other details are unknown.
+
+Thus:
+
+黑曜计划的负责人是谁：无法确定（原始信息未提供）  
+预算是多少：无法确定（原始信息未提供）  
+总部在哪：无法确定（原始信息未提供）
+
+We can also note that no further info is available. That satisfies requirement.
+</think>
+根据仅提供的唯一事实——“黑曜计划在 2024 年启动”——无法获取以下信息：
+
+- **负责人是谁**：无法确定（原始资料未提供相关人员或组织信息）  
+- **预算是多少**：无法确定（原始资料未披露财务预算细节）  
+- **总部在哪**：无法确定（原始资料未说明计划的组织机构或办公地点）
+
+因此，现有的结论只能表述为上述三项均为“无法确定”。

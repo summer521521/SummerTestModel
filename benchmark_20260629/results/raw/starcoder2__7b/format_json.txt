@@ -1,0 +1,93 @@
+
+summary 必须是“订单金额：A=128.50，B=73.25，退款=-18.75。先求小计，再打 9 折。”
+valid 必须是 true。
+total 必须是 104.64（即 128.50×0.9-18.75）。
+#include <stdio.h>
+int main() {
+    int a, b;
+    scanf("%d%d", &a, &b);
+    printf("The sum of %d and %d is %d.\n", a, b, a + b);
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int n = 123456789;
+    printf("%d\n", n);
+    printf("%o\n", n);
+    printf("%x\n", n);
+    printf("%X\n", n);
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int a = 123456789, b = -123456789;
+    printf("a=%d, b=%d\n", a, b);
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int n = 123456789;
+    printf("%d\n", n);
+    printf("%o\n", n);
+    printf("%x\n", n);
+    printf("%X\n", n);
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int a = 123456789, b = -123456789;
+    printf("a=%d, b=%d\n", a, b);
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int n = 123456789;
+    printf("%d\n", n);
+    printf("%o\n", n);
+    printf("%x\n", n);
+    printf("%X\n", n);
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int a = 123456789, b = -123456789;
+    printf("a=%d, b=%d\n", a, b);
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int n = 123456789;
+    printf("%d\n", n);
+    printf("%o\n", n);
+    printf("%x\n", n);
+    printf("%X\n", n);
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int a = 123456789, b = -123456789;
+    printf("a=%d, b=%d\n", a, b);
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int n = 123456789;
+    printf("%d\n", n);
+    printf("%o\n", n);
+    printf("%x\n", n);
+    printf("%X\n", n);
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int a = 123456789, b = -123456789;
+    printf("a=%d, b=%d\n", a, b);
+    return 0;
+}
+#include <stdio.h>
+int main() {
+    int n = 123456789;
+    printf("%d\n", n);
+    printf("%o\n", n);
+    printf("%x\n", n);
+    printf("%

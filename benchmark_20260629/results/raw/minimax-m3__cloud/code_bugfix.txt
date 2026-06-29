@@ -1,0 +1,16 @@
+```python
+import string
+
+def top_k_words(text, k):
+    # Remove English punctuation
+    translator = str.maketrans('', '', string.punctuation)
+    cleaned = text.translate(translator)
+    # Lowercase and split on whitespace
+    words = cleaned.lower().split()
+    # Count frequencies
+    counts = {}
+    for word in words:
+        counts[word] = counts.get(word, 0) + 1
+    # Sort by count desc, then word asc
+    return sorted(counts.items(), key=lambda x: (-x[1], x[0]))[:k]
+```

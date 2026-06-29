@@ -1,0 +1,18 @@
+```python
+import re
+from collections import Counter
+
+def top_k_words(text, k):
+    # 转换为小写
+    text = text.lower()
+    # 去除标点符号，只保留字母、数字和空格
+    text = re.sub(r'[^\w\s]', '', text)
+    # 分词
+    words = text.split()
+    # 统计词频
+    counts = Counter(words)
+    # 排序：按count降序，count相同时按word升序
+    sorted_words = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
+    # 返回前k个
+    return sorted_words[:k]
+```

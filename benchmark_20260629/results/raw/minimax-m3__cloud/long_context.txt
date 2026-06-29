@@ -1,0 +1,3 @@
+**Helios**
+
+理由：owner=Lin、status=PAUSED、region=EU（非 APAC），三个条件全部满足；其余 Lin 拥有的 PAUSED 项目（Boreal、Luna）均位于 APAC，Orion 的状态为 PAUSED_BUT_ARCHIVED 也未严格匹配。

@@ -1,0 +1,7 @@
+```python
+import re
+from collections import Counter
+
+def top_k_words(text, k):
+    """
+    统计文本中单词的频次

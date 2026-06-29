@@ -1,0 +1,16 @@
+def top_k_words(text, k):
+    import string
+    
+    # 转换为小写并去掉标点符号（只保留字母和数字）
+    text = text.lower()
+    counts = {}
+    
+    for word in text.split(' '):
+        cleaned_word = ''.join(c for c in word if c.isalnum())
+        if cleaned_word:  # 确保不是空字符串
+            counts[cleaned_word] = counts.get(cleaned_word, 0) + 1
+    
+    # 按 count 降序、word 升序排序，返回前 k 个 (word, count)
+    sorted_counts = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
+    
+    return sorted_counts[:k]

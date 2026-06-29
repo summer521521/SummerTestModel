@@ -1,0 +1,92 @@
+
+译文：为了降低 p95 latency，我们把 RAG 检索结果缓存 10 分钟，但不能跨 tenant_id 复用。微调只允许使用 LoRA，线上推理必须监控 KV cache 命中率。
+# Copyright (c) OpenMMLab. All rights reserved.
+import os
+from typing import Dict, List, Optional, Union
+
+import torch
+from mmengine.model import BaseModel
+from mmengine.runner import Runner
+from torch import Tensor
+
+
+class MMEngineRunner(Runner):
+    """MMEngine runner for training and testing models.
+
+    This runner is designed to be compatible with the `mmengine` framework.
+    It supports both single-device and multi-devices training and testing,
+    and also supports the following features:
+
+    1. Automatically load model weights from checkpoints.
+    2. Automatically save model weights to checkpoints.
+    3. Automatically resume training from checkpoints.
+
+    Args:
+        work_dir (str): The directory to save logs and models.
+        logger (Logger): A logger that is used to print
+            the information of training process. Defaults to ``None``.
+        meta (dict, optional): Meta dict to record some important
+            information such as environment info and config file.
+            Defaults to ``None``.
+        default_scope (str): The scope for registering hooks.
+            Defaults to 'mmengine'.
+        max_epochs (int): The maximum epochs to train the model.
+            Defaults to 100.
+        val_interval (int | float): Interval of validation. If set to 1,
+            it will perform validation at every epoch. Defaults to 1.
+        val_begin (int): The begin epoch to start validation.
+            Defaults to 1.
+        auto_resume (bool): Whether automatically resume from the latest
+            checkpoint in ``work_dir``. Defaults to True.
+        find_unused_parameters (bool): Whether to set `find_unused_parameters`
+            as `True`. Defaults to False.
+        load_from (str | None): The path of a checkpoint file to be loaded.
+            If not specified, the runner will load from ``work_dir/latest.pth``.
+            Defaults to None.
+        resume_from (str | None): The path of a checkpoint file to be resumed.
+            If not specified, the runner will resume from ``work_dir/latest.pth``.
+            Defaults to None.
+        init_cfg (dict | list[dict], optional): Config dict for initialization
+            or a sequence of config dict for multi-level initialization.
+            Defaults to None.
+    """
+
+    def __init__(self,
+                 work_dir: str = 'work_dirs',
+                 logger=None,
+                 meta: Optional[Dict] = None,
+                 default_scope: str = 'mmengine',
+                 max_epochs: int = 100,
+                 val_interval: Union[int, float] = 1,
+                 val_begin: int = 1,
+                 auto_resume: bool = True,
+                 find_unused_parameters: bool = False,
+                 load_from: Optional[str] = None,
+                 resume_from: Optional[str] = None,
+                 init_cfg: Union[dict, List[dict], None] = None):
+        super().__init__(
+            work_dir=work_dir,
+            logger=logger,
+            meta=meta,
+            default_scope=default_scope,
+            max_epochs=max_epochs,
+            val_interval=val_interval,
+            val_begin=val_begin,
+            auto_resume=auto_resume,
+            find_unused_parameters=find_unused_parameters)
+        self.load_from = load_from
+        self.resume_from = resume_from
+        self._init_cfg = init_cfg
+
+    def _build_model(self):
+        """Build model from config file."""
+
+        # Load model from checkpoint or config file
+        if self.load_from is not None:
+            self.load_checkpoint(self.load_from)
+        elif self.resume_from is not None:
+            self.resume_checkpoint(self.resume_from)
+        else:
+            raise ValueError('Neither load_from nor resume_from is specified.')
+
+       

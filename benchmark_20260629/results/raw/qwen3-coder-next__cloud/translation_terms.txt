@@ -1,0 +1,1 @@
+To reduce p95 latency, we cache RAG retrieval results for 10 minutes, but they cannot be reused across tenant_ids. Fine-tuning must only use LoRA, and KV cache hit rate must be monitored during online inference.

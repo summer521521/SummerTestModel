@@ -1,0 +1,9 @@
+{
+  "date": "2026-06-29",
+  "os": "Microsoft Windows 11 Home China, 64-bit",
+  "cpu": "13th Gen Intel(R) Core(TM) i5-13500HX",
+  "ram": "31.8 GiB system memory",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "ollama": "0.30.11",
+  "note": "GPU VRAM was not used as a scored metric; cloud models depend on Ollama account access."
+}

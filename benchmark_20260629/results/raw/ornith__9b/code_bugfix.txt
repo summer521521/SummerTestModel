@@ -1,0 +1,11 @@
+```python
+import re
+
+def top_k_words(text, k):
+    counts = {}
+    for word in text.lower().split():
+        cleaned = re.sub(r'[^\w\s]', '', word).strip()
+        if cleaned:
+            counts[cleaned] = counts.get(cleaned, 0) + 1
+    return sorted(counts.items(), key=lambda x: (-x[1], x[0]))[:k]
+```

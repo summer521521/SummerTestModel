@@ -1,0 +1,3 @@
+Here is the translation:
+
+"To reduce p95 latency, we cache RAG retrieval results for 10 minutes but do not reuse across different tenant_ids. Fine-tuning is only allowed to use LoRA, and online inference must monitor the hit rate of the KV cache."

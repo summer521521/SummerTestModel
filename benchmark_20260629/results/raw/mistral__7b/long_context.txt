@@ -1,0 +1,2 @@
+ 项目名：Luna
+理由：status 是 PAUSED，owner 是 Lin，region 不是 APAC（region 是 APAC，但是在该列表中有更多的 APAC 区域项目，因此不满足条件）。

@@ -1,0 +1,308 @@
+
+
+输入样例：
+08:00
+
+输出样例：
+16:24|3
+#include <iostream>
+
+using namespace std;
+
+
+
+int main() {
+
+    int n, m;
+
+    cin >> n >> m;
+
+
+
+    if (n == 1) {
+
+        cout << "1" << endl;
+
+        return 0;
+
+    }
+
+
+
+    int ans = 2 * n - 1;
+
+    for (int i = 3; i <= n; ++i) {
+
+        ans += 4 * (m - 1);
+
+    }
+
+
+
+    cout << ans << endl;
+
+}
+
+#include <iostream>
+
+using namespace std;
+
+
+
+int main() {
+
+    int n, m;
+
+    cin >> n >> m;
+
+
+
+    if (n == 1) {
+
+        cout << "1" << endl;
+
+        return 0;
+
+    }
+
+
+
+    int ans = 2 * n - 1;
+
+    for (int i = 3; i <= n; ++i) {
+
+        ans += 4 * (m - 1);
+
+    }
+
+
+
+    cout << ans << endl;
+
+}
+
+#include <iostream>
+
+using namespace std;
+
+
+
+int main() {
+
+    int n, m;
+
+    cin >> n >> m;
+
+
+
+    if (n == 1) {
+
+        cout << "1" << endl;
+
+        return 0;
+
+    }
+
+
+
+    int ans = 2 * n - 1;
+
+    for (int i = 3; i <= n; ++i) {
+
+        ans += 4 * (m - 1);
+
+    }
+
+
+
+    cout << ans << endl;
+
+}
+
+#include <iostream>
+
+using namespace std;
+
+
+
+int main() {
+
+    int n, m;
+
+    cin >> n >> m;
+
+
+
+    if (n == 1) {
+
+        cout << "1" << endl;
+
+        return 0;
+
+    }
+
+
+
+    int ans = 2 * n - 1;
+
+    for (int i = 3; i <= n; ++i) {
+
+        ans += 4 * (m - 1);
+
+    }
+
+
+
+    cout << ans << endl;
+
+}
+
+#include <iostream>
+
+using namespace std;
+
+
+
+int main() {
+
+    int n, m;
+
+    cin >> n >> m;
+
+
+
+    if (n == 1) {
+
+        cout << "1" << endl;
+
+        return 0;
+
+    }
+
+
+
+    int ans = 2 * n - 1;
+
+    for (int i = 3; i <= n; ++i) {
+
+        ans += 4 * (m - 1);
+
+    }
+
+
+
+    cout << ans << endl;
+
+}
+
+#include <iostream>
+
+using namespace std;
+
+
+
+int main() {
+
+    int n, m;
+
+    cin >> n >> m;
+
+
+
+    if (n == 1) {
+
+        cout << "1" << endl;
+
+        return 0;
+
+    }
+
+
+
+    int ans = 2 * n - 1;
+
+    for (int i = 3; i <= n; ++i) {
+
+        ans += 4 * (m - 1);
+
+    }
+
+
+
+    cout << ans << endl;
+
+}
+
+#include <iostream>
+
+using namespace std;
+
+
+
+int main() {
+
+    int n, m;
+
+    cin >> n >> m;
+
+
+
+    if (n == 1) {
+
+        cout << "1" << endl;
+
+        return 0;
+
+    }
+
+
+
+    int ans = 2 * n - 1;
+
+    for (int i = 3; i <= n; ++i) {
+
+        ans += 4 * (m - 1);
+
+    }
+
+
+
+    cout << ans << endl;
+
+}
+
+#include <iostream>
+
+using namespace std;
+
+
+
+int main() {
+
+    int n, m;
+
+    cin >> n >> m;
+
+
+
+    if (n == 1) {
+
+        cout << "1" << endl;
+
+        return 0;
+
+    }
+
+
+
+    int ans = 2 * n - 1;
+
+    for (int i = 3; i <= n; ++i) {
+
+        ans += 4 * (m - 1);
+
+    }
+
+
+
+    cout << ans

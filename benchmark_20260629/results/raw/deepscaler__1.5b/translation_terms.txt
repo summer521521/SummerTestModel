@@ -1,0 +1,15 @@
+<think>
+嗯，用户给了一个翻译任务，需要把一段中文翻译成英文，而且必须保留术语比如RAG、KV cache、LoRA等等，不能添加原文没有的信息。首先，我得仔细阅读原文，理解每个部分的意思。
+
+原文是关于降低p95 latencies的方法，提到了几种技术：RAG缓存、微调只能用LoRA、线上推理监控 KV cache的命中率。翻译的时候要准确传达这些术语，同时保持句子的流畅和自然。
+
+首先，“为了降低 p95 latency”可以翻译为“to reduce the p95 latency”，这样既保留了原意，又符合英语表达习惯。接下来，“我们把 RAG 检索结果缓存 10 分钟”这里要注意术语的正确性，RAG是Retrieval-Augmented Generation，所以直接用这个术语即可。
+
+然后，“但不能跨 tenant_id 复用”需要翻译为“but cannot reuse across tenant IDs”，这样既保留了原意，又符合语法结构。接下来，“微调只允许使用 LoRA”这里要注意句子的连贯性，可能需要调整一下，比如“only allows using LoRA for fine-tuning”。
+
+最后，“线上推理必须监控 KV cache 命中率”可以翻译为“online inference must monitor the KV cache hit rate”，这样既准确又自然。整体来看，翻译时要确保术语正确，句子结构合理，同时保持原文的意思不变。
+
+可能用户是数据科学家或者开发人员，他们需要将技术文档翻译成英文用于国际团队或市场推广。因此，准确性和专业性很重要，所以翻译时要特别注意术语的准确性，并且保持原意不改变。
+</think>
+
+To reduce the p95 latency, we cache RAG retrieval results for 10 minutes but cannot reuse across tenant IDs. Fine-tuning is restricted to LoRA, while online inference must monitor KV cache hit rate.

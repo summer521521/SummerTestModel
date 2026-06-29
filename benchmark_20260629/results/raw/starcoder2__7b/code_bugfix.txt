@@ -1,0 +1,111 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "list.h"
+
+int main() {
+  struct list *l = NULL;
+
+  l = list_append(l, 1);
+  l = list_append(l, 2);
+  l = list_append(l, 3);
+  l = list_prepend(l, 4);
+  l = list_insert(l, 5, 0);
+  l = list_insert(l, 6, 1);
+
+  printf("list length: %d\n", list_length(l));
+
+  struct list *p;
+  for (p = l; p != NULL; p = p->next) {
+    printf("%d ", p->value);
+  }
+  printf("\n");
+
+  l = list_delete(l, 1);
+  l = list_delete(l, 2);
+  l = list_delete(l, 3);
+  l = list_delete(l, 4);
+  l = list_delete(l, 5);
+  l = list_delete(l, 6);
+
+  printf("list length: %d\n", list_length(l));
+}
+#include <stdio.h>
+#include <stdlib.h>
+#include "list.h"
+
+int main() {
+  struct list *l = NULL;
+
+  l = list_append(l, 1);
+  l = list_append(l, 2);
+  l = list_append(l, 3);
+  l = list_prepend(l, 4);
+  l = list_insert(l, 5, 0);
+  l = list_insert(l, 6, 1);
+
+  printf("list length: %d\n", list_length(l));
+
+  struct list *p;
+  for (p = l; p != NULL; p = p->next) {
+    printf("%d ", p->value);
+  }
+  printf("\n");
+}
+#include <stdio.h>
+#include <stdlib.h>
+#include "list.h"
+
+int main() {
+  struct list *l = NULL;
+
+  l = list_append(l, 1);
+  l = list_append(l, 2);
+  l = list_append(l, 3);
+  l = list_prepend(l, 4);
+  l = list_insert(l, 5, 0);
+  l = list_insert(l, 6, 1);
+
+  printf("list length: %d\n", list_length(l));
+
+  struct list *p;
+  for (p = l; p != NULL; p = p->next) {
+    printf("%d ", p->value);
+  }
+  printf("\n");
+}
+#include <stdio.h>
+#include <stdlib.h>
+#include "list.h"
+
+int main() {
+  struct list *l = NULL;
+
+  l = list_append(l, 1);
+  l = list_append(l, 2);
+  l = list_append(l, 3);
+  l = list_prepend(l, 4);
+  l = list_insert(l, 5, 0);
+  l = list_insert(l, 6, 1);
+
+  printf("list length: %d\n", list_length(l));
+
+  struct list *p;
+  for (p = l; p != NULL; p = p->next) {
+    printf("%d ", p->value);
+  }
+  printf("\n");
+}
+#include <stdio.h>
+#include <stdlib.h>
+#include "list.h"
+
+int main() {
+  struct list *l = NULL;
+
+  l = list_append(l, 1);
+  l = list_append(l, 2);
+  l = list_append(l, 3);
+  l = list_prepend(l, 4);
+  l = list_insert(l, 5,

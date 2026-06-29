@@ -1,0 +1,20 @@
+<think>
+The user wants translation into natural, accurate English. Must retain terms: RAG, KV cache, LoRA, p95 latency, tenant_id. No added info. Provide a sentence or two.
+
+Original Chinese:
+
+"为了降低 p95 latency，我们把 RAG 检索结果缓存 10 分钟，但不能跨 tenant_id 复用。微调只允许使用 LoRA，线上推理必须监控 KV cache 命中率。"
+
+We need to translate: "To reduce p95 latency, we cached RAG retrieval results for 10 minutes, but we cannot reuse them across tenant_id. Fine-tuning is limited to using LoRA, and online inference must monitor KV cache hit rate."
+
+Make sure terms are retained exactly as given (case). Use natural English.
+
+Thus:
+
+"To lower the p95 latency, we cache RAG retrieval results for ten minutes, but we cannot reuse them across tenant_id. Fine‑tuning is limited to using LoRA, and online inference must monitor KV cache hit rate."
+
+Check: "p95 latency" appears as is; "RAG" unchanged; "KV cache" unchanged; "LoRA" unchanged; "tenant_id". Good.
+
+We should ensure no extra info. That's fine.
+</think>
+To lower the p95 latency, we cache RAG retrieval results for ten minutes, but we cannot reuse them across tenant_id. Fine‑tuning is limited to using LoRA, and online inference must monitor KV cache hit rate.

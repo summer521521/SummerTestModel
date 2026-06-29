@@ -1,0 +1,22 @@
+当然！修复后的函数将忽略大小写、去掉英文标点，并按指定的方式排序结果。以下是完整 Python 代码：
+
+```python
+import string
+
+def top_k_words(text, k):
+    # 移除文本中的所有标点符号并转换为小写
+    text = text.translate(str.maketrans('', '', string.punctuation).lower())
+    
+    counts = {}
+    for word in text.split():
+        if word:  # 检查空单词是否存在
+            counts[word] = counts.get(word, 0) + 1
+    
+    return sorted(counts.items(), key=lambda item: (-item[1], item[0]))[:k]
+
+# 示例用法：
+text = "这是一个测试文本，这是另一个测试。这个测试是为了演示，Testing is fun!"
+print(top_k_words(text, 3))
+```
+
+此代码将 `top_k_words` 函数按要求工作：它统计单词频次（忽略大小写和标点），并返回前 `k` 个单词及其计数。排序是基于负的计数值降序，然后根据单词升序。如果计数相同，则按照单词升序排列。

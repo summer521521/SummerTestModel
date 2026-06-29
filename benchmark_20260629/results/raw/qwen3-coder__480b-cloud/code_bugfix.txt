@@ -1,0 +1,20 @@
+```python
+import re
+
+def top_k_words(text, k):
+    # 转换为小写
+    text = text.lower()
+    # 使用正则表达式提取单词（只保留字母）
+    words = re.findall(r'[a-z]+', text)
+    
+    # 统计词频
+    counts = {}
+    for word in words:
+        counts[word] = counts.get(word, 0) + 1
+    
+    # 按照count降序，count相同时按word升序排序
+    sorted_counts = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
+    
+    # 返回前k个
+    return sorted_counts[:k]
+```

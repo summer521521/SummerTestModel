@@ -1,0 +1,25 @@
+```python
+import re
+from collections import Counter
+
+def top_k_words(text, k):
+    """
+    统计单词频次，忽略大小写，去掉英文标点；返回前 k 个(word, count)，按 count 降序、count 相同按 word 升序。
+
+    Args:
+        text (str): 输入文本。
+        k (int): 返回的 top k 个单词的数量。
+
+    Returns:
+        list: 一个列表，包含前 k 个 (word, count) 元组，按照 count 降序、count 相同按 word 升序排列。
+    """
+    # 去除标点符号并转换为小写
+    text = re.sub(r'[^\w\s]', '', text).lower()
+
+    # 分割成单词列表
+    words = text.split()
+
+    # 使用 Counter 对象进行计数，并按 count 降序、count 相同按 word 升序排序
+    word_counts = Counter(words)
+    return [ (word, count) for word, count in sorted(word_counts.items(), key=lambda item: (-item[1], item[0]))[:k]
+```

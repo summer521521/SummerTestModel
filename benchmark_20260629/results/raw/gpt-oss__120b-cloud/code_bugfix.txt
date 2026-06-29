@@ -1,0 +1,46 @@
+```python
+import re
+from collections import Counter
+from typing import List, Tuple
+
+
+def top_k_words(text: str, k: int) -> List[Tuple[str, int]]:
+    """
+    Return the top *k* most frequent words in *text*.
+
+    - Case‑insensitive (all words are lower‑cased).
+    - English punctuation is ignored.
+    - Words are sequences of alphanumeric characters (a‑z, 0‑9) and apostrophes.
+    - Result is a list of (word, count) tuples sorted by:
+        1. Count descending.
+        2. Word ascending (lexicographically) when counts are equal.
+
+    Parameters
+    ----------
+    text: str
+        Input string to analyse.
+    k: int
+        Number of top items to return. If *k* exceeds the number of distinct
+        words, all words are returned.
+
+    Returns
+    -------
+    List[Tuple[str, int]]
+        Sorted list of the most frequent words with their counts.
+    """
+    # Normalise case
+    text = text.lower()
+
+    # Remove punctuation and extract words.
+    # The regex \b[a-z0-9']+\b matches sequences of letters, digits and apostrophes.
+    words = re.findall(r"\b[a-z0-9']+\b", text)
+
+    # Count frequencies
+    counter = Counter(words)
+
+    # Sort first by descending count, then by ascending word.
+    sorted_words = sorted(counter.items(), key=lambda item: (-item[1], item[0]))
+
+    # Return the first k items (or all if k is larger)
+    return sorted_words[:k]
+```

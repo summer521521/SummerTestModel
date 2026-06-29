@@ -1,0 +1,16 @@
+<think>
+We need to produce a JSON object, no markdown, just raw JSON. The user: "You are a rigorous data processor. Only output a JSON object, not Markdown, no explanation."
+
+Given order amounts: A=128.50, B=73.25, refund=-18.75. Compute subtotal (小计) first? Probably sum of A and B then subtract refund? Let's interpret: "先求小计，再打 9 折。" Means compute subtotal (sum of order amounts?), then apply 9 times discount? Actually "先求小计，再打 9 折" could mean calculate subtotal, then apply a 9% discount? Or maybe they want to sum A and B, then subtract refund, then apply 9% discount? The phrase "打 9 折" often means "apply a 9-fold discount"? Actually "打 9 折" is ambiguous: could be "discount by 9 times"? Usually "打 9 折" means "apply a 10% discount"? Wait typical Chinese phrase: "打 9 折" means "discount by 90%"? Let's think: In Chinese, "打折" means discount. "打 9 折" could mean "discount by 9 times"? Actually "折" is multiplier; "打 9 折" might be "apply a 10% discount"? No, typical phrase: "打 5 折" means 50% off (i.e., price multiplied by 0.5). So "打 9 折" would be 90% off? That's "打 9 折" meaning price is reduced to 10% of original? Actually if you say "打 5 折" it's ambiguous: some interpret as 50% discount (price becomes half), others think it's a 5 times discount, i.e., subtract 5 times the original? But typical usage: "打 5 折" = 50% off. So "打 9 折" would be 90% off, leaving 10% of original. However we need to compute total after applying discount.
+
+But the instruction: "先求小计，再打 9 折。" Means first calculate subtotal (sum of A and B?), then apply a 9-fold discount? Or maybe they want to sum A and B, subtract refund, then multiply by 0.9? Let's compute both possibilities.
+
+First compute subtotal: A + B - refund = 128.50 + 73.25 - (-18.75) = 128.50 + 73.25 + 18.75 = 220.5? Let's add: 128.5 + 73.25 = 201.75; plus 18.75 = 220.5. So subtotal = 220.5.
+
+Now apply "9折". If discount is 9 times (i.e., subtract 9 * subtotal?), that would be negative huge, not plausible. Likely they mean a 10% discount? Actually typical phrase: "打 9 折" could be misreading: maybe they want to apply a 10% discount? But the instruction says "先求小计，再打 9 折。" Could be ambiguous but we need to produce something plausible. Usually in such tasks, they'd compute subtotal then multiply by 0.9 (i.e., 10% off). So total = subtotal * 0.9 = 220.5 * 0.9 = 198.45. Round to two decimal places: 198.45.
+
+Now valid? Probably true if total > 0. So valid = true.
+
+code must be "OK-" plus final amount multiplied by 100 as integer. Final amount is total (final gold digits). They said "code 必须是 OK- 加上最终金额乘以 100 后的整数。" Means code must be "OK-" followed by integer of final amount * 100. So if total = 198.45, multiply by 100 => 19845. Then code = "OK-19845". No extra spaces? Probably exactly that.
+
+Thus JSON object: {"total": "198.45", "valid":

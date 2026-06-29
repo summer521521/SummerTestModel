@@ -1,0 +1,2 @@
+**Helios**  
+理由：唯一同时满足 status=PAUSED、owner=Lin、且 region=EU（即不是 APAC）的项目。

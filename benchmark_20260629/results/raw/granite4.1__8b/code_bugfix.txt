@@ -1,0 +1,17 @@
+```python
+import string
+
+def top_k_words(text, k):
+    # 将文本转换为小写并去除标点符号
+    translator = str.maketrans('', '', string.punctuation)
+    cleaned_text = text.lower().translate(translator)
+    
+    counts = {}
+    for word in cleaned_text.split():
+        counts[word] = counts.get(word, 0) + 1
+    
+    # 按 count 降序、count 相同按 word 升序排序
+    sorted_words = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
+    
+    return sorted_words[:k]
+```

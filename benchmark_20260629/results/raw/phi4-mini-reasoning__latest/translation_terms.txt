@@ -1,0 +1,23 @@
+<think>
+嗯，我's Phi，我需要把这个中文翻译成自然、准确的英文，而且必须保留原文的术语，比如RAG、KV cache、LoRA、p95_latency，还要处理的是tenant_id这些词不能添加信息，原文也没有漏掉的信息。首先，我得仔细看看每个部分怎么翻译。
+
+原句分三个部分：第一部分是为了降低p95_latency，所以需要缓存RAG结果到10分钟，但不能跨tenant_id复用。第二部分微调只能用LoRA，第三部分线上推理必须监控KV cache的命中率。
+
+首先，“lowering p95 latency”应该翻译为“reduce/pull down/pause the p95 latency”。这里的p95_latency可能指的是99th_percentile的延迟，也就是系统在99%的时间内的延迟不超过这个值，所以需要降低。对于“缓存RAG结果10分钟”，可能是“cache RAG results for 10 minutes”或者“retain RAG results in KV cache for a 10-minute duration”。但原文说不能跨tenant_id复用，所以每个tenant_id的KV cache里不能共享RAG的缓存数据。这部分需要注意，不能提到跨tenant_id，也就是“but not across tenant_id re-use”。
+
+第二部分微调只能使用LoRA，即微调时只能通过LoRA进行调整，故翻译为“micro-adjustments are limited to LoRA”。这里的“允许”可能是“allowed”，因为原文用的是“allowing”。
+
+第三部分线上推理必须监控KV cache的命中率，也就是“online inference must monitor KV cache hit rate”。
+
+检查术语是否正确使用：RAG、KV cache、LoRA、p95_latency、tenant_id都正确翻译了。原文中的“but”和“but not”需要注意，不能跨tenant_id复用，所以在英文中应该表达为“but cannot be shared across tenant_id”。同样，“monitoring KV cache hit rate”是否准确？
+
+再仔细检查句子结构。整个句子的主语是为了降低p95_latency，所以整体结构应该是“To reduce p95 latency, we cache RAG results for 10 minutes but [avoid using across tenant_id]. For fine-tuning, only LoRA is allowed, and online inference must monitor KV cache hit rate.”
+
+可能需要更简洁的表达，比如：
+
+“To reduce p95 latency, we cache RAG results for 10 minutes but cannot share across tenant_id. Fine-tuning is limited to LoRA; online inference must monitor KV cache hit rate.”
+
+这样每个部分分开，术语正确，条件明确，不多多加信息。确认是否所有要求都满足：原样保留术语，原文没有额外信息，翻译自然准确。
+</think>
+
+To reduce p95 latency, we cache RAG results for 10 minutes but cannot share across tenant_id. Fine-tuning is limited to LoRA; online inference must monitor KV cache hit rate.
