@@ -6,27 +6,32 @@
 
 ## 模型范围
 
-- `mistral:7b`
-- `starcoder2:7b`
 - `deepscaler:1.5b`
-- `phi4-mini-reasoning:latest`
-- `phi4-mini:latest`
-- `llama3.2:3b`
-- `smollm2:1.7b`
+- `deepseek-r1:8b`
 - `devstral-2:123b-cloud`
-- `qwen3-coder:480b-cloud`
-- `qwen3-coder-next:cloud`
-- `minimax-m3:cloud`
-- `ornith:9b`
+- `gemma4:e4b`
+- `gpt-oss:120b-cloud`
+- `granite4.1:8b`
+- `hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M`
+- `hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL`
+- `huggingface.co/llmware/phi-4-mini-gguf:latest`
+- `huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest`
 - `kaelri/hy-mt2:7b-q4_K_M`
 - `lfm2.5:8b`
-- `deepseek-r1:8b`
-- `gemma4:e4b`
-- `granite4.1:8b`
-- `translategemma:latest`
-- `gpt-oss:120b-cloud`
-- `qwen3.5:9b`
+- `llama3.2:3b`
+- `minimax-m3:cloud`
+- `mistral:7b`
+- `ornith:9b`
+- `phi4-mini-reasoning:latest`
+- `phi4-mini:latest`
+- `qwen3-coder-next:cloud`
+- `qwen3-coder:480b-cloud`
 - `qwen3-vl:8b`
+- `qwen3.5:4b`
+- `qwen3.5:9b`
+- `smollm2:1.7b`
+- `starcoder2:7b`
+- `translategemma:latest`
 
 ## 测试题
 

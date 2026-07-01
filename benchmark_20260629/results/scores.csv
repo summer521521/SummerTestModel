@@ -1,40 +1,131 @@
 ﻿model,test_id,category,score,max_score,elapsed_sec,error,note
-mistral:7b,format_json,格式遵循,5,10,14.07,,total 错；code 错
-mistral:7b,math_reasoning,推理,0,10,11.18,,时间错；次数错
-mistral:7b,long_context,长上下文,4,10,3.21,,目标项目错
-mistral:7b,translation_terms,翻译,8,10,2.88,,丢失 LoRA；租户隔离表达弱
-mistral:7b,anti_hallucination,可靠性,10,10,5.53,,拒绝编造且保留已知信息
-mistral:7b,code_bugfix,代码,10,10,9.68,,单元测试全通过
-mistral:7b,planning_schedule,规划,2,10,34.13,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
-starcoder2:7b,format_json,格式遵循,0,10,47.76,,没有输出可解析 JSON
-starcoder2:7b,math_reasoning,推理,0,10,19.71,,时间错；次数错
-starcoder2:7b,long_context,长上下文,2,10,19.62,,目标项目错
-starcoder2:7b,translation_terms,翻译,5,10,19.27,,仍含中文；约束语气不足；租户隔离表达弱；长度异常
-starcoder2:7b,anti_hallucination,可靠性,3,10,0.68,,没有承认信息不足；没有保留已知事实
-starcoder2:7b,code_bugfix,代码,0,10,20.16,,没有给出目标函数
-starcoder2:7b,planning_schedule,规划,0,10,0.86,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
-deepscaler:1.5b,format_json,格式遵循,7,10,29.5,,code 错；JSON 外有额外文本
-deepscaler:1.5b,math_reasoning,推理,5,10,19.56,,次数错
-deepscaler:1.5b,long_context,长上下文,9,10,19.46,,混入干扰项
-deepscaler:1.5b,translation_terms,翻译,7,10,8.98,,仍含中文；租户隔离表达弱
 deepscaler:1.5b,anti_hallucination,可靠性,10,10,7.8,,拒绝编造且保留已知信息
 deepscaler:1.5b,code_bugfix,代码,4,10,19.11,,"Traceback (most recent call last):
   File ""<TEMP>\run_code_test.py"", line 15, in <module>
     assert got == expected, (text, got, expected)
            ^^^^^^^^^^^^^^^
 AssertionError: ('Apple banana apple, BANANA! pear.'"
+deepscaler:1.5b,format_json,格式遵循,7,10,29.5,,code 错；JSON 外有额外文本
+deepscaler:1.5b,long_context,长上下文,9,10,19.46,,混入干扰项
+deepscaler:1.5b,math_reasoning,推理,5,10,19.56,,次数错
 deepscaler:1.5b,planning_schedule,规划,2,10,19.96,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
-phi4-mini-reasoning:latest,format_json,格式遵循,0,10,74.82,,没有输出可解析 JSON
-phi4-mini-reasoning:latest,math_reasoning,推理,5,10,57.57,,次数错
-phi4-mini-reasoning:latest,long_context,长上下文,9,10,60.23,,混入干扰项
-phi4-mini-reasoning:latest,translation_terms,翻译,6,10,40.16,,仍含中文；租户隔离表达弱；长度异常
+deepscaler:1.5b,translation_terms,翻译,7,10,8.98,,仍含中文；租户隔离表达弱
+deepseek-r1:8b,anti_hallucination,可靠性,10,10,29.8,,拒绝编造且保留已知信息
+deepseek-r1:8b,code_bugfix,代码,0,10,106.98,,没有给出目标函数
+deepseek-r1:8b,format_json,格式遵循,0,10,124.81,,没有输出可解析 JSON
+deepseek-r1:8b,long_context,长上下文,2,10,109.55,,目标项目错
+deepseek-r1:8b,math_reasoning,推理,0,10,107.23,,时间错；次数错
+deepseek-r1:8b,planning_schedule,规划,0,10,110.57,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+deepseek-r1:8b,translation_terms,翻译,9,10,45.3,,租户隔离表达弱
+devstral-2:123b-cloud,anti_hallucination,可靠性,10,10,3.88,,拒绝编造且保留已知信息
+devstral-2:123b-cloud,code_bugfix,代码,10,10,10.85,,单元测试全通过
+devstral-2:123b-cloud,format_json,格式遵循,4,10,7.81,,total 错；code 错；JSON 外有额外文本
+devstral-2:123b-cloud,long_context,长上下文,10,10,1.94,,正确定位
+devstral-2:123b-cloud,math_reasoning,推理,5,10,1.76,,次数错
+devstral-2:123b-cloud,planning_schedule,规划,4,10,33.24,,没有明确有解；C 在 D 前不清；12:00-13:00 禁行处理不清
+devstral-2:123b-cloud,translation_terms,翻译,9,10,3.39,,租户隔离表达弱
+gemma4:e4b,anti_hallucination,可靠性,10,10,9.54,,拒绝编造且保留已知信息
+gemma4:e4b,code_bugfix,代码,1,10,17.76,,语法错误：unterminated triple-quoted string literal (detected at line 7)
+gemma4:e4b,format_json,格式遵循,10,10,38.41,,完全正确
+gemma4:e4b,long_context,长上下文,10,10,15.17,,正确定位
+gemma4:e4b,math_reasoning,推理,0,10,17.66,,时间错；次数错
+gemma4:e4b,planning_schedule,规划,0,10,18.0,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+gemma4:e4b,translation_terms,翻译,9,10,8.29,,租户隔离表达弱
+gpt-oss:120b-cloud,anti_hallucination,可靠性,10,10,4.43,,拒绝编造且保留已知信息
+gpt-oss:120b-cloud,code_bugfix,代码,10,10,7.93,,单元测试全通过
+gpt-oss:120b-cloud,format_json,格式遵循,10,10,6.68,,完全正确
+gpt-oss:120b-cloud,long_context,长上下文,10,10,2.82,,正确定位
+gpt-oss:120b-cloud,math_reasoning,推理,10,10,7.45,,完全正确
+gpt-oss:120b-cloud,planning_schedule,规划,0,10,10.3,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+gpt-oss:120b-cloud,translation_terms,翻译,9,10,3.05,,租户隔离表达弱
+granite4.1:8b,anti_hallucination,可靠性,10,10,29.39,,拒绝编造且保留已知信息
+granite4.1:8b,code_bugfix,代码,10,10,15.52,,单元测试全通过
+granite4.1:8b,format_json,格式遵循,4,10,31.53,,total 错；code 错；JSON 外有额外文本
+granite4.1:8b,long_context,长上下文,10,10,5.91,,正确定位
+granite4.1:8b,math_reasoning,推理,0,10,55.14,,时间错；次数错
+granite4.1:8b,planning_schedule,规划,2,10,102.7,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
+granite4.1:8b,translation_terms,翻译,9,10,5.53,,租户隔离表达弱
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,anti_hallucination,可靠性,10,10,17.21,,拒绝编造且保留已知信息
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,code_bugfix,代码,0,10,50.03,,没有给出目标函数
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,format_json,格式遵循,10,10,34.05,,完全正确
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,long_context,长上下文,10,10,27.93,,正确定位
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,math_reasoning,推理,0,10,51.76,,时间错；次数错
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,planning_schedule,规划,0,10,55.06,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,translation_terms,翻译,9,10,35.25,,租户隔离表达弱
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,anti_hallucination,可靠性,10,10,6.5,,拒绝编造且保留已知信息
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,code_bugfix,代码,0,10,13.8,,没有给出目标函数
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,format_json,格式遵循,2,10,25.58,,字段不全；total 错；code 错；JSON 外有额外文本
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,long_context,长上下文,9,10,13.54,,混入干扰项
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,math_reasoning,推理,5,10,14.3,,时间错
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,planning_schedule,规划,4,10,13.59,,没有明确有解；C 在 D 前不清；12:00-13:00 禁行处理不清
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,translation_terms,翻译,6,10,9.36,,仍含中文；租户隔离表达弱；长度异常
+huggingface.co/llmware/phi-4-mini-gguf:latest,anti_hallucination,可靠性,3,10,4.97,,没有承认信息不足；没有保留已知事实
+huggingface.co/llmware/phi-4-mini-gguf:latest,code_bugfix,代码,10,10,6.2,,单元测试全通过
+huggingface.co/llmware/phi-4-mini-gguf:latest,format_json,格式遵循,5,10,22.69,,total 错；code 错
+huggingface.co/llmware/phi-4-mini-gguf:latest,long_context,长上下文,3,10,3.14,,目标项目错；混入干扰项
+huggingface.co/llmware/phi-4-mini-gguf:latest,math_reasoning,推理,0,10,10.44,,时间错；次数错
+huggingface.co/llmware/phi-4-mini-gguf:latest,planning_schedule,规划,4,10,52.36,,没有明确有解；C 在 D 前不清；12:00-13:00 禁行处理不清
+huggingface.co/llmware/phi-4-mini-gguf:latest,translation_terms,翻译,6,10,2.92,,丢失 KV cache；丢失 p95 latency；租户隔离表达弱；长度异常
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,anti_hallucination,可靠性,5,10,43.13,,没有保留已知事实；疑似编造细节
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,code_bugfix,代码,0,10,110.26,,没有给出目标函数
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,format_json,格式遵循,0,10,117.47,,没有输出可解析 JSON
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,long_context,长上下文,9,10,43.37,,混入干扰项
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,math_reasoning,推理,5,10,114.61,,次数错
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,planning_schedule,规划,2,10,108.64,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,translation_terms,翻译,7,10,35.7,,仍含中文；租户隔离表达弱
+kaelri/hy-mt2:7b-q4_K_M,anti_hallucination,可靠性,8,10,3.61,,没有保留已知事实
+kaelri/hy-mt2:7b-q4_K_M,code_bugfix,代码,10,10,13.75,,单元测试全通过
+kaelri/hy-mt2:7b-q4_K_M,format_json,格式遵循,5,10,29.4,,total 错；code 错
+kaelri/hy-mt2:7b-q4_K_M,long_context,长上下文,3,10,3.19,,目标项目错
+kaelri/hy-mt2:7b-q4_K_M,math_reasoning,推理,0,10,2.56,,时间错；次数错
+kaelri/hy-mt2:7b-q4_K_M,planning_schedule,规划,0,10,2.57,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+kaelri/hy-mt2:7b-q4_K_M,translation_terms,翻译,2,10,1.43,,丢失 RAG；丢失 KV cache；丢失 LoRA；丢失 p95 latency；丢失 tenant_id；约束语气不足；租户隔离表达弱；长度异常
+lfm2.5:8b,anti_hallucination,可靠性,10,10,3.95,,拒绝编造且保留已知信息
+lfm2.5:8b,code_bugfix,代码,10,10,5.15,,单元测试全通过
+lfm2.5:8b,format_json,格式遵循,0,10,29.81,,没有输出可解析 JSON
+lfm2.5:8b,long_context,长上下文,8,10,4.66,,混入干扰项
+lfm2.5:8b,math_reasoning,推理,5,10,7.8,,次数错
+lfm2.5:8b,planning_schedule,规划,2,10,7.85,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
+lfm2.5:8b,translation_terms,翻译,6,10,3.47,,仍含中文；租户隔离表达弱；长度异常
+llama3.2:3b,anti_hallucination,可靠性,3,10,1.83,,没有承认信息不足；没有保留已知事实
+llama3.2:3b,code_bugfix,代码,4,10,12.55,,"Traceback (most recent call last):
+  File ""<TEMP>\run_code_test.py"", line 15, in <module>
+    assert got == expected, (text, got, expected)
+           ^^^^^^^^^^^^^^^
+AssertionError: ('Apple banana apple, BANANA! pear.'"
+llama3.2:3b,format_json,格式遵循,5,10,15.78,,total 错；code 错
+llama3.2:3b,long_context,长上下文,3,10,2.71,,目标项目错
+llama3.2:3b,math_reasoning,推理,0,10,13.33,,时间错；次数错
+llama3.2:3b,planning_schedule,规划,4,10,20.19,,没有明确有解；C 在 D 前不清；12:00-13:00 禁行处理不清
+llama3.2:3b,translation_terms,翻译,9,10,2.7,,租户隔离表达弱
+minimax-m3:cloud,anti_hallucination,可靠性,10,10,4.33,,拒绝编造且保留已知信息
+minimax-m3:cloud,code_bugfix,代码,10,10,7.27,,单元测试全通过
+minimax-m3:cloud,format_json,格式遵循,10,10,2.93,,完全正确
+minimax-m3:cloud,long_context,长上下文,9,10,7.95,,混入干扰项
+minimax-m3:cloud,math_reasoning,推理,0,10,6.69,,时间错；次数错
+minimax-m3:cloud,planning_schedule,规划,0,10,7.14,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+minimax-m3:cloud,translation_terms,翻译,8,10,3.1,,租户隔离表达弱；长度异常
+mistral:7b,anti_hallucination,可靠性,10,10,5.53,,拒绝编造且保留已知信息
+mistral:7b,code_bugfix,代码,10,10,9.68,,单元测试全通过
+mistral:7b,format_json,格式遵循,5,10,14.07,,total 错；code 错
+mistral:7b,long_context,长上下文,4,10,3.21,,目标项目错
+mistral:7b,math_reasoning,推理,0,10,11.18,,时间错；次数错
+mistral:7b,planning_schedule,规划,2,10,34.13,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
+mistral:7b,translation_terms,翻译,8,10,2.88,,丢失 LoRA；租户隔离表达弱
+ornith:9b,anti_hallucination,可靠性,10,10,19.75,,拒绝编造且保留已知信息
+ornith:9b,code_bugfix,代码,10,10,19.03,,单元测试全通过
+ornith:9b,format_json,格式遵循,9,10,70.75,,JSON 外有额外文本
+ornith:9b,long_context,长上下文,10,10,28.04,,正确定位
+ornith:9b,math_reasoning,推理,5,10,28.83,,次数错
+ornith:9b,planning_schedule,规划,0,10,70.68,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+ornith:9b,translation_terms,翻译,8,10,16.13,,租户隔离表达弱；长度异常
 phi4-mini-reasoning:latest,anti_hallucination,可靠性,10,10,48.14,,拒绝编造且保留已知信息
 phi4-mini-reasoning:latest,code_bugfix,代码,0,10,60.56,,没有给出目标函数
+phi4-mini-reasoning:latest,format_json,格式遵循,0,10,74.82,,没有输出可解析 JSON
+phi4-mini-reasoning:latest,long_context,长上下文,9,10,60.23,,混入干扰项
+phi4-mini-reasoning:latest,math_reasoning,推理,5,10,57.57,,次数错
 phi4-mini-reasoning:latest,planning_schedule,规划,2,10,61.34,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
-phi4-mini:latest,format_json,格式遵循,4,10,29.63,,total 错；code 错；JSON 外有额外文本
-phi4-mini:latest,math_reasoning,推理,0,10,1.66,,时间错；次数错
-phi4-mini:latest,long_context,长上下文,3,10,2.22,,目标项目错；混入干扰项
-phi4-mini:latest,translation_terms,翻译,7,10,2.77,,丢失 p95 latency；租户隔离表达弱；长度异常
+phi4-mini-reasoning:latest,translation_terms,翻译,6,10,40.16,,仍含中文；租户隔离表达弱；长度异常
 phi4-mini:latest,anti_hallucination,可靠性,10,10,9.26,,拒绝编造且保留已知信息
 phi4-mini:latest,code_bugfix,代码,4,10,12.5,,"Traceback (most recent call last):
   File ""<TEMP>\run_code_test.py"", line 5, in <module>
@@ -42,120 +133,64 @@ phi4-mini:latest,code_bugfix,代码,4,10,12.5,,"Traceback (most recent call last
   File ""<string>"", line 16, in <module>
   File ""<string>"", line 5, in top_k_words
 AttributeError: 'dict' object"
+phi4-mini:latest,format_json,格式遵循,4,10,29.63,,total 错；code 错；JSON 外有额外文本
+phi4-mini:latest,long_context,长上下文,3,10,2.22,,目标项目错；混入干扰项
+phi4-mini:latest,math_reasoning,推理,0,10,1.66,,时间错；次数错
 phi4-mini:latest,planning_schedule,规划,2,10,38.04,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
-llama3.2:3b,format_json,格式遵循,5,10,15.78,,total 错；code 错
-llama3.2:3b,math_reasoning,推理,0,10,13.33,,时间错；次数错
-llama3.2:3b,long_context,长上下文,3,10,2.71,,目标项目错
-llama3.2:3b,translation_terms,翻译,9,10,2.7,,租户隔离表达弱
-llama3.2:3b,anti_hallucination,可靠性,3,10,1.83,,没有承认信息不足；没有保留已知事实
-llama3.2:3b,code_bugfix,代码,4,10,12.55,,"Traceback (most recent call last):
-  File ""<TEMP>\run_code_test.py"", line 15, in <module>
-    assert got == expected, (text, got, expected)
-           ^^^^^^^^^^^^^^^
-AssertionError: ('Apple banana apple, BANANA! pear.'"
-llama3.2:3b,planning_schedule,规划,4,10,20.19,,没有明确有解；C 在 D 前不清；12:00-13:00 禁行处理不清
-smollm2:1.7b,format_json,格式遵循,5,10,7.35,,total 错；code 错
-smollm2:1.7b,math_reasoning,推理,0,10,0.28,,时间错；次数错
-smollm2:1.7b,long_context,长上下文,8,10,3.06,,混入干扰项
-smollm2:1.7b,translation_terms,翻译,6,10,0.96,,丢失 tenant_id；约束语气不足；租户隔离表达弱；长度异常
-smollm2:1.7b,anti_hallucination,可靠性,8,10,2.73,,没有保留已知事实
-smollm2:1.7b,code_bugfix,代码,10,10,2.29,,单元测试全通过
-smollm2:1.7b,planning_schedule,规划,2,10,3.7,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
-devstral-2:123b-cloud,format_json,格式遵循,4,10,7.81,,total 错；code 错；JSON 外有额外文本
-devstral-2:123b-cloud,math_reasoning,推理,5,10,1.76,,次数错
-devstral-2:123b-cloud,long_context,长上下文,10,10,1.94,,正确定位
-devstral-2:123b-cloud,translation_terms,翻译,9,10,3.39,,租户隔离表达弱
-devstral-2:123b-cloud,anti_hallucination,可靠性,10,10,3.88,,拒绝编造且保留已知信息
-devstral-2:123b-cloud,code_bugfix,代码,10,10,10.85,,单元测试全通过
-devstral-2:123b-cloud,planning_schedule,规划,4,10,33.24,,没有明确有解；C 在 D 前不清；12:00-13:00 禁行处理不清
-qwen3-coder:480b-cloud,format_json,格式遵循,5,10,2.76,,total 错；code 错
-qwen3-coder:480b-cloud,math_reasoning,推理,0,10,1.06,,时间错；次数错
-qwen3-coder:480b-cloud,long_context,长上下文,10,10,3.18,,正确定位
-qwen3-coder:480b-cloud,translation_terms,翻译,9,10,1.7,,租户隔离表达弱
-qwen3-coder:480b-cloud,anti_hallucination,可靠性,10,10,3.08,,拒绝编造且保留已知信息
-qwen3-coder:480b-cloud,code_bugfix,代码,10,10,3.03,,单元测试全通过
-qwen3-coder:480b-cloud,planning_schedule,规划,4,10,9.85,,没有明确有解；C 在 D 前不清；12:00-13:00 禁行处理不清
-qwen3-coder-next:cloud,format_json,格式遵循,5,10,1.85,,total 错；code 错
-qwen3-coder-next:cloud,math_reasoning,推理,0,10,1.37,,时间错；次数错
-qwen3-coder-next:cloud,long_context,长上下文,10,10,0.97,,正确定位
-qwen3-coder-next:cloud,translation_terms,翻译,9,10,1.12,,租户隔离表达弱
+phi4-mini:latest,translation_terms,翻译,7,10,2.77,,丢失 p95 latency；租户隔离表达弱；长度异常
 qwen3-coder-next:cloud,anti_hallucination,可靠性,10,10,2.14,,拒绝编造且保留已知信息
 qwen3-coder-next:cloud,code_bugfix,代码,10,10,2.07,,单元测试全通过
+qwen3-coder-next:cloud,format_json,格式遵循,5,10,1.85,,total 错；code 错
+qwen3-coder-next:cloud,long_context,长上下文,10,10,0.97,,正确定位
+qwen3-coder-next:cloud,math_reasoning,推理,0,10,1.37,,时间错；次数错
 qwen3-coder-next:cloud,planning_schedule,规划,3,10,11.04,,没有明确有解；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清
-minimax-m3:cloud,format_json,格式遵循,10,10,2.93,,完全正确
-minimax-m3:cloud,math_reasoning,推理,0,10,6.69,,时间错；次数错
-minimax-m3:cloud,long_context,长上下文,9,10,7.95,,混入干扰项
-minimax-m3:cloud,translation_terms,翻译,8,10,3.1,,租户隔离表达弱；长度异常
-minimax-m3:cloud,anti_hallucination,可靠性,10,10,4.33,,拒绝编造且保留已知信息
-minimax-m3:cloud,code_bugfix,代码,10,10,7.27,,单元测试全通过
-minimax-m3:cloud,planning_schedule,规划,0,10,7.14,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
-ornith:9b,format_json,格式遵循,9,10,70.75,,JSON 外有额外文本
-ornith:9b,math_reasoning,推理,5,10,28.83,,次数错
-ornith:9b,long_context,长上下文,10,10,28.04,,正确定位
-ornith:9b,translation_terms,翻译,8,10,16.13,,租户隔离表达弱；长度异常
-ornith:9b,anti_hallucination,可靠性,10,10,19.75,,拒绝编造且保留已知信息
-ornith:9b,code_bugfix,代码,10,10,19.03,,单元测试全通过
-ornith:9b,planning_schedule,规划,0,10,70.68,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
-kaelri/hy-mt2:7b-q4_K_M,format_json,格式遵循,5,10,29.4,,total 错；code 错
-kaelri/hy-mt2:7b-q4_K_M,math_reasoning,推理,0,10,2.56,,时间错；次数错
-kaelri/hy-mt2:7b-q4_K_M,long_context,长上下文,3,10,3.19,,目标项目错
-kaelri/hy-mt2:7b-q4_K_M,translation_terms,翻译,2,10,1.43,,丢失 RAG；丢失 KV cache；丢失 LoRA；丢失 p95 latency；丢失 tenant_id；约束语气不足；租户隔离表达弱；长度异常
-kaelri/hy-mt2:7b-q4_K_M,anti_hallucination,可靠性,8,10,3.61,,没有保留已知事实
-kaelri/hy-mt2:7b-q4_K_M,code_bugfix,代码,10,10,13.75,,单元测试全通过
-kaelri/hy-mt2:7b-q4_K_M,planning_schedule,规划,0,10,2.57,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
-lfm2.5:8b,format_json,格式遵循,0,10,29.81,,没有输出可解析 JSON
-lfm2.5:8b,math_reasoning,推理,5,10,7.8,,次数错
-lfm2.5:8b,long_context,长上下文,8,10,4.66,,混入干扰项
-lfm2.5:8b,translation_terms,翻译,6,10,3.47,,仍含中文；租户隔离表达弱；长度异常
-lfm2.5:8b,anti_hallucination,可靠性,10,10,3.95,,拒绝编造且保留已知信息
-lfm2.5:8b,code_bugfix,代码,10,10,5.15,,单元测试全通过
-lfm2.5:8b,planning_schedule,规划,2,10,7.85,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
-deepseek-r1:8b,format_json,格式遵循,0,10,124.81,,没有输出可解析 JSON
-deepseek-r1:8b,math_reasoning,推理,0,10,107.23,,时间错；次数错
-deepseek-r1:8b,long_context,长上下文,2,10,109.55,,目标项目错
-deepseek-r1:8b,translation_terms,翻译,9,10,45.3,,租户隔离表达弱
-deepseek-r1:8b,anti_hallucination,可靠性,10,10,29.8,,拒绝编造且保留已知信息
-deepseek-r1:8b,code_bugfix,代码,0,10,106.98,,没有给出目标函数
-deepseek-r1:8b,planning_schedule,规划,0,10,110.57,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
-gemma4:e4b,format_json,格式遵循,10,10,38.41,,完全正确
-gemma4:e4b,math_reasoning,推理,0,10,17.66,,时间错；次数错
-gemma4:e4b,long_context,长上下文,10,10,15.17,,正确定位
-gemma4:e4b,translation_terms,翻译,9,10,8.29,,租户隔离表达弱
-gemma4:e4b,anti_hallucination,可靠性,10,10,9.54,,拒绝编造且保留已知信息
-gemma4:e4b,code_bugfix,代码,1,10,17.76,,语法错误：unterminated triple-quoted string literal (detected at line 7)
-gemma4:e4b,planning_schedule,规划,0,10,18.0,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
-granite4.1:8b,format_json,格式遵循,4,10,31.53,,total 错；code 错；JSON 外有额外文本
-granite4.1:8b,math_reasoning,推理,0,10,55.14,,时间错；次数错
-granite4.1:8b,long_context,长上下文,10,10,5.91,,正确定位
-granite4.1:8b,translation_terms,翻译,9,10,5.53,,租户隔离表达弱
-granite4.1:8b,anti_hallucination,可靠性,10,10,29.39,,拒绝编造且保留已知信息
-granite4.1:8b,code_bugfix,代码,10,10,15.52,,单元测试全通过
-granite4.1:8b,planning_schedule,规划,2,10,102.7,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
-translategemma:latest,format_json,格式遵循,4,10,20.84,,total 错；code 错；JSON 外有额外文本
-translategemma:latest,math_reasoning,推理,0,10,2.59,,时间错；次数错
-translategemma:latest,long_context,长上下文,3,10,2.53,,目标项目错
-translategemma:latest,translation_terms,翻译,8,10,3.05,,约束语气不足；租户隔离表达弱
-translategemma:latest,anti_hallucination,可靠性,5,10,2.97,,没有承认信息不足
-translategemma:latest,code_bugfix,代码,1,10,5.77,,语法错误：'[' was never closed
-translategemma:latest,planning_schedule,规划,0,10,3.65,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
-gpt-oss:120b-cloud,format_json,格式遵循,10,10,6.68,,完全正确
-gpt-oss:120b-cloud,math_reasoning,推理,10,10,7.45,,完全正确
-gpt-oss:120b-cloud,long_context,长上下文,10,10,2.82,,正确定位
-gpt-oss:120b-cloud,translation_terms,翻译,9,10,3.05,,租户隔离表达弱
-gpt-oss:120b-cloud,anti_hallucination,可靠性,10,10,4.43,,拒绝编造且保留已知信息
-gpt-oss:120b-cloud,code_bugfix,代码,10,10,7.93,,单元测试全通过
-gpt-oss:120b-cloud,planning_schedule,规划,0,10,10.3,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
-qwen3.5:9b,format_json,格式遵循,0,10,84.36,,没有输出可解析 JSON
-qwen3.5:9b,math_reasoning,推理,0,10,69.22,,时间错；次数错
-qwen3.5:9b,long_context,长上下文,2,10,70.35,,目标项目错
-qwen3.5:9b,translation_terms,翻译,2,10,72.61,,丢失 RAG；丢失 KV cache；丢失 LoRA；丢失 p95 latency；丢失 tenant_id；约束语气不足；租户隔离表达弱；长度异常
-qwen3.5:9b,anti_hallucination,可靠性,3,10,72.43,,没有承认信息不足；没有保留已知事实
-qwen3.5:9b,code_bugfix,代码,10,10,37.46,,单元测试全通过
-qwen3.5:9b,planning_schedule,规划,0,10,73.55,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
-qwen3-vl:8b,format_json,格式遵循,0,10,131.73,,没有输出可解析 JSON
-qwen3-vl:8b,math_reasoning,推理,0,10,105.28,,时间错；次数错
-qwen3-vl:8b,long_context,长上下文,2,10,107.43,,目标项目错
-qwen3-vl:8b,translation_terms,翻译,2,10,103.82,,丢失 RAG；丢失 KV cache；丢失 LoRA；丢失 p95 latency；丢失 tenant_id；约束语气不足；租户隔离表达弱；长度异常
+qwen3-coder-next:cloud,translation_terms,翻译,9,10,1.12,,租户隔离表达弱
+qwen3-coder:480b-cloud,anti_hallucination,可靠性,10,10,3.08,,拒绝编造且保留已知信息
+qwen3-coder:480b-cloud,code_bugfix,代码,10,10,3.03,,单元测试全通过
+qwen3-coder:480b-cloud,format_json,格式遵循,5,10,2.76,,total 错；code 错
+qwen3-coder:480b-cloud,long_context,长上下文,10,10,3.18,,正确定位
+qwen3-coder:480b-cloud,math_reasoning,推理,0,10,1.06,,时间错；次数错
+qwen3-coder:480b-cloud,planning_schedule,规划,4,10,9.85,,没有明确有解；C 在 D 前不清；12:00-13:00 禁行处理不清
+qwen3-coder:480b-cloud,translation_terms,翻译,9,10,1.7,,租户隔离表达弱
 qwen3-vl:8b,anti_hallucination,可靠性,10,10,70.4,,拒绝编造且保留已知信息
 qwen3-vl:8b,code_bugfix,代码,0,10,105.55,,没有给出目标函数
+qwen3-vl:8b,format_json,格式遵循,0,10,131.73,,没有输出可解析 JSON
+qwen3-vl:8b,long_context,长上下文,2,10,107.43,,目标项目错
+qwen3-vl:8b,math_reasoning,推理,0,10,105.28,,时间错；次数错
 qwen3-vl:8b,planning_schedule,规划,0,10,109.56,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+qwen3-vl:8b,translation_terms,翻译,2,10,103.82,,丢失 RAG；丢失 KV cache；丢失 LoRA；丢失 p95 latency；丢失 tenant_id；约束语气不足；租户隔离表达弱；长度异常
+qwen3.5:4b,anti_hallucination,可靠性,3,10,26.9,,没有承认信息不足；没有保留已知事实
+qwen3.5:4b,code_bugfix,代码,0,10,27.71,,没有给出目标函数
+qwen3.5:4b,format_json,格式遵循,0,10,39.11,,没有输出可解析 JSON
+qwen3.5:4b,long_context,长上下文,2,10,27.07,,目标项目错
+qwen3.5:4b,math_reasoning,推理,0,10,27.69,,时间错；次数错
+qwen3.5:4b,planning_schedule,规划,0,10,26.98,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+qwen3.5:4b,translation_terms,翻译,2,10,26.03,,丢失 RAG；丢失 KV cache；丢失 LoRA；丢失 p95 latency；丢失 tenant_id；约束语气不足；租户隔离表达弱；长度异常
+qwen3.5:9b,anti_hallucination,可靠性,3,10,72.43,,没有承认信息不足；没有保留已知事实
+qwen3.5:9b,code_bugfix,代码,10,10,37.46,,单元测试全通过
+qwen3.5:9b,format_json,格式遵循,0,10,84.36,,没有输出可解析 JSON
+qwen3.5:9b,long_context,长上下文,2,10,70.35,,目标项目错
+qwen3.5:9b,math_reasoning,推理,0,10,69.22,,时间错；次数错
+qwen3.5:9b,planning_schedule,规划,0,10,73.55,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+qwen3.5:9b,translation_terms,翻译,2,10,72.61,,丢失 RAG；丢失 KV cache；丢失 LoRA；丢失 p95 latency；丢失 tenant_id；约束语气不足；租户隔离表达弱；长度异常
+smollm2:1.7b,anti_hallucination,可靠性,8,10,2.73,,没有保留已知事实
+smollm2:1.7b,code_bugfix,代码,10,10,2.29,,单元测试全通过
+smollm2:1.7b,format_json,格式遵循,5,10,7.35,,total 错；code 错
+smollm2:1.7b,long_context,长上下文,8,10,3.06,,混入干扰项
+smollm2:1.7b,math_reasoning,推理,0,10,0.28,,时间错；次数错
+smollm2:1.7b,planning_schedule,规划,2,10,3.7,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
+smollm2:1.7b,translation_terms,翻译,6,10,0.96,,丢失 tenant_id；约束语气不足；租户隔离表达弱；长度异常
+starcoder2:7b,anti_hallucination,可靠性,3,10,0.68,,没有承认信息不足；没有保留已知事实
+starcoder2:7b,code_bugfix,代码,0,10,20.16,,没有给出目标函数
+starcoder2:7b,format_json,格式遵循,0,10,47.76,,没有输出可解析 JSON
+starcoder2:7b,long_context,长上下文,2,10,19.62,,目标项目错
+starcoder2:7b,math_reasoning,推理,0,10,19.71,,时间错；次数错
+starcoder2:7b,planning_schedule,规划,0,10,0.86,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+starcoder2:7b,translation_terms,翻译,5,10,19.27,,仍含中文；约束语气不足；租户隔离表达弱；长度异常
+translategemma:latest,anti_hallucination,可靠性,5,10,2.97,,没有承认信息不足
+translategemma:latest,code_bugfix,代码,1,10,5.77,,语法错误：'[' was never closed
+translategemma:latest,format_json,格式遵循,4,10,20.84,,total 错；code 错；JSON 外有额外文本
+translategemma:latest,long_context,长上下文,3,10,2.53,,目标项目错
+translategemma:latest,math_reasoning,推理,0,10,2.59,,时间错；次数错
+translategemma:latest,planning_schedule,规划,0,10,3.65,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+translategemma:latest,translation_terms,翻译,8,10,3.05,,约束语气不足；租户隔离表达弱

@@ -1,0 +1,21 @@
+<think>
+好的，我现在需要将给定的中文翻译成英文，同时保留所有术语：RAG、KV cache、LoRA、p95 latency、tenant_id，并且不能添加原文没有的信息。首先，我要仔细阅读原文，理解每个部分的意思，然后逐句转换。
+
+原文第一句话是：“为了降低 p95 latency，我们把 RAG 检索结果缓存 10 分钟，但不能跨 tenant_id 复用。”这里提到的是使用RAG（可能指的是Random Access Graph）进行查询，缓存了10分钟的结果，但是这个缓存只能在同一个tenant_id下复用，不可以跨租户共享。所以英文翻译应该是：“To reduce p95 latency, we cache RAG query results for 10 minutes but cannot reuse them across tenant_id.”
+
+第二句话是：“微调只允许使用 LoRA，线上推理必须监控 KV cache 命中率。”这里提到的是在微调阶段只能用LoRA（可能指Lightweight Autoregressive Models），而在线推理时需要监控KV缓存的命中率。所以翻译成：“Micro-optimization is only allowed to use LoRA, and online inference must monitor KV cache hit rate.”
+
+接下来，我要检查每个术语是否正确保留了原样，没有添加额外信息。比如，RAG、KV cache、LoRA、p95 latency和tenant_id都需要保持不变。同时，要确保句子结构自然，准确无误。
+
+可能的翻译：
+
+To reduce p95 latency, we cache RAG query results for 10 minutes but cannot reuse them across tenant_id. Micro-optimization is only allowed to use LoRA, and online inference must monitor KV cache hit rate.
+
+需要检查是否有语法错误或逻辑不清的地方。例如，“但不能跨tenant_id复用”中的“cross”应该是“across”，所以正确的翻译是“cannot reuse them across tenant_id”。
+
+另外，确保术语之间没有空格问题，比如“KV cache hit rate”是否连在一起，是正确的。
+
+最后，确认所有原文关键词都被正确转换，没有遗漏或添加。看起来没问题。
+</think>
+
+To reduce p95 latency, we cache RAG query results for 10 minutes but cannot reuse them across tenant_id. Micro-optimization is only allowed to use LoRA, and online inference must monitor KV cache hit rate.

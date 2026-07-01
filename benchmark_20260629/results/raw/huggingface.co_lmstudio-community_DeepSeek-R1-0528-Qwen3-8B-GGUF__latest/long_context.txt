@@ -1,0 +1,12 @@
+<think>
+嗯，用户给了一个项目台账列表，要求找出唯一满足status是PAUSED、owner是Lin、region不是APAC的项目。让我仔细看看这些数据。
+
+首先检查每个项目的状态是否为PAUSED，然后看负责人是不是Lin，最后确认地区不是亚太（APAC）。需要找到完全符合这三个条件的那个。
+
+逐一查看：第一个Atlas的状态是ACTIVE，不符合；Boreal虽然owner和status都对了，但region是APAC，所以排除。Cinder的owner不对，跳过。Delta的owner是对的，但状态是ACTIVE，不行。Ember的owner不是Lin，继续看。Helios的owner是Lin，地区是EU（欧洲），符合所有条件吗？等等，status是PAUSED没错，region也不是APAC，这看起来符合条件。
+
+再往后检查：Juno的owner是Lin，但地区是LATAM，虽然region不匹配，不过它的状态已经是DONE了。Luna的owner和status都对，但地区是APAC，所以不符合条件。Meridian的owner不是Lin，跳过；Nova的状态不对，已经ACTIVE了；Orion的owner是对的，但状态是PAUSED_BUT_ARCHIVED，这可能算作另一种暂停状态吧？Pulse的owner是Zed，不行；最后Quartz虽然owner和status都符合，但地区又是APAC。
+
+所以看起来Helios才是唯一符合条件的项目。让我再确认一下：owner=Lin没错，region=EU不是APAC正确，status=PAUSED完全匹配。
+</think>
+Helios | 状态为 PAUSED、负责人是 Lin 且区域为 EU（非 APAC）。

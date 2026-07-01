@@ -5,5 +5,6 @@
   "ram": "31.8 GiB system memory",
   "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
   "ollama": "0.30.11",
-  "note": "GPU VRAM was not used as a scored metric; cloud models depend on Ollama account access."
+  "note": "GPU VRAM was not used as a scored metric; cloud models depend on Ollama account access.",
+  "updated": "2026-07-01 incremental run added 5 local models"
 }

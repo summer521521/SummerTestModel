@@ -1,0 +1,15 @@
+```python
+import string
+
+def top_k_words(text, k):
+    # 移除英文标点并转换为小写
+    translator = str.maketrans(string.punctuation, ' '*len(string.punctuation))
+    cleaned_text = text.translate(translator).lower()
+    
+    counts = {}
+    for word in cleaned_text.split():
+        if word:  # 去掉空单词
+            counts[word] = counts.get(word, 0) + 1
+    
+    return sorted(counts.items(), key=lambda item: (-item[1], item[0]))[:k]
+```

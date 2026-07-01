@@ -1,0 +1,1 @@
+项目 Nova 由于它的 owner 是 Lin，region 为 EU，并且其 status 为 ACTIVE，它不满足条件：owner 是 Lin，status 是 PAUSED。Region 不是 APAC。因此，没有项目符合给定的所有条件。

@@ -1,0 +1,10 @@
+<think>
+嗯，用户需要将一段中文技术说明翻译成英文，并且特别强调要保留RAG、KV cache、LoRA、p95 latency和tenant_id这些术语原样不变。
+
+这段话涉及几个关键点：降低延迟的策略（缓存检索结果）、跨租户隔离的要求（不能复用tenant_id）、模型微调限制（只能使用LoRA）以及线上监控指标（KV cache命中率）。用户可能是技术团队的产品经理或工程师，需要向国际同事传达这些运维规范。
+
+翻译时要特别注意三点：一是保持术语一致性，二是处理中文特有的时间表达“10分钟”转换为英文习惯的“ten minutes”，三是调整被动语态。原句中“把……缓存”的动作性表述在英文技术文档中更适合用被动语态呈现专业感，“必须监控”这类强制要求可以用must体现规范性。
+
+用户特意强调不要添加原文没有的信息，说明ta很注重翻译准确性，可能用于正式的技术文档或跨国团队沟通。这种情况下要避免自由发挥解释概念，比如p95 latency虽然可以展开说percentile 95，但既然用户明确保留术语就不需要额外补充定义。
+</think>
+To reduce p95 latency, we cache the RAG retrieval results for ten minutes but cannot reuse them across different tenant_id. Fine-tuning is only allowed using LoRA, and online inference must monitor the KV cache hit rate.
