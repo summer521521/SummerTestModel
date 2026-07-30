@@ -1,0 +1,14 @@
+{
+  "request": {
+    "model": "qwen3-coder:480b-cloud",
+    "prompt": "你是严谨的数据处理器。只输出一个 JSON 对象，不要 Markdown，不要解释。\n订单金额：A=128.50，B=73.25，退款=-18.75。先求小计，再打 9 折。\n输出字段：total（最终金额，保留 2 位小数的数字）、valid（布尔值）、code、summary。\ncode 必须是 OK- 加上最终金额乘以 100 后的整数。",
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 900
+    }
+  },
+  "response": null,
+  "error": "HTTPError: HTTP Error 410: Gone",
+  "received_at": "2026-07-31T02:06:39+08:00"
+}

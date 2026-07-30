@@ -62,3 +62,12 @@
 - Automatic scoring is best for screening and regression tracking, not final human evaluation.
 - The code task used a small unit-test harness and does not represent full repository editing ability.
 - Cloud model availability depends on account permissions, network state, and service state.
+
+## Incremental Run - 2026-07-30
+
+This independent run did not overwrite the historical table above. Its full evidence package is in [benchmark_20260629/runs/20260730_incremental](benchmark_20260629/runs/20260730_incremental), including raw responses, model digests, machine metadata, status mappings, CSV files and an XLSX workbook.
+
+- Across the safety-verified non-code matrix (60 points), `gemma4:e4b` and `nemotron-3-nano:4b` tied first at 48/60. `gpt-oss:120b-cloud` led callable cloud models with 43/60.
+- Across the smaller strict seven-task subset, `deepscaler:1.5b` scored 44/70. This subset excludes model answers deliberately not executed by the safety-gated code evaluator.
+- `qwen3-embedding:latest` achieved 6/6 retrieval hits. `qwen3-vl:8b` achieved 2/2 exact visual extractions; Granite Vision and MiniCPM-V extracted the tested contents but not the requested short output format.
+- Guardian and ShieldGemma returned labels incompatible with the requested SAFE/UNSAFE schema; they are listed as `invalid_response`, not assigned a safety-accuracy score. Three cloud coder models returned HTTP 410 and are listed as unavailable.

@@ -1,0 +1,14 @@
+{
+  "request": {
+    "model": "devstral-2:123b-cloud",
+    "prompt": "三台设备从 08:00 同时启动。A 每 6 分钟响一次，B 每 8 分钟响一次，C 每 15 分钟响一次。\n问题：08:00 之后第一次三台再次同时响铃是什么时间？从 08:00 之后到这次同时响铃为止，如果每台设备每响一次都单独计数，总响铃次数是多少？\n只输出 JSON：{\"time\":\"HH:MM\",\"count\":数字}",
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 900
+    }
+  },
+  "response": null,
+  "error": "HTTPError: HTTP Error 410: Gone",
+  "received_at": "2026-07-31T02:06:06+08:00"
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="390" viewBox="0 0 1040 390">
+<style>text{font-family:Segoe UI,Arial,sans-serif;font-size:13px;fill:#1f2937}.title{font-size:22px;font-weight:700}.sub{fill:#6b7280}.value{font-size:12px;fill:#111827}</style>
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="24" y="34" class="title">2026-07-30 Incremental Benchmark</text>
+<text x="24" y="56" class="sub">Safety-verified non-code score out of 60. Green = local; blue = callable cloud. Code is excluded when unsafe to execute.</text>
+<text x="24" y="91">gemma4:e4b</text><rect x="330" y="77" width="576" height="16" rx="3" fill="#2f9e44"/><text x="914" y="90" class="value">48/60</text>
+<text x="24" y="119">nemotron-3-nano:4b</text><rect x="330" y="105" width="576" height="16" rx="3" fill="#2f9e44"/><text x="914" y="118" class="value">48/60</text>
+<text x="24" y="147">gpt-oss:120b-cloud</text><rect x="330" y="133" width="516" height="16" rx="3" fill="#3a7bd5"/><text x="854" y="146" class="value">43/60</text>
+<text x="24" y="175">ornith:9b</text><rect x="330" y="161" width="504" height="16" rx="3" fill="#2f9e44"/><text x="842" y="174" class="value">42/60</text>
+<text x="24" y="203">deepscaler:1.5b</text><rect x="330" y="189" width="480" height="16" rx="3" fill="#2f9e44"/><text x="818" y="202" class="value">40/60</text>
+<text x="24" y="231">Qwen3-8B GGUF</text><rect x="330" y="217" width="468" height="16" rx="3" fill="#2f9e44"/><text x="806" y="230" class="value">39/60</text>
+<text x="24" y="259">minimax-m3:cloud</text><rect x="330" y="245" width="468" height="16" rx="3" fill="#3a7bd5"/><text x="806" y="258" class="value">39/60</text>
+<text x="24" y="287">granite4:7b-a1b-h</text><rect x="330" y="273" width="432" height="16" rx="3" fill="#2f9e44"/><text x="770" y="286" class="value">36/60</text>
+<text x="24" y="315">granite4.1:8b</text><rect x="330" y="301" width="420" height="16" rx="3" fill="#2f9e44"/><text x="758" y="314" class="value">35/60</text>
+<text x="24" y="343">SmolLM3-3B GGUF</text><rect x="330" y="329" width="384" height="16" rx="3" fill="#2f9e44"/><text x="722" y="342" class="value">32/60</text>
+<text x="24" y="376" class="sub">Full evidence: benchmark_20260629/runs/20260730_incremental/final_report.md</text>
+</svg>

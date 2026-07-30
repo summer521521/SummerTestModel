@@ -1,0 +1,72 @@
+{
+  "request": {
+    "model": "functiongemma:270m",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Check simulated inventory for SKU A-17. Use a tool."
+      }
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Retrieve simulated weather by city",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "city"
+            ]
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "lookup_inventory",
+          "description": "Lookup simulated inventory by SKU",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "sku": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "sku"
+            ]
+          }
+        }
+      }
+    ],
+    "stream": false,
+    "options": {
+      "temperature": 0
+    }
+  },
+  "response": {
+    "model": "functiongemma:270m",
+    "created_at": "2026-07-30T16:29:24.2810318Z",
+    "message": {
+      "role": "assistant",
+      "content": ""
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 482195900,
+    "load_duration": 352763600,
+    "prompt_eval_count": 134,
+    "prompt_eval_duration": 16518000,
+    "eval_count": 27,
+    "eval_duration": 94602000
+  },
+  "error": null,
+  "expected": "lookup_inventory",
+  "chosen": ""
+}

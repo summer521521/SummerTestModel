@@ -1,0 +1,24 @@
+{
+  "request": {
+    "model": "gpt-oss:120b-cloud",
+    "prompt": "你是严谨的数据处理器。只输出一个 JSON 对象，不要 Markdown，不要解释。\n订单金额：A=128.50，B=73.25，退款=-18.75。先求小计，再打 9 折。\n输出字段：total（最终金额，保留 2 位小数的数字）、valid（布尔值）、code、summary。\ncode 必须是 OK- 加上最终金额乘以 100 后的整数。",
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 900
+    }
+  },
+  "response": {
+    "model": "gpt-oss:120b",
+    "created_at": "2026-07-30T18:08:32.554959452Z",
+    "response": "{\"total\":164.70,\"valid\":true,\"code\":\"OK-16470\",\"summary\":\"小计为 183.00，打 9 折后总额为 164.70。\"}",
+    "thinking": "The user: Chinese. They want a JSON object only, no markdown, no explanation. Need to compute subtotal: A + B + refund? Refund is -18.75, so subtotal = 128.50 + 73.25 - 18.75 = 128.50 + 73.25 = 201.75; minus 18.75 = 183.00. Then apply 9折 = 0.9 multiplier: final = 183.00 * 0.9 = 164.7? 183 * 0.9 = 164.7. Need keep 2 decimal places = 164.70.\n\nNow generate code: \"OK-\" + final amount * 100 integer. 164.70 * 100 = 16470. integer = 16470. So code = \"OK-16470\".\n\nvalid boolean? Probably true if calculation okay. So valid: true.\n\nsummary: maybe a text summary. Could be something like \"Subtotal 183.00, after 10% discount total 164.70\". Provide in Chinese? Could be any. Provide summary string.\n\nNow output JSON with fields total (number), valid (boolean), code (string), summary (string). total numeric 164.70 (two decimals). In JSON, numbers don't preserve trailing zeros but okay. Could use 164.70 which is parsed as 164.7 but fine. If need keep two decimals, could format as 164.70 string? But spec says \"保留 2 位小数的数字\". So numeric with two decimals is okay.\n\nWe'll output:\n\n{\n  \"total\": 164.70,\n  \"valid\": true,\n  \"code\": \"OK-16470\",\n  \"summary\": \"小计为 183.00，打 9 折后总额为 164.70。\"\n}\n\nNo markdown.",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 4961783367,
+    "prompt_eval_count": 166,
+    "eval_count": 441
+  },
+  "error": null,
+  "received_at": "2026-07-31T02:08:32+08:00"
+}

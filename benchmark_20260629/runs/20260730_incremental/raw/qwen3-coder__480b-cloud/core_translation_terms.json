@@ -1,0 +1,14 @@
+{
+  "request": {
+    "model": "qwen3-coder:480b-cloud",
+    "prompt": "把下面中文翻译成自然、准确的英文。必须原样保留术语 RAG、KV cache、LoRA、p95 latency、tenant_id，不要添加原文没有的信息。\n原文：为了降低 p95 latency，我们把 RAG 检索结果缓存 10 分钟，但不能跨 tenant_id 复用。微调只允许使用 LoRA，线上推理必须监控 KV cache 命中率。",
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 900
+    }
+  },
+  "response": null,
+  "error": "HTTPError: HTTP Error 410: Gone",
+  "received_at": "2026-07-31T02:06:55+08:00"
+}

@@ -1,0 +1,24 @@
+{
+  "request": {
+    "model": "gpt-oss:120b-cloud",
+    "prompt": "把下面中文翻译成自然、准确的英文。必须原样保留术语 RAG、KV cache、LoRA、p95 latency、tenant_id，不要添加原文没有的信息。\n原文：为了降低 p95 latency，我们把 RAG 检索结果缓存 10 分钟，但不能跨 tenant_id 复用。微调只允许使用 LoRA，线上推理必须监控 KV cache 命中率。",
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 900
+    }
+  },
+  "response": {
+    "model": "gpt-oss:120b",
+    "created_at": "2026-07-30T18:08:46.627775541Z",
+    "response": "To lower the p95 latency, we cache RAG retrieval results for 10 minutes, but they cannot be reused across tenant_id. Fine‑tuning is allowed only with LoRA, and online inference must monitor the KV cache hit rate.",
+    "thinking": "The user wants translation of a Chinese sentence to natural, accurate English, preserving the terms RAG, KV cache, LoRA, p95 latency, tenant_id exactly as they appear. No extra info.\n\nOriginal Chinese: \"为了降低 p95 latency，我们把 RAG 检索结果缓存 10 分钟，但不能跨 tenant_id 复用。微调只允许使用 LoRA，线上推理必须监控 KV cache 命中率。\"\n\nTranslate: \"To reduce p95 latency, we cache RAG retrieval results for 10 minutes, but they cannot be reused across tenant_id. Fine-tuning is only allowed to use LoRA, and online inference must monitor KV cache hit rate.\"\n\nMake natural: maybe \"To lower the p95 latency, we cache RAG retrieval results for 10 minutes, but they cannot be shared across tenant_id. Fine-tuning is restricted to LoRA, and online inference must monitor the KV cache hit rate.\"\n\nNeed to preserve terms exactly. Provide translation only.",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 4599263261,
+    "prompt_eval_count": 160,
+    "eval_count": 266
+  },
+  "error": null,
+  "received_at": "2026-07-31T02:08:47+08:00"
+}

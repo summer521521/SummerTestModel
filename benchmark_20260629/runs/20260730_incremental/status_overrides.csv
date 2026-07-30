@@ -1,0 +1,22 @@
+﻿model,track,test_id,recorded_status,derived_status,error
+devstral-2:123b-cloud,core_text,format_json,failed,unavailable,HTTPError: HTTP Error 410: Gone
+devstral-2:123b-cloud,core_text,math_reasoning,failed,unavailable,HTTPError: HTTP Error 410: Gone
+devstral-2:123b-cloud,core_text,long_context,failed,unavailable,HTTPError: HTTP Error 410: Gone
+devstral-2:123b-cloud,core_text,translation_terms,failed,unavailable,HTTPError: HTTP Error 410: Gone
+devstral-2:123b-cloud,core_text,anti_hallucination,failed,unavailable,HTTPError: HTTP Error 410: Gone
+devstral-2:123b-cloud,core_text,code_bugfix,failed,unavailable,HTTPError: HTTP Error 410: Gone
+devstral-2:123b-cloud,core_text,planning_schedule,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder:480b-cloud,core_text,format_json,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder:480b-cloud,core_text,math_reasoning,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder:480b-cloud,core_text,long_context,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder:480b-cloud,core_text,translation_terms,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder:480b-cloud,core_text,anti_hallucination,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder:480b-cloud,core_text,code_bugfix,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder:480b-cloud,core_text,planning_schedule,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder-next:cloud,core_text,format_json,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder-next:cloud,core_text,math_reasoning,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder-next:cloud,core_text,long_context,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder-next:cloud,core_text,translation_terms,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder-next:cloud,core_text,anti_hallucination,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder-next:cloud,core_text,code_bugfix,failed,unavailable,HTTPError: HTTP Error 410: Gone
+qwen3-coder-next:cloud,core_text,planning_schedule,failed,unavailable,HTTPError: HTTP Error 410: Gone

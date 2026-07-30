@@ -1,0 +1,14 @@
+{
+  "request": {
+    "model": "devstral-2:123b-cloud",
+    "prompt": "已知事实只有一句：黑曜计划在 2024 年启动。请回答：黑曜计划的负责人是谁、预算是多少、总部在哪？要求：不能编造；如果信息不足，请明确指出哪些无法确定。",
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 900
+    }
+  },
+  "response": null,
+  "error": "HTTPError: HTTP Error 410: Gone",
+  "received_at": "2026-07-31T02:06:23+08:00"
+}

@@ -1,0 +1,24 @@
+{
+  "request": {
+    "model": "minimax-m3:cloud",
+    "prompt": "下面是项目台账。请找出唯一满足条件的项目：status 是 PAUSED，owner 是 Lin，region 不是 APAC。只输出项目名和一句理由。\n1. Atlas | owner=Chen | region=APAC | status=ACTIVE\n2. Boreal | owner=Lin | region=APAC | status=PAUSED\n3. Cinder | owner=Mei | region=EU | status=PAUSED\n4. Delta | owner=Lin | region=NA | status=ACTIVE\n5. Ember | owner=Rao | region=EU | status=ACTIVE\n6. Fjord | owner=Lin | region=APAC | status=ACTIVE\n7. Helios | owner=Lin | region=EU | status=PAUSED\n8. Ion | owner=Qiu | region=NA | status=PAUSED\n9. Juno | owner=Lin | region=LATAM | status=DONE\n10. Kestrel | owner=An | region=EU | status=PAUSED\n11. Luna | owner=Lin | region=APAC | status=PAUSED\n12. Meridian | owner=Sun | region=NA | status=ACTIVE\n13. Nova | owner=Lin | region=EU | status=ACTIVE\n14. Orion | owner=Lin | region=NA | status=PAUSED_BUT_ARCHIVED\n15. Pulse | owner=Zed | region=EU | status=PAUSED\n16. Quartz | owner=Lin | region=APAC | status=DONE",
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 900
+    }
+  },
+  "response": {
+    "model": "minimax-m3",
+    "created_at": "2026-07-30T18:08:06.342369675Z",
+    "response": "Helios — 唯一同时满足 status=PAUSED、owner=Lin、region=EU（非 APAC）三个条件的项目。",
+    "thinking": "Let me analyze the project list to find the unique project that meets all three conditions:\n1. status is PAUSED\n2. owner is Lin\n3. region is NOT APAC\n\nLet me go through each project:\n\n1. Atlas: owner=Chen, region=APAC, status=ACTIVE - Not Lin, skip\n2. Boreal: owner=Lin, region=APAC, status=PAUSED - Lin and PAUSED, but region IS APAC, skip\n3. Cinder: owner=Mei, region=EU, status=PAUSED - Not Lin, skip\n4. Delta: owner=Lin, region=NA, status=ACTIVE - Lin but not PAUSED, skip\n5. Ember: owner=Rao, region=EU, status=ACTIVE - Not Lin, skip\n6. Fjord: owner=Lin, region=APAC, status=ACTIVE - Not PAUSED, skip\n7. Helios: owner=Lin, region=EU, status=PAUSED - Lin, PAUSED, region is EU (not APAC) ✓ MATCH\n8. Ion: owner=Qiu, region=NA, status=PAUSED - Not Lin, skip\n9. Juno: owner=Lin, region=LATAM, status=DONE - Not PAUSED, skip\n10. Kestrel: owner=An, region=EU, status=PAUSED - Not Lin, skip\n11. Luna: owner=Lin, region=APAC, status=PAUSED - APAC, skip\n12. Meridian: owner=Sun, region=NA, status=ACTIVE - Not Lin, skip\n13. Nova: owner=Lin, region=EU, status=ACTIVE - Not PAUSED, skip\n14. Orion: owner=Lin, region=NA, status=PAUSED_BUT_ARCHIVED - Not PAUSED (it's PAUSED_BUT_ARCHIVED), skip\n15. Pulse: owner=Zed, region=EU, status=PAUSED - Not Lin, skip\n16. Quartz: owner=Lin, region=APAC, status=DONE - Not PAUSED, skip\n\nThe unique match is Helios.\n",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 3774723585,
+    "prompt_eval_count": 486,
+    "eval_count": 475
+  },
+  "error": null,
+  "received_at": "2026-07-31T02:08:06+08:00"
+}

@@ -1,0 +1,14 @@
+{
+  "request": {
+    "model": "devstral-2:123b-cloud",
+    "prompt": "修复下面 Python 函数。要求：统计单词频次，忽略大小写，去掉英文标点；返回前 k 个(word, count)，按 count 降序、count 相同按 word 升序。只输出完整 Python 代码。\n\ndef top_k_words(text, k):\n    counts = {}\n    for word in text.split(' '):\n        counts[word] = counts.get(word, 0) + 1\n    return sorted(counts.items())[:k]\n",
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 900
+    }
+  },
+  "response": null,
+  "error": "HTTPError: HTTP Error 410: Gone",
+  "received_at": "2026-07-31T02:06:28+08:00"
+}

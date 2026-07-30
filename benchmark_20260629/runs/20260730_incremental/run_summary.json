@@ -1,0 +1,48 @@
+{
+  "record_count": 288,
+  "core_record_count": 245,
+  "specialist_record_count": 43,
+  "strict70_top3": [
+    {
+      "model": "deepscaler:1.5b",
+      "score": 44
+    },
+    {
+      "model": "hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL",
+      "score": 33
+    },
+    {
+      "model": "phi4-mini-reasoning:latest",
+      "score": 33
+    }
+  ],
+  "local60_top3": [
+    {
+      "model": "gemma4:e4b",
+      "score": 48
+    },
+    {
+      "model": "nemotron-3-nano:4b",
+      "score": 48
+    },
+    {
+      "model": "ornith:9b",
+      "score": 42
+    }
+  ],
+  "cloud60_top3": [
+    {
+      "model": "gpt-oss:120b-cloud",
+      "score": 43
+    },
+    {
+      "model": "minimax-m3:cloud",
+      "score": 39
+    }
+  ],
+  "unavailable_models": [
+    "devstral-2:123b-cloud",
+    "qwen3-coder-next:cloud",
+    "qwen3-coder:480b-cloud"
+  ]
+}

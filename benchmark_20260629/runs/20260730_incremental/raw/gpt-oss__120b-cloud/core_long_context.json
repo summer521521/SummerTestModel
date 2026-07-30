@@ -1,0 +1,24 @@
+{
+  "request": {
+    "model": "gpt-oss:120b-cloud",
+    "prompt": "下面是项目台账。请找出唯一满足条件的项目：status 是 PAUSED，owner 是 Lin，region 不是 APAC。只输出项目名和一句理由。\n1. Atlas | owner=Chen | region=APAC | status=ACTIVE\n2. Boreal | owner=Lin | region=APAC | status=PAUSED\n3. Cinder | owner=Mei | region=EU | status=PAUSED\n4. Delta | owner=Lin | region=NA | status=ACTIVE\n5. Ember | owner=Rao | region=EU | status=ACTIVE\n6. Fjord | owner=Lin | region=APAC | status=ACTIVE\n7. Helios | owner=Lin | region=EU | status=PAUSED\n8. Ion | owner=Qiu | region=NA | status=PAUSED\n9. Juno | owner=Lin | region=LATAM | status=DONE\n10. Kestrel | owner=An | region=EU | status=PAUSED\n11. Luna | owner=Lin | region=APAC | status=PAUSED\n12. Meridian | owner=Sun | region=NA | status=ACTIVE\n13. Nova | owner=Lin | region=EU | status=ACTIVE\n14. Orion | owner=Lin | region=NA | status=PAUSED_BUT_ARCHIVED\n15. Pulse | owner=Zed | region=EU | status=PAUSED\n16. Quartz | owner=Lin | region=APAC | status=DONE",
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 900
+    }
+  },
+  "response": {
+    "model": "gpt-oss:120b",
+    "created_at": "2026-07-30T18:08:41.64324611Z",
+    "response": "**项目名：Helios**  \n理由：它是唯一一个满足“状态为 PAUSED、所有者为 Lin且地区不在 APAC（位于 EU）”这一组合条件的项目。",
+    "thinking": "We need find unique project with status PAUSED, owner Lin, region not APAC.\n\nList entries with owner Lin and status PAUSED (exact \"PAUSED\").\n\nCheck each:\n\n2. Boreal | owner=Lin | region=APAP? actually region=APAC | status=PAUSED -> region APAC, fails region not APAC.\n\n4. Delta | owner=Lin | region=NA | status=ACTIVE -> status not PAUSED\n\n6. Fjord | owner=Lin | region=APAC | status=ACTIVE -> not PAUSED\n\n7. Helios | owner=Lin | region=EU | status=PAUSED -> region EU (not APAC) good.\n\n9. Juno | status DONE\n\n11. Luna | region=APAC status=PAUSED -> region APAC fails\n\n13. Nova status ACTIVE\n\n14. Orion status PAUSED_BUT_ARCHIVED not exactly PAUSED.\n\n15 not Lin.\n\nSo only Helios matches.\n\nThus output: project name Helios and reason: because it's the only project with status PAUSED, owned by Lin, and region EU (not APAC).\n\nWrite in Chinese as request? The prompt Chinese. Provide project name and one sentence reason.\n\nLet's produce.",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 3655573378,
+    "prompt_eval_count": 389,
+    "eval_count": 304
+  },
+  "error": null,
+  "received_at": "2026-07-31T02:08:42+08:00"
+}

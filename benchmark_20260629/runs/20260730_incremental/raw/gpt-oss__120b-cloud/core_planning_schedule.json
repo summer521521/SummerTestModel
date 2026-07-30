@@ -1,0 +1,24 @@
+{
+  "request": {
+    "model": "gpt-oss:120b-cloud",
+    "prompt": "你是排班助手。为同一个人安排周六一天，必须满足：A 跑步 60 分钟，必须 07:00-10:00 之间开始，结束后连续 30 分钟洗澡恢复，恢复时不能做别的事；B 买菜 40 分钟，必须在超市 09:30-18:00 内完整完成；C 写作业 120 分钟，必须拆成两个连续 60 分钟块，中间不能插入别的任务，只能在家；D 和朋友吃饭固定 12:30 开始，90 分钟，餐馆；E 图书馆借书 30 分钟，必须 14:00-17:00 内开始；F 整理房间 45 分钟，只能在家，20:00 前完成。通勤：家-操场15，家-超市20，家-餐馆25，家-图书馆30，超市-餐馆15，超市-图书馆20，餐馆-图书馆10，操场-超市25，操场-餐馆35，操场-图书馆40。从家出发，最后回家。12:00-13:00 不能在路上。C 必须在 D 前完成，B 必须在 F 前完成，A 和 F 不能相邻。按三部分输出：结论、日程表、说明。",
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 900
+    }
+  },
+  "response": {
+    "model": "gpt-oss:120b",
+    "created_at": "2026-07-30T18:09:14.663637865Z",
+    "response": "",
+    "thinking": "We need to schedule tasks for a single person on Saturday, satisfying constraints.\n\nTasks:\nA: running 60 min, must start between 07:00-10:00. After it ends, need 30 min shower recovery, cannot do other tasks during that recovery. So A total block = 60 + 30 = 90 min, with start of A between 07-10, recovery after.\n\nB: grocery 40 min, must be completed within supermarket open 09:30-18:00. Travel time needed to/from supermarket.\n\nC: homework 120 min, split into two consecutive 60-min blocks, no other tasks between them, only at home. So C total 120 min with a break? Actually two consecutive blocks means 60+60 back to back, no gap presumably, so 120 continuous at home.\n\nD: lunch with friend fixed start 12:30, duration 90 min, at restaurant. So block 12:30-14:00 inclusive? Actually 12:30 start, 90 min ends at 14:00.\n\nE: library borrowing 30 min, must start between 14:00-17:00.\n\nF: tidy room 45 min, only at home, must finish before 20:00.\n\nTravel times listed, we must start from home and end at home. Provide schedule with travel times accounted.\n\nAdditional constraints:\n- 12:00-13:00 cannot be on the road (i.e., must be at home or doing a task? Not traveling).\n- C must be before D.\n- B must be before F.\n- A and F cannot be adjacent (i.e., no immediate adjacency? Means there must be at least some other activity or travel between them? Likely no back-to-back tasks without gap. So we must ensure A's block (including shower) not directly followed by F, nor F directly before A. There must be something else in between.\n\nGoal: produce any feasible schedule.\n\nWe need to consider travel times.\n\nLet's outline possible windows.\n\nWe start home in morning.\n\nA can start 07:00-10:00. After A ends (60 min) plus 30 min shower (30), total 90 min block. If start at 07:00, ends A run at 08:00, shower 08:00-08:30, then free after 08:30.\n\nIf start later, e.g., 09:00, then run 09:00-10:00, shower 10:00-10:30.\n\nBut note B cannot start before 09:30 (store open). Also B must be before F (finish by 20:00). F must finish before 20:00.\n\nC must be before D at 12:30. C is 120 min at home, consecutive. So we need a 2-hour block at home before 12:30. Could be 10:30-12:30? That's exactly 2h, but D starts at 12:30, okay. However need to ensure we are home and not traveling between the two 60-min blocks. That's fine.\n\nBut we also have shower after A and travel maybe. If A finishes shower 10:30, we could start C at 10:30? Actually need 2h continuous, 10:30-12:30 fits. Then D 12:30-14:00.\n\nWe have constraint: 12:00-13:00 cannot be on the road. During that time we would be at D (restaurant) from 12:30-13:00, which is fine, not traveling. Good.\n\nE must start between 14:00-17:00, 30 min at library. Travel from restaurant to library is 10 min. D ends at 14:00 at restaurant, we can travel to library 14:00-14:10, then E 14:10 start? Must start between 14:00-17:00, okay start at 14:10, 30 min, finish 14:40, then travel back home (30 min from library to home) arriving 15:10.\n\nF must be done before 20:00, at home 45 min, can be after returning from library, but also B must be before F, but B hasn't",
+    "done": true,
+    "done_reason": "length",
+    "total_duration": 14580107465,
+    "prompt_eval_count": 378,
+    "eval_count": 900
+  },
+  "error": null,
+  "received_at": "2026-07-31T02:09:15+08:00"
+}

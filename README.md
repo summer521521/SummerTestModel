@@ -2,7 +2,7 @@
 
 A reproducible benchmark set for comparing local and cloud Ollama models on practical agent tasks. The benchmark focuses on small local models up to about 9B parameters plus selected cloud models connected through Ollama.
 
-![Score chart](docs/score_chart.svg)
+![Latest safe non-code score chart](docs/score_chart_20260730.svg)
 
 ## Summary
 
@@ -144,6 +144,16 @@ benchmark_20260629/
   results/machine.json       # non-private machine metadata
 docs/score_chart.svg         # README summary chart
 ```
+
+## Latest Incremental Run - 2026-07-30
+
+The 2026-07-30 unattended run is stored separately from the historical 2026-06-29/07-01 data. It recorded 288 structured results across the currently installed model inventory. See [the run report](benchmark_20260629/runs/20260730_incremental/final_report.md), [validated core scores](benchmark_20260629/runs/20260730_incremental/core_validated.csv), [specialist scores](benchmark_20260629/runs/20260730_incremental/specialist_validated.csv), and [the workbook](benchmark_20260629/runs/20260730_incremental/scores.xlsx).
+
+- Safe non-code comparison (60 points): `gemma4:e4b` and `nemotron-3-nano:4b` tied at 48/60; `gpt-oss:120b-cloud` scored 43/60.
+- Strict fully scored 70-point subset: `deepscaler:1.5b` led at 44/70, followed by `hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL` and `phi4-mini-reasoning:latest` at 33/70.
+- Specialist tracks remain separate: `qwen3-embedding:latest` reached 6/6 on the local retrieval set; `qwen3-vl:8b` achieved 2/2 exact visual extractions. OCR/vision content correctness and strict output-format correctness are reported separately.
+- `devstral-2:123b-cloud`, `qwen3-coder:480b-cloud`, and `qwen3-coder-next:cloud` returned HTTP 410 for every request and are reported as unavailable, not as zero-capability models.
+- The code task is now safety-gated. Answers that cannot pass an AST allowlist and isolated subprocess check are `unsafe_to_execute`; they are excluded from the strict 70-point total instead of executing untrusted model output.
 
 ## Notes
 

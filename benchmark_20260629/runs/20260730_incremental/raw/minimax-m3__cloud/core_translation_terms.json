@@ -1,0 +1,24 @@
+{
+  "request": {
+    "model": "minimax-m3:cloud",
+    "prompt": "把下面中文翻译成自然、准确的英文。必须原样保留术语 RAG、KV cache、LoRA、p95 latency、tenant_id，不要添加原文没有的信息。\n原文：为了降低 p95 latency，我们把 RAG 检索结果缓存 10 分钟，但不能跨 tenant_id 复用。微调只允许使用 LoRA，线上推理必须监控 KV cache 命中率。",
+    "stream": false,
+    "options": {
+      "temperature": 0,
+      "num_predict": 900
+    }
+  },
+  "response": {
+    "model": "minimax-m3",
+    "created_at": "2026-07-30T18:08:09.375388016Z",
+    "response": "To reduce p95 latency, we cache RAG retrieval results for 10 minutes, but they cannot be reused across tenant_id. Fine-tuning is only allowed to use LoRA, and online inference must monitor KV cache hit rate.",
+    "thinking": "The user wants me to translate a Chinese text into natural, accurate English while preserving specific technical terms: RAG, KV cache, LoRA, p95 latency, tenant_id. I should not add any information not present in the original.\n\nLet me analyze the original Chinese text:\n\n\"为了降低 p95 latency，我们把 RAG 检索结果缓存 10 分钟，但不能跨 tenant_id 复用。微调只允许使用 LoRA，线上推理必须监控 KV cache 命中率。\"\n\nBreaking it down:\n- 为了降低 p95 latency = To reduce p95 latency\n- 我们把 RAG 检索结果缓存 10 分钟 = we cache RAG retrieval results for 10 minutes\n- 但不能跨 tenant_id 复用 = but they cannot be reused across tenant_id\n- 微调只允许使用 LoRA = Fine-tuning is only allowed to use LoRA\n- 线上推理必须监控 KV cache 命中率 = online inference must monitor KV cache hit rate\n\nLet me construct a natural English translation:\n\n\"To reduce p95 latency, we cache RAG retrieval results for 10 minutes, but they cannot be reused across tenant_id. Fine-tuning is only allowed to use LoRA, and online inference must monitor KV cache hit rate.\"\n\nThis looks accurate and natural. Let me check all the required terms are preserved:\n- RAG ✓\n- KV cache ✓\n- LoRA ✓\n- p95 latency ✓\n- tenant_id ✓\n\nAll preserved. No information added.\n\nOne minor consideration: \"线上推理\" could be \"online inference\" or \"production inference\" or \"live inference\". \"Online inference\" is the most common and natural term in this context.\n\nThe translation is natural, accurate, and preserves all required technical terms.",
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 2704516005,
+    "prompt_eval_count": 254,
+    "eval_count": 401
+  },
+  "error": null,
+  "received_at": "2026-07-31T02:08:09+08:00"
+}
