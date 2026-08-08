@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "max_transport_retries": null,
+  "retryable_statuses": "__PENDING_WEB_GPT_DECISION__",
+  "backoff_seconds": null,
+  "circuit_breaker": {
+    "consecutive_connection_refused_threshold": null,
+    "healthcheck_wait_seconds": null,
+    "max_recovery_seconds": null
+  },
+  "recommended_for_architect_review": {
+    "consecutive_connection_refused_threshold": 3,
+    "healthcheck_wait_seconds": 30,
+    "max_recovery_seconds": 900,
+    "reasoning": "Historical WinError 10061 cascaded into repeated network errors; pause dispatch early while allowing bounded service recovery. These are recommendations, not frozen values."
+  }
+}

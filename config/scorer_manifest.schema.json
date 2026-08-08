@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen scorer manifest",
+  "type": "object",
+  "required": ["scorer_version", "scorers"],
+  "properties": {
+    "scorer_version": {"type": "string"},
+    "scorers": {"type": "array", "items": {"type": "object", "required": ["scorer_id", "implementation", "sha256"]}}
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "collected_at": "2026-08-08T20:28:18+08:00",
+  "windows": {
+    "Caption": "Microsoft Windows 11 Home China",
+    "Version": "10.0.26200",
+    "BuildNumber": "26200"
+  },
+  "cpu": {
+    "Name": "13th Gen Intel(R) Core(TM) i5-13500HX",
+    "NumberOfCores": 14,
+    "NumberOfLogicalProcessors": 20
+  },
+  "total_ram_gib": 31.797,
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "vram_mib": 8188,
+    "driver_version": "610.88",
+    "compute_capability": "8.9",
+    "source": "nvidia-smi"
+  },
+  "disks": [
+    {
+      "Name": "C",
+      "Used": 367384272896,
+      "Free": 130048643072
+    },
+    {
+      "Name": "F",
+      "Used": 630693359616,
+      "Free": 393498001408
+    }
+  ],
+  "python": "3.12.10",
+  "ollama_cli": "ollama version is 0.32.6",
+  "ollama_server": "0.32.6",
+  "relevant_environment": {
+    "NO_PROXY": "localhost,127.0.0.1"
+  },
+  "wsl_status": "available",
+  "workspace_drive": "F:"
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SummerTestModel frozen benchmark manifest",
+  "type": "object",
+  "required": ["benchmark_version", "task_manifest_sha256", "scorer_manifest_sha256", "generation_profiles_sha256"],
+  "properties": {
+    "benchmark_version": {"type": "string", "minLength": 1},
+    "task_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "scorer_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "generation_profiles_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "created_by_architect": {"type": "string"},
+    "frozen_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": true
+}

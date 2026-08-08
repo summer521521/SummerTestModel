@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "ollama_api": "http://127.0.0.1:11434",
+  "inventory_path": "inventory/model_inventory.json",
+  "benchmark_manifest": "__PENDING_WEB_GPT_DECISION__",
+  "task_manifest": "__PENDING_WEB_GPT_DECISION__",
+  "scorer_manifest": "__PENDING_WEB_GPT_DECISION__",
+  "model_execution_plan": "__PENDING_WEB_GPT_DECISION__",
+  "generation_profiles": "__PENDING_WEB_GPT_DECISION__",
+  "retry_policy": "__PENDING_WEB_GPT_DECISION__",
+  "manifest_hashes": "__PENDING_WEB_GPT_DECISION__",
+  "output_dir": "work/pending-run",
+  "single_model_concurrency": true,
+  "unload_between_models": "__PENDING_WEB_GPT_DECISION__",
+  "warmup_behavior": "__PENDING_WEB_GPT_DECISION__"
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen model execution plan",
+  "type": "object",
+  "required": ["benchmark_version", "models"],
+  "properties": {
+    "benchmark_version": {"type": "string"},
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["model", "digest", "local_or_cloud", "profiles", "task_ids"],
+        "properties": {
+          "model": {"type": "string"},
+          "digest": {"type": "string"},
+          "local_or_cloud": {"enum": ["local", "cloud"]},
+          "profiles": {"type": "array", "items": {"type": "string"}},
+          "task_ids": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

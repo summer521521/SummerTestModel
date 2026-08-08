@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "profiles": {
+    "local_general": {"inactivity_timeout_seconds": null, "absolute_timeout_seconds": null, "keep_alive": null, "options": "__PENDING_WEB_GPT_DECISION__"},
+    "local_reasoning": {"inactivity_timeout_seconds": null, "absolute_timeout_seconds": null, "keep_alive": null, "options": "__PENDING_WEB_GPT_DECISION__"},
+    "vision": {"inactivity_timeout_seconds": null, "absolute_timeout_seconds": null, "keep_alive": null, "options": "__PENDING_WEB_GPT_DECISION__"},
+    "ocr": {"inactivity_timeout_seconds": null, "absolute_timeout_seconds": null, "keep_alive": null, "options": "__PENDING_WEB_GPT_DECISION__"},
+    "cloud": {"inactivity_timeout_seconds": null, "absolute_timeout_seconds": null, "keep_alive": null, "options": "__PENDING_WEB_GPT_DECISION__"}
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "validation_scope": "local engineering preparation only",
+  "formal_benchmark_inference_calls": 0,
+  "inventory_entries": 44,
+  "local_entries": 39,
+  "cloud_entries": 5,
+  "python_compile": "PASS",
+  "unit_tests": {
+    "status": "PASS",
+    "count": 6,
+    "coverage": [
+      "failure isolation and resume",
+      "duplicate result skip",
+      "corrupt state quarantine and rebuild",
+      "partial temp write preservation",
+      "circuit breaker recovery",
+      "code harness pass, block, and timeout"
+    ]
+  },
+  "mock_run": {
+    "status": "PASS",
+    "unique_state_items": 13,
+    "raw_files_after_resume": 18,
+    "duplicate_skipped": true
+  },
+  "doctor": {
+    "result": "NOT_READY",
+    "expected": true,
+    "passed_checks": [
+      "config_parse",
+      "ollama_reachable",
+      "inventory_available",
+      "output_writable",
+      "code_sandbox_smoke",
+      "runner_mock_suite"
+    ],
+    "blocking_reason": "Architect-owned benchmark, task, scorer, model-plan, generation-profile, retry-policy and manifest-hash values remain pending."
+  },
+  "readiness": "ENGINEERING_READY_FOR_ARCHITECT_SPEC"
+}

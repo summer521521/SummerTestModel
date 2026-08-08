@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen task manifest",
+  "type": "object",
+  "required": ["benchmark_version", "tasks"],
+  "properties": {
+    "benchmark_version": {"type": "string"},
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["task_id", "version", "profile", "scorer_id", "prompt_sha256"],
+        "properties": {
+          "task_id": {"type": "string"},
+          "version": {"type": "string"},
+          "profile": {"type": "string"},
+          "scorer_id": {"type": "string"},
+          "prompt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "assets": {"type": "array", "items": {"type": "object", "required": ["path", "sha256"]}}
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

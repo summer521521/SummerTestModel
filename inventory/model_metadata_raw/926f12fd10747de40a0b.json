@@ -1,0 +1,13 @@
+{
+  "model": "minimax-m3:cloud",
+  "digest": "d03a959f45c04ab183e245922ecb46ebccfb9d5e55bdee5e9055271ee70195e3",
+  "modelfile": null,
+  "template": null,
+  "system": null,
+  "capabilities": [
+    "completion",
+    "tools",
+    "thinking",
+    "vision"
+  ]
+}
