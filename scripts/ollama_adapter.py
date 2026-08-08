@@ -26,7 +26,7 @@ class OllamaAdapter:
         if requested is None or not supports: return None, "unsupported_or_not_requested"
         return bool(requested), "explicit_profile_control"
 
-    def _post(self, endpoint, payload, inactivity, absolute, cancel_event=None):
+    def _post(self, endpoint, payload, inactivity, absolute, cancel_event=None, think_requested=None):
         started = time.monotonic(); first_token_at=None; chunks=[]; thinking=[]; answer=[]; tool_calls=[]; metadata={}; meaningful=False
         request = urllib.request.Request(self.base_url + endpoint, data=json.dumps(payload, ensure_ascii=False).encode(), headers={"Content-Type":"application/json"}, method="POST")
         try:
@@ -58,7 +58,7 @@ class OllamaAdapter:
             status = "completed"
             if done_reason == "length" and not final: status = "truncated_before_final"
             elif done_reason == "length": status = "truncated"
-            if not final and profile.get("think") is True: status = "timeout_before_final" if not chunks else "truncated_before_final"
+            if not final and think_requested is True: status = "timeout_before_final" if not chunks else "truncated_before_final"
             timing={"wall_time_seconds":finished-started,"time_to_first_token":None if first_token_at is None else first_token_at-started, **metadata}
             if metadata.get("prompt_eval_count") is not None and metadata.get("prompt_eval_duration"):
                 timing["prompt_tokens_per_second"] = metadata["prompt_eval_count"] / (metadata["prompt_eval_duration"] / 1e9)
@@ -82,16 +82,18 @@ class OllamaAdapter:
         options, seed_info = self._options({**profile, "temperature":0, "seed":42}, item.get("seed_supported"))
         think, think_reason = self._think(profile, caps)
         payload = {"model": item["model"], "stream": True, "options": options, "keep_alive": profile.get("keep_alive_seconds", 300)}
-        if item.get("messages") is not None: payload["messages"] = item["messages"]
-        else: payload["prompt"] = item.get("prompt", "")
-        if item.get("images") is not None: payload["images"] = item["images"]
+        if item.get("messages") is not None:
+            payload["messages"] = item["messages"]
+        else:
+            payload["prompt"] = item.get("prompt", "")
+            if item.get("images") is not None: payload["images"] = item["images"]
         if item.get("tools") is not None: payload["tools"] = item["tools"]
         if think is not None: payload["think"] = think
         endpoint = "/api/chat" if item.get("messages") is not None else "/api/generate"
         attempts=[]
         for attempt in range(self.max_transport_retries + 1):
             try:
-                result = self._post(endpoint, payload, profile.get("inactivity_timeout_seconds",60), profile.get("absolute_timeout_seconds",180), item.get("cancel_event"))
+                result = self._post(endpoint, payload, profile.get("inactivity_timeout_seconds",60), profile.get("absolute_timeout_seconds",180), item.get("cancel_event"), think)
                 result.update({"request_payload":payload,"endpoint":endpoint,"transport_attempts":attempts,"think_reason":think_reason,**seed_info}); return result
             except OllamaTransportError as exc:
                 attempts.append({"attempt":attempt+1,"status":exc.status,"error":str(exc)})

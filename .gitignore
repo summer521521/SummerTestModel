@@ -10,3 +10,6 @@ __pycache__/
 
 # Benchmark 1.0-rc1 private evaluation payload; never publish.
 private_benchmark/
+
+# RC1 execution raw evidence; finalize exports only sanitized derived fields.
+private_runs/

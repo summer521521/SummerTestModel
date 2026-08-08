@@ -5,14 +5,19 @@ Luna Max executes only a frozen architect specification. It does not interpret b
 ## Allowed sequence
 
 1. Run `git status --short` and record the current branch/HEAD.
-2. Run `python scripts/luna_executor.py doctor --config <frozen-run-config>`.
+2. Run `python scripts/rc1_runner.py doctor --config <frozen-run-config>`.
 3. If doctor prints `NOT_READY`, stop and report the failed checks exactly.
-4. If doctor prints `READY`, run only the exact benchmark command supplied in the user/Web GPT task book.
-5. Periodically run `python scripts/luna_executor.py status --run-dir <run-dir>`.
-6. If the runner exits, run `status`; use only the documented resume command for the same run directory.
-7. On completion, run the frozen validator, scorer and report commands from the task book.
-8. Run `git diff` and `git status`.
-9. Commit or push only when the user task explicitly authorizes it and only with task-related files.
+4. Run calibration only when the user/Web GPT task book explicitly authorizes it: `python scripts/rc1_runner.py calibrate --allow-inference --run-dir <private-run-dir>`.
+5. If calibration validation fails, stop. Do not create an approved config and do not run the baseline.
+6. After a successful calibration, use only the local ignored approved config produced by the launch flow. Never edit the tracked template.
+7. Run only the exact command supplied in the task book: `python scripts/rc1_runner.py run-all --allow-inference --config <approved-config> --run-dir <private-run-dir>`.
+8. Periodically run `python scripts/rc1_runner.py status --run-dir <private-run-dir>`.
+9. If the runner exits, run `status`, then `python scripts/rc1_runner.py resume --allow-inference --config <approved-config> --run-dir <same-private-run-dir>`.
+10. On completion, run `python scripts/rc1_runner.py finalize --run-dir <private-run-dir> --output <public-jsonl>` and the frozen validators from the task book.
+11. Run `git diff` and `git status`.
+12. Commit or push only when the user task explicitly authorizes it and only with task-related files.
+
+`launch` encodes the same sequence (doctor -> calibration -> validation -> local approval -> doctor -> run-all -> finalize), but Luna may invoke it only when the task book explicitly says to do so. `--mock` is reserved for offline engineering tests and never produces benchmark results.
 
 ## Forbidden actions
 
@@ -27,12 +32,13 @@ Luna Max executes only a frozen architect specification. It does not interpret b
 
 The RC1 policy files are `config/benchmark_manifest.rc1.json`,
 `config/generation_profiles.rc1.json`, `config/retry_policy.rc1.json` and
-`config/model_execution_plan.rc1.json`. They define `1.0-rc1`, the 12 track
+`config/model_execution_plan.rc1.public.json`. The public task and scorer
+manifests and the private package manifest are also hash-locked. Together they
+define `1.0-rc1`, the 12 track
 IDs, local-only candidates at total parameters <=10B, separate thinking and
 final answers, no structured-output assistance, one model at a time, and the
-frozen transport/circuit values. They do not contain task questions or scorer
-semantics. Those architect-owned files and hashes must be supplied before
-doctor can return READY.
+frozen transport/circuit values. Doctor remains `NOT_READY` until calibration
+has passed and a local ignored approved config exists.
 
 ## Failure handling
 

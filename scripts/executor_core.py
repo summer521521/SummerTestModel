@@ -210,7 +210,11 @@ class EvidenceStore:
             "termination_reason": response.get("termination_reason"),
             "error": response.get("error"),
             "request_payload": response.get("request_payload"), "streamed_chunks": response.get("streamed_chunks"),
-            "tool_calls": response.get("tool_calls"), "seed_applied": response.get("seed_applied"),
+            "tool_calls": response.get("tool_calls"), "tool_trace": response.get("tool_trace"),
+            "images_sent": response.get("images_sent") or item.get("images"),
+            "embedding": response.get("embedding"), "query_embedding": response.get("query_embedding"),
+            "embedding_corpus": response.get("embedding_corpus"), "corpus_embeddings": response.get("corpus_embeddings"),
+            "seed_applied": response.get("seed_applied"),
         }
         payload = (json.dumps(evidence, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
         evidence["evidence_payload_sha256"] = sha256_bytes(payload)
