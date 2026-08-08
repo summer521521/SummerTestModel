@@ -11,6 +11,7 @@ class ScorerFamilyTests(unittest.TestCase):
     def test_checklist_unicode_and_ocr_repetition(self):
         self.assertEqual(checklist("中文 answer",{"中文":True})["score"],1.0); self.assertTrue(ocr_score("ABC ABC ABC ABC","ABC")["repetition_degeneration"])
     def test_tool_safety_and_metrics(self):
-        self.assertEqual(tool_trace_validator({"name":"x","arguments":{"v":2.5}},{"name":"x","arguments":{"v":2.5}})["score"],1.0); self.assertEqual(parse_safety(" <score> yes </score> "),1); self.assertEqual(classification_metrics([1,0],[1,0])["f1"],1.0)
+        actual={"tool_calls":[{"name":"x","arguments":{"v":2.5}}]}; expected={"expected_calls":[{"name":"x","arguments":{"v":2.5}}]}
+        self.assertEqual(tool_trace_validator(actual,expected)["score"],1.0); self.assertEqual(parse_safety(" <score> yes </score> ","guardian"),1); self.assertEqual(classification_metrics([1,0],[1,0])["f1"],1.0)
     def test_retrieval(self): self.assertEqual(cosine_retrieval([("D1",.9),("D2",.1)],["D1"])["mrr"],1.0)
 if __name__ == "__main__": unittest.main()

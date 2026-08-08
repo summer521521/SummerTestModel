@@ -7,7 +7,7 @@
       "scorer_id": "core_deterministic_v1",
       "track": "core",
       "implementation": "scripts/scorers.py:score_core",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
@@ -15,87 +15,87 @@
       "scorer_id": "reasoning_deterministic_v1",
       "track": "reasoning",
       "implementation": "scripts/scorers.py:score_reasoning",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
     {
-      "scorer_id": "code_deterministic_v1",
+      "scorer_id": "code_hidden_tests_v1",
       "track": "code",
       "implementation": "scripts/scorers.py:score_code",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
     {
-      "scorer_id": "translation_deterministic_v1",
+      "scorer_id": "translation_checklist_v1",
       "track": "translation",
       "implementation": "scripts/scorers.py:score_translation",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
     {
-      "scorer_id": "tools_deterministic_v1",
+      "scorer_id": "tool_trace_validator_v1",
       "track": "tools",
       "implementation": "scripts/scorers.py:score_tools",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
     {
-      "scorer_id": "vision_deterministic_v1",
+      "scorer_id": "vision_structured_v1",
       "track": "vision",
       "implementation": "scripts/scorers.py:score_vision",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
     {
-      "scorer_id": "ocr_deterministic_v1",
+      "scorer_id": "ocr_cer_v1",
       "track": "ocr",
       "implementation": "scripts/scorers.py:score_ocr",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
     {
-      "scorer_id": "long_context_deterministic_v1",
+      "scorer_id": "long_context_exact_v1",
       "track": "long_context",
       "implementation": "scripts/scorers.py:score_long_context",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
     {
-      "scorer_id": "embedding_deterministic_v1",
+      "scorer_id": "cosine_retrieval_v1",
       "track": "embedding",
       "implementation": "scripts/scorers.py:score_embedding",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
     {
-      "scorer_id": "safety_deterministic_v1",
+      "scorer_id": "classification_metrics_v1",
       "track": "safety",
       "implementation": "scripts/scorers.py:score_safety",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
     {
-      "scorer_id": "medical_deterministic_v1",
+      "scorer_id": "medical_structured_v1",
       "track": "medical",
       "implementation": "scripts/scorers.py:score_medical",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
     {
-      "scorer_id": "performance_deterministic_v1",
+      "scorer_id": "performance_telemetry_v1",
       "track": "performance",
       "implementation": "scripts/scorers.py:score_performance",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     },
@@ -103,7 +103,7 @@
       "scorer_id": "provenance_token_extractor_v1",
       "track": "diagnostic",
       "implementation": "scripts/scorers.py:score_diagnostic",
-      "sha256": "1520d152c4d496903463082aea9e30ce6b932a7b5947fb9458e24dbcd3d2bd27",
+      "sha256": "461d2f37ca356a37213beeeace7e1f62cb40a2727c6cba1a529b1e3f5eba8824",
       "private_scoring_spec": true,
       "uses_llm_judge": false
     }

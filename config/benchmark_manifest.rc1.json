@@ -16,10 +16,10 @@
   },
   "task_manifest": "config/task_manifest.rc1.public.json",
   "scorer_manifest": "config/scorer_manifest.rc1.public.json",
-  "task_manifest_sha256": "f4dd76a8ed1448cc1b06358bf5dd26e2c0194625552d9bfe74b564a1f9b9dc0b",
-  "scorer_manifest_sha256": "719380fb0259071f1ff90f02b8463c8ebcfd0dfc391658267c6083c704df8b27",
-  "private_package_manifest_sha256": "efe36ac8caf4b57d4e18b472f8145f7ee425bea3e6ed9877e7dee879aaced02e",
+  "task_manifest_sha256": "5885032330aa566d7fae99717a949cc95971947f66d713af7298b4afafcd3492",
+  "scorer_manifest_sha256": "6b65762b367e6ae70180c52fca8f3078e5332ceafa643603759503f783dfea56",
+  "private_package_manifest_sha256": "95c3751814f05fa37bf00c7122bc38a67b43b67bbd050dcd15b64e31fbb75149",
   "model_execution_plan": "config/model_execution_plan.rc1.public.json",
-  "model_execution_plan_sha256": "aea42ee78c0fc429c2e95add04058c8a79ddfbc6682ec17c9e06328c5dd1b1ee",
+  "model_execution_plan_sha256": "9f47a3567cb278b37fde4bc6a7b4db23bfa4d1344edbbfb414da83a6604b1a7a",
   "generation_profiles_sha256": "eb1fe1fd8ebd8443630498ba5bcfec9a6df3ba61e0d8d920b145bce96423a975"
 }

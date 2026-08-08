@@ -13,10 +13,10 @@
   "generation_profiles": "config/generation_profiles.rc1.json",
   "retry_policy": "config/retry_policy.rc1.json",
   "manifest_hashes": {
-    "benchmark_manifest": "638113acb55aaff78865adda491078e24551e73eafdd9710244e6d233c75cd5a",
-    "task_manifest": "f4dd76a8ed1448cc1b06358bf5dd26e2c0194625552d9bfe74b564a1f9b9dc0b",
-    "scorer_manifest": "719380fb0259071f1ff90f02b8463c8ebcfd0dfc391658267c6083c704df8b27",
-    "model_execution_plan": "aea42ee78c0fc429c2e95add04058c8a79ddfbc6682ec17c9e06328c5dd1b1ee",
+    "benchmark_manifest": "8fa0a47a2204bbcadd20c8617bb9c4cf00f94332ecec204b295d9f5fa3614a95",
+    "task_manifest": "5885032330aa566d7fae99717a949cc95971947f66d713af7298b4afafcd3492",
+    "scorer_manifest": "6b65762b367e6ae70180c52fca8f3078e5332ceafa643603759503f783dfea56",
+    "model_execution_plan": "9f47a3567cb278b37fde4bc6a7b4db23bfa4d1344edbbfb414da83a6604b1a7a",
     "generation_profiles": "eb1fe1fd8ebd8443630498ba5bcfec9a6df3ba61e0d8d920b145bce96423a975",
     "retry_policy": "e64a69d04d16d40046f24930969fd4c99152a958b585e4e3bf75d868594d1eb5"
   },

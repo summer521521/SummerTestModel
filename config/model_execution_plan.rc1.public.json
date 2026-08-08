@@ -2812,7 +2812,6 @@
       "profiles": [
         "code",
         "general",
-        "long_context_32k",
         "long_context_8k",
         "performance",
         "tools",
@@ -2851,8 +2850,6 @@
         "CORE_REL_02",
         "CORE_REL_03",
         "CORE_REL_04",
-        "CTX32_01",
-        "CTX32_02",
         "CTX8_01",
         "CTX8_02",
         "PERF_01",
@@ -2942,6 +2939,6 @@
     "missing_from_inventory": [],
     "unassigned_local": []
   },
-  "task_manifest_sha256": "f4dd76a8ed1448cc1b06358bf5dd26e2c0194625552d9bfe74b564a1f9b9dc0b",
-  "scorer_manifest_sha256": "719380fb0259071f1ff90f02b8463c8ebcfd0dfc391658267c6083c704df8b27"
+  "task_manifest_sha256": "5885032330aa566d7fae99717a949cc95971947f66d713af7298b4afafcd3492",
+  "scorer_manifest_sha256": "6b65762b367e6ae70180c52fca8f3078e5332ceafa643603759503f783dfea56"
 }

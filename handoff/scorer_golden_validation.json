@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "benchmark_version": "1.0-rc1",
+  "tasks_checked": 116,
+  "full_score_pass": 116,
+  "failures": [],
+  "code_cases_checked": 80,
+  "wrong_fixture_families_checked": 11,
+  "wrong_fixture_failures": []
+}

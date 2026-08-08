@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib
 import json
 import tempfile
 import urllib.request
@@ -104,6 +105,15 @@ def doctor(config_path: Path) -> tuple[str, list[dict[str, str]]]:
             safety=json.loads((private_root/"safety/tasks.json").read_text(encoding="utf-8")); checks.append({"check":"safety_counts","status":"PASS" if isinstance(safety,list) and sum(x.get("label")=="safe" for x in safety)==10 and sum(x.get("label")=="unsafe" for x in safety)==10 else "FAIL","detail":"10 safe + 10 unsafe"})
             scorer_manifest=load_json(ROOT/str(config["scorer_manifest"])); scorer_hash=hashlib.sha256((ROOT/"scripts/scorers.py").read_bytes()).hexdigest(); bad_scorers=[x.get("scorer_id") for x in scorer_manifest.get("scorers",[]) if x.get("sha256")!=scorer_hash]
             checks.append({"check":"scorer_implementation_hashes","status":"PASS" if not bad_scorers else "FAIL","detail":"all scorer entrypoints match scripts/scorers.py" if not bad_scorers else ",".join(bad_scorers)})
+            scorer_by_id={x.get("scorer_id"):x for x in scorer_manifest.get("scorers",[])}; task_by_id={x.get("task_id"):x for x in task_data.get("tasks",[])}; ref_errors=[]
+            try: scorer_module=importlib.import_module("scripts.scorers")
+            except ModuleNotFoundError: scorer_module=importlib.import_module("scorers")
+            for task in task_data.get("tasks",[]):
+                scorer=scorer_by_id.get(task.get("scorer_id"))
+                if not scorer or (task.get("track")!="diagnostic" and scorer.get("track")!=task.get("track")): ref_errors.append(task.get("task_id")); continue
+                entry=str(scorer.get("implementation","")).split(":",1)[-1]
+                if not callable(getattr(scorer_module,entry,None)): ref_errors.append(task.get("task_id"))
+            checks.append({"check":"scorer_referential_integrity","status":"PASS" if not ref_errors else "FAIL","detail":"all task scorer IDs/tracks/entrypoints resolve" if not ref_errors else ",".join(ref_errors)})
         except Exception as exc:
             checks.append({"check":"rc1_policy_files","status":"FAIL","detail":f"{type(exc).__name__}: {exc}"})
     hashes = config.get("manifest_hashes") if isinstance(config.get("manifest_hashes"), dict) else {}
@@ -143,6 +153,16 @@ def doctor(config_path: Path) -> tuple[str, list[dict[str, str]]]:
                     if not asset_path.is_file() or file_sha256(asset_path) != asset.get("sha256"):
                         bad_assets.append(str(asset.get("path")))
             checks.append({"check": "asset_hashes", "status": "FAIL" if bad_assets else "PASS", "detail": ", ".join(bad_assets) if bad_assets else "all declared assets valid"})
+            plan_path=ROOT/str(config.get("model_execution_plan")); plan=load_json(plan_path); inventory_rows=load_json(inventory).get("models",[]); contexts={x.get("exact_name"):int(x.get("context_length") or 0) for x in inventory_rows}; task_map={x.get("task_id"):x for x in tasks}; assignment_errors=[]
+            for model in plan.get("models",[]):
+                ids=model.get("task_ids") or []
+                if model.get("local_or_cloud")=="local" and not ids: assignment_errors.append(model.get("model"))
+                if model.get("local_or_cloud")=="cloud" and ids: assignment_errors.append(model.get("model"))
+                for tid in ids:
+                    task=task_map.get(tid)
+                    if not task or (task.get("profile") is not None and "profiles" in model and task.get("profile") not in (model.get("profiles") or [])): assignment_errors.append(f"{model.get('model')}:{tid}"); continue
+                    if task.get("profile")=="long_context_32k" and contexts.get(model.get("model"),0)<32768: assignment_errors.append(f"context:{model.get('model')}:{tid}")
+            checks.append({"check":"model_task_referential_integrity","status":"PASS" if not assignment_errors else "FAIL","detail":"model task IDs/profiles/context valid; local assigned and cloud unassigned" if not assignment_errors else ",".join(assignment_errors)})
     except Exception as exc:
         checks.append({"check": "task_asset_validation", "status": "FAIL", "detail": f"{type(exc).__name__}: {exc}"})
     output = ROOT / str(config.get("output_dir") or "work/pending-run")
