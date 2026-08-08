@@ -50,6 +50,8 @@ def doctor(config_path: Path) -> tuple[str, list[dict[str, str]]]:
     checks.append({"check": "unresolved_placeholders", "status": "FAIL" if pending else "PASS", "detail": ", ".join(pending) if pending else "none"})
     api = str(config.get("ollama_api") or "http://127.0.0.1:11434")
     checks.append({"check": "benchmark_version", "status": "PASS" if config.get("benchmark_version") in (None, "1.0-rc1") else "FAIL", "detail": str(config.get("benchmark_version"))})
+    calibration_required = config.get("benchmark_version") == "1.0-rc1" or "calibration_approved" in config
+    checks.append({"check": "calibration_approved", "status": "PASS" if not calibration_required or config.get("calibration_approved") is True else "FAIL", "detail": "must remain false until Web GPT approval" if calibration_required and config.get("calibration_approved") is not True else "not required for legacy mock" if not calibration_required else "approved"})
     checks.append({"check": "ollama_reachable", "status": "PASS" if healthcheck(api) else "FAIL", "detail": api})
     inventory = ROOT / str(config.get("inventory_path") or "")
     checks.append({"check": "inventory_available", "status": "PASS" if inventory.is_file() else "FAIL", "detail": str(config.get("inventory_path"))})
@@ -71,6 +73,10 @@ def doctor(config_path: Path) -> tuple[str, list[dict[str, str]]]:
             circuit = retry.get("circuit_breaker") or {}
             retry_ok = retry.get("max_transport_retries") == 1 and circuit == {"consecutive_connection_refused_threshold":3,"healthcheck_wait_seconds":30,"max_recovery_seconds":900,"auto_restart":False}
             checks.append({"check":"rc1_retry_and_circuit","status":"PASS" if retry_ok else "FAIL","detail":"retry=1; circuit=3/30/900; no auto restart"})
+            private_path = ROOT / str(config.get("private_package_manifest") or "")
+            private_expected = manifest.get("private_package_manifest_sha256")
+            private_actual = file_sha256(private_path) if private_path.is_file() else None
+            checks.append({"check":"private_package_hash","status":"PASS" if private_expected and private_actual == private_expected else "FAIL","detail":f"expected={private_expected};actual={private_actual}"})
         except Exception as exc:
             checks.append({"check":"rc1_policy_files","status":"FAIL","detail":f"{type(exc).__name__}: {exc}"})
     hashes = config.get("manifest_hashes") if isinstance(config.get("manifest_hashes"), dict) else {}
@@ -105,6 +111,8 @@ def doctor(config_path: Path) -> tuple[str, list[dict[str, str]]]:
             for item in tasks:
                 for asset in item.get("assets") or []:
                     asset_path = ROOT / str(asset.get("path"))
+                    if not asset_path.is_file():
+                        asset_path = ROOT / "private_benchmark" / "1.0-rc1" / str(asset.get("path"))
                     if not asset_path.is_file() or file_sha256(asset_path) != asset.get("sha256"):
                         bad_assets.append(str(asset.get("path")))
             checks.append({"check": "asset_hashes", "status": "FAIL" if bad_assets else "PASS", "detail": ", ".join(bad_assets) if bad_assets else "all declared assets valid"})

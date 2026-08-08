@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "benchmark_version": "1.0-rc1",
+  "scorer_version": "1.0-rc1",
   "legacy_policy": "Legacy Experimental Evidence",
   "formal_scope": {
     "local_only": true,
@@ -13,9 +14,12 @@
     "8k": {"minimum_declared_context": 8192},
     "32k": {"minimum_declared_context": 32768}
   },
-  "task_manifest": "__PENDING_WEB_GPT_DECISION__",
-  "scorer_manifest": "__PENDING_WEB_GPT_DECISION__",
-  "task_manifest_sha256": "__PENDING_WEB_GPT_DECISION__",
-  "scorer_manifest_sha256": "__PENDING_WEB_GPT_DECISION__",
+  "task_manifest": "config/task_manifest.rc1.public.json",
+  "scorer_manifest": "config/scorer_manifest.rc1.public.json",
+  "task_manifest_sha256": "7f589e2457e1fbd413831a829d1f321b0112d2d884e62b56b9d654eeb1e04da4",
+  "scorer_manifest_sha256": "62229612c34989e286047af61871628f4a1801f436df9d79075e5ee43badeb2d",
+  "private_package_manifest_sha256": "5b0672d727a25687155c11229434eced633e3e8f8347614e52389fc41206f868",
+  "model_execution_plan": "config/model_execution_plan.rc1.public.json",
+  "model_execution_plan_sha256": "ff43af0bf10b4d03d49c0e9e0ffed5d2943b1e4c087b16c1472aa878dfe595dd",
   "generation_profiles_sha256": "eb1fe1fd8ebd8443630498ba5bcfec9a6df3ba61e0d8d920b145bce96423a975"
 }
