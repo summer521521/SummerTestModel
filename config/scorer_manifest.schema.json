@@ -5,6 +5,6 @@
   "required": ["scorer_version", "scorers"],
   "properties": {
     "scorer_version": {"type": "string"},
-    "scorers": {"type": "array", "items": {"type": "object", "required": ["scorer_id", "implementation", "sha256"]}}
+    "scorers": {"type": "array", "items": {"type": "object", "required": ["scorer_id", "track", "implementation", "sha256", "private_scoring_spec", "uses_llm_judge"], "properties":{"scorer_id":{"type":"string"},"track":{"type":"string"},"implementation":{"type":"string"},"sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},"private_scoring_spec":{"type":"boolean"},"uses_llm_judge":{"const":false}}}}
   }
 }

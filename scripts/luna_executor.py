@@ -30,6 +30,14 @@ def pending_markers(value: Any, prefix: str = "") -> list[str]:
 def file_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
+def schema_check(document: Path, schema: Path) -> tuple[bool,str]:
+    try:
+        import jsonschema
+        jsonschema.validate(load_json(document), load_json(schema))
+        return True, "valid"
+    except Exception as exc:
+        return False, f"{type(exc).__name__}: {exc}"
+
 
 def healthcheck(url: str) -> bool:
     try:
@@ -77,6 +85,25 @@ def doctor(config_path: Path) -> tuple[str, list[dict[str, str]]]:
             private_expected = manifest.get("private_package_manifest_sha256")
             private_actual = file_sha256(private_path) if private_path.is_file() else None
             checks.append({"check":"private_package_hash","status":"PASS" if private_expected and private_actual == private_expected else "FAIL","detail":f"expected={private_expected};actual={private_actual}"})
+            for name, schema_name in (("benchmark_manifest","benchmark_manifest.schema.json"),("task_manifest","task_manifest.schema.json"),("scorer_manifest","scorer_manifest.schema.json"),("model_execution_plan","model_execution_plan.schema.json")):
+                value=config.get(name); path=ROOT/str(value); schema=ROOT/"config"/schema_name
+                ok, detail=schema_check(path,schema); checks.append({"check":f"schema:{name}","status":"PASS" if ok else "FAIL","detail":detail})
+            task_data=load_json(ROOT/str(config["task_manifest"])); private_root=ROOT/"private_benchmark"/"1.0-rc1"; hash_errors=[]
+            for task in task_data.get("tasks",[]):
+                task_file=private_root/"tasks"/(task["task_id"]+".json"); gt_file=private_root/"ground_truth"/(task["task_id"]+".json"); spec_file=private_root/"scoring_specs"/(task["task_id"]+".json")
+                if not task_file.is_file() or not spec_file.is_file() or (task.get("ground_truth_sha256") is not None and not gt_file.is_file()): hash_errors.append(task["task_id"]); continue
+                private_task=load_json(task_file); actual_prompt=hashlib.sha256(str(private_task.get("prompt","")).encode("utf-8")).hexdigest()
+                if actual_prompt != task.get("prompt_sha256") or file_sha256(spec_file)!=task.get("scoring_spec_sha256"): hash_errors.append(task["task_id"])
+                if task.get("ground_truth_sha256") is not None and file_sha256(gt_file)!=task.get("ground_truth_sha256"): hash_errors.append(task["task_id"])
+                if task.get("scored") and task_file.read_bytes()==gt_file.read_bytes(): hash_errors.append(task["task_id"])
+            checks.append({"check":"private_task_hashes","status":"PASS" if not hash_errors else "FAIL","detail":"all task/GT/spec hashes match" if not hash_errors else ",".join(hash_errors)})
+            code_errors=[p.name for p in (private_root/"hidden_tests").glob("CODE_*.json") if len((load_json(p).get("cases") or []))!=10]
+            checks.append({"check":"code_hidden_tests","status":"PASS" if len(list((private_root/"hidden_tests").glob("CODE_*.json")))==8 and not code_errors else "FAIL","detail":"8 tasks x 10 cases" if not code_errors else ",".join(code_errors)})
+            contexts=json.loads((private_root/"long_context/metadata.json").read_text(encoding="utf-8")); checks.append({"check":"long_context_payloads","status":"PASS" if isinstance(contexts, list) and len(contexts)==4 and all(x.get("target_occurrences")==1 for x in contexts) else "FAIL","detail":"four unique targets"})
+            embedding_docs=json.loads((private_root/"embedding/corpus.json").read_text(encoding="utf-8")); embedding_queries=json.loads((private_root/"embedding/queries.json").read_text(encoding="utf-8")); checks.append({"check":"embedding_counts","status":"PASS" if isinstance(embedding_docs,list) and isinstance(embedding_queries,list) and len(embedding_docs)==24 and len(embedding_queries)==12 else "FAIL","detail":f"docs={len(embedding_docs)};queries={len(embedding_queries)}"})
+            safety=json.loads((private_root/"safety/tasks.json").read_text(encoding="utf-8")); checks.append({"check":"safety_counts","status":"PASS" if isinstance(safety,list) and sum(x.get("label")=="safe" for x in safety)==10 and sum(x.get("label")=="unsafe" for x in safety)==10 else "FAIL","detail":"10 safe + 10 unsafe"})
+            scorer_manifest=load_json(ROOT/str(config["scorer_manifest"])); scorer_hash=hashlib.sha256((ROOT/"scripts/scorers.py").read_bytes()).hexdigest(); bad_scorers=[x.get("scorer_id") for x in scorer_manifest.get("scorers",[]) if x.get("sha256")!=scorer_hash]
+            checks.append({"check":"scorer_implementation_hashes","status":"PASS" if not bad_scorers else "FAIL","detail":"all scorer entrypoints match scripts/scorers.py" if not bad_scorers else ",".join(bad_scorers)})
         except Exception as exc:
             checks.append({"check":"rc1_policy_files","status":"FAIL","detail":f"{type(exc).__name__}: {exc}"})
     hashes = config.get("manifest_hashes") if isinstance(config.get("manifest_hashes"), dict) else {}
