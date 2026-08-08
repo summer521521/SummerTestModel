@@ -49,6 +49,10 @@ def extract_final(text: str) -> str:
     matches=re.findall(r"(?im)^\s*FINAL\s*:\s*(.+?)\s*$", text)
     return matches[-1].strip() if matches else text.strip()
 
+def _textual_answer(evidence: dict) -> str:
+    final_answer = evidence.get("final_answer")
+    return final_answer if isinstance(final_answer, str) else ""
+
 def levenshtein(actual: str, expected: str) -> dict:
     a=list(unicodedata.normalize("NFC",actual.replace("\r\n","\n")).strip()); b=list(unicodedata.normalize("NFC",expected.replace("\r\n","\n")).strip())
     previous=list(range(len(b)+1)); rows=[previous]
@@ -89,7 +93,7 @@ def tool_trace_validator(actual: dict, expected: dict) -> dict:
         field_total+=len(wa); field_pass+=sum(k in ga for k in wa); value_pass+=sum(k in ga and type(ga[k]) is type(wa[k]) and ga[k]==wa[k] for k in wa)
     args_exact=all(got.get("arguments",{})==want.get("arguments",{}) and all(type(got.get("arguments",{}).get(k)) is type(v) for k,v in want.get("arguments",{}).items()) for got,want in zip(calls,expected_calls)) and len(calls)==len(expected_calls)
     exact_task_success=int(names_exact and args_exact)
-    final=str(actual.get("final_answer","")).lower(); facts=expected.get("required_final_facts",[]); any_of=expected.get("required_final_any_of",[])
+    final=_textual_answer(actual).lower(); facts=expected.get("required_final_facts",[]); any_of=expected.get("required_final_any_of",[])
     clarification=bool(expected.get("clarification_required")) == bool(actual.get("clarification")) if "clarification_required" in expected else True
     zero_ok=(not expected.get("zero_call_required")) or not calls
     final_ok=all(str(x).lower() in final for x in facts) and (not any_of or any(str(x).lower() in final for x in any_of))
@@ -97,7 +101,7 @@ def tool_trace_validator(actual: dict, expected: dict) -> dict:
     return {"status":"scored","exact_task_success":success,"correct_tool_rate":correct/max(1,len(expected_names)),"argument_field_accuracy":field_pass/field_total if field_total else 1.0,"argument_value_accuracy":value_pass/field_total if field_total else 1.0,"unnecessary_call_rate":max(0,len(calls)-len(expected_calls))/max(1,len(calls)),"clarification_success":int(clarification),"multi_step_success":int(success and len(expected_calls)>1),"score":float(success)}
 
 def _score_code_impl(evidence, task, ground_truth, scoring_spec):
-    text=str(evidence.get("final_answer") or evidence.get("raw_response") or ""); code,protocol=extract_code(text)
+    text=_textual_answer(evidence); code,protocol=extract_code(text)
     result={"status":"passed","passed_tests":0,"total_tests":10,"score":0.0,"protocol_score":protocol,"extraction_status":"ok","syntax_status":"not_checked","policy_status":"not_checked","runtime_status":"not_checked"}
     if not code.strip(): result.update(status="extraction_failed",extraction_status="empty"); return result
     try:
@@ -230,7 +234,7 @@ def _medical_score(text, task, ground_truth):
     return {"score":score,"semantic_score":score}
 
 def score_task(evidence, private_task, ground_truth, scoring_spec):
-    text=evidence.get("final_answer") or evidence.get("raw_response") or ""; typ=scoring_spec.get("type")
+    text=_textual_answer(evidence); typ=scoring_spec.get("type")
     if typ=="telemetry_only": return {"status":"telemetry_only","score":None,"telemetry":evidence.get("timing",{})}
     if typ=="diagnostic": return {"status":"diagnostic_only","score":None,"organization_tokens":re.findall(r"\b[A-Z][A-Za-z]+\b",str(text))}
     expected=ground_truth.get("value") if isinstance(ground_truth,dict) and "value" in ground_truth else ground_truth

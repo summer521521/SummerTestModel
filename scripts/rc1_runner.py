@@ -14,6 +14,7 @@ import importlib
 import json
 import sys
 import tempfile
+import time
 from pathlib import Path
 from typing import Any
 
@@ -21,7 +22,16 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from scripts.executor_core import CircuitBreaker, CircuitConfig, EvidenceStore, Executor, logical_key
+from scripts.executor_core import (
+    INFRA_FAILURE,
+    TERMINAL_INFERENCE,
+    CircuitBreaker,
+    CircuitConfig,
+    EvidenceStore,
+    Executor,
+    logical_key,
+    now,
+)
 from scripts.ollama_adapter import OllamaAdapter
 from scripts.tool_loop import ToolLoopEngine
 from scripts.luna_executor import doctor as luna_doctor, healthcheck, status as luna_status
@@ -30,6 +40,7 @@ CONFIG_DIR = ROOT / "config"
 PRIVATE = ROOT / "private_benchmark" / "1.0-rc1"
 DEFAULT_CONFIG = CONFIG_DIR / "run_config.template.json"
 DEFAULT_RUN_ROOT = ROOT / "private_runs"
+R2_CALIBRATION_PLAN = CONFIG_DIR / "calibration_plan.rc1.r2.json"
 
 
 def read(path: Path) -> Any:
@@ -109,6 +120,9 @@ class RC1ItemBuilder:
         metadata = self.inventory[model_row["model"]]
         profile = public_task["profile"]
         profile_config = copy.deepcopy(self.bundle["profiles"]["profiles"][profile])
+        runtime_overrides = copy.deepcopy(
+            (self.bundle["profiles"].get("model_runtime_overrides") or {}).get(model_row["model"], {})
+        )
         item = {
             "benchmark_version": self.bundle["benchmark"]["benchmark_version"],
             "task_manifest_hash": self.bundle["config"]["manifest_hashes"]["task_manifest"],
@@ -125,6 +139,8 @@ class RC1ItemBuilder:
             "machine_profile_hash": self.bundle["config"].get("machine_profile_hash"),
             "seed_supported": None,
         }
+        if runtime_overrides:
+            item["runtime_overrides"] = runtime_overrides
         if public_task["track"] in {"vision", "ocr"}:
             images, paths = _asset_for(task_id, public_task)
             item["images"] = images
@@ -165,14 +181,18 @@ class MockAdapter:
     def infer(self, item: dict[str, Any]) -> dict[str, Any]:
         track=item["track"]; profile=item["profile_config"]
         payload={"model":item["model"],"stream":True,"options":{"temperature":0,"num_ctx":profile.get("num_ctx"),"num_predict":profile.get("num_predict")}}
+        requested_think=(item.get("runtime_overrides") or {}).get("think", profile.get("think"))
+        if requested_think is not None: payload["think"]=bool(requested_think)
         if item.get("messages") is not None: payload["messages"]=item["messages"]
         else: payload["prompt"]=item.get("prompt","")
         if item.get("images") is not None: payload["images"]=item["images"]
         thinking="mock thinking" if profile.get("think") is True else None
-        if track == "code": answer=f"def {item.get('requested_function','mock_function')}(*args, **kwargs):\n    return None\n"
+        if item.get("calibration_probe"): answer="4"
+        elif track == "code": answer=f"def {item.get('requested_function','mock_function')}(*args, **kwargs):\n    return None\n"
+        elif track == "safety" and "guardian" in item["model"].lower(): answer="<score> no </score>"
         elif track == "safety": answer="No"
         else: answer="mock final answer"
-        return {"status":"completed","raw_response":[{"message":{"thinking":thinking,"content":answer},"done":True}],"streamed_chunks":[{"message":{"thinking":thinking,"content":answer},"done":True}],"thinking":thinking,"final_answer":answer,"request_payload":payload,"endpoint":"mock","timing":{"wall_time_seconds":0.001},"images_sent":item.get("images")}
+        return {"status":"completed","raw_response":[{"message":{"thinking":thinking,"content":answer},"done":True}],"streamed_chunks":[{"message":{"thinking":thinking,"content":answer},"done":True}],"thinking":thinking,"final_answer":answer,"request_payload":payload,"think_reason":"explicit_model_runtime_override" if item.get("runtime_overrides") else "explicit_profile_control" if profile.get("think") is not None else "unsupported_or_not_requested","endpoint":"mock","timing":{"wall_time_seconds":0.001},"images_sent":item.get("images")}
 
 
 def _tool_call(name: str, arguments: dict[str, Any]) -> dict[str, Any]:
@@ -293,11 +313,56 @@ def _doctor_allows_calibration(result: str, checks: list[dict[str,str]]) -> bool
 def _calibration_entries() -> list[dict[str,Any]]: return read(CONFIG_DIR/"calibration_plan.rc1.json")["entries"]
 
 
+def _r2_calibration_plan() -> dict[str, Any]: return read(R2_CALIBRATION_PLAN)
+
+
+def _inference_saved_counts(run_dir: Path) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    events_path = run_dir / "events.jsonl"
+    if not events_path.is_file(): return counts
+    with events_path.open(encoding="utf-8") as handle:
+        for line in handle:
+            try: event = json.loads(line)
+            except json.JSONDecodeError: continue
+            if event.get("event") == "inference_saved" and event.get("logical_key"):
+                key = str(event["logical_key"]); counts[key] = counts.get(key, 0) + 1
+    return counts
+
+
+def _terminal_saved_keys(run_dir: Path) -> set[str]:
+    state = EvidenceStore(run_dir).load_state(); keys: set[str] = set()
+    for key, entry in (state.get("items") or {}).items():
+        raw_path = run_dir / str(entry.get("raw_path")) if entry.get("raw_path") else None
+        if entry.get("inference_status") in TERMINAL_INFERENCE and raw_path and raw_path.is_file():
+            keys.add(str(key))
+    return keys
+
+
+def _resume_calibration(bundle: dict[str,Any], items: list[dict[str,Any]], run_dir: Path, mock: bool, resume_command: str) -> dict[str, Any]:
+    candidate_keys = {logical_key(item) for item in items}
+    terminal_keys = _terminal_saved_keys(run_dir) & candidate_keys
+    before = _inference_saved_counts(run_dir)
+    _run_items(bundle, items, run_dir, mock, resume_command)
+    after = _inference_saved_counts(run_dir)
+    terminal_stable = bool(terminal_keys) and all(after.get(key, 0) == before.get(key, 0) for key in terminal_keys)
+    return {"ok": terminal_stable, "terminal_logical_keys": sorted(terminal_keys), "before": {key: before.get(key, 0) for key in sorted(terminal_keys)}, "after": {key: after.get(key, 0) for key in sorted(terminal_keys)}}
+
+
+def _raw_evidence(run_dir: Path, state_entry: dict[str, Any]) -> tuple[Path | None, dict[str, Any] | None]:
+    path = run_dir / str(state_entry.get("raw_path")) if state_entry.get("raw_path") else None
+    return (path, read(path)) if path and path.is_file() else (path, None)
+
+
+def _score_path(run_dir: Path, raw_path: Path | None) -> Path | None:
+    if not raw_path: return None
+    return run_dir / "scores" / raw_path.parent.name / raw_path.name
+
+
 def validate_calibration(run_dir: Path, resume_ok: bool) -> dict[str,Any]:
     state=EvidenceStore(run_dir).load_state(); evidence=[]; score_files=list((run_dir/"scores").rglob("*.json")) if (run_dir/"scores").exists() else []
-    for entry in state.get("items",{}).values():
-        path=run_dir/str(entry.get("raw_path")) if entry.get("raw_path") else None
-        if path and path.is_file(): evidence.append(read(path))
+    for entry in (state.get("items") or {}).values():
+        _, value = _raw_evidence(run_dir, entry)
+        if value is not None: evidence.append(value)
     gates={
         "runtime_path":bool(evidence),
         "raw_persistence":len(evidence)==len(state.get("items",{})),
@@ -312,18 +377,99 @@ def validate_calibration(run_dir: Path, resume_ok: bool) -> dict[str,Any]:
     result={"schema_version":1,"semantic_correctness_is_not_a_gate":True,"gates":gates,"approved":all(gates.values())}; (run_dir/"calibration_validation.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"); return result
 
 
+def _r2_formal_items(bundle: dict[str, Any]) -> list[dict[str, Any]]:
+    allowed = {entry["model"]: set(entry.get("task_ids") or []) for entry in _r2_calibration_plan()["formal_entries"]}
+    return [item for item in RC1ItemBuilder(bundle).all_items() if item["model"] in allowed and item["task_id"] in allowed[item["model"]]]
+
+
+def _build_r2_thinking_probe(bundle: dict[str, Any]) -> dict[str, Any]:
+    probe = _r2_calibration_plan()["thinking_probe"]
+    metadata = next((row for row in bundle["inventory"]["models"] if row.get("exact_name") == probe["model"]), None)
+    capabilities = list((metadata or {}).get("capabilities") or [])
+    if "thinking" not in capabilities:
+        raise RuntimeError(f"calibration R2 thinking probe model lacks explicit thinking capability: {probe['model']}")
+    return {
+        "benchmark_version": bundle["benchmark"]["benchmark_version"], "task_manifest_hash": bundle["config"]["manifest_hashes"]["task_manifest"], "scorer_version": bundle["config"]["scorer_version"],
+        "model": probe["model"], "exact_model_tag": probe["model"], "model_digest": metadata["digest"], "task_id": probe["task_id"], "track": "calibration_probe", "profile": probe["profile"],
+        "profile_config": copy.deepcopy(probe["request_profile"]), "capabilities": capabilities, "prompt": probe["prompt"], "calibration_probe": True,
+        "ollama_version": bundle["inventory"].get("ollama_version"), "machine_profile_hash": bundle["config"].get("machine_profile_hash"), "seed_supported": None,
+    }
+
+
+def _run_r2_thinking_probe(bundle: dict[str, Any], item: dict[str, Any], run_dir: Path, mock: bool) -> dict[str, Any]:
+    store = EvidenceStore(run_dir); state = store.load_state(); state.update({"benchmark_version": bundle["benchmark"]["benchmark_version"], "task_manifest_hash": bundle["config"]["manifest_hashes"]["task_manifest"]})
+    attempt_id = f"probe-{int(time.time() * 1000)}"; store.begin(item, attempt_id)
+    adapter = MockAdapter() if mock else OllamaAdapter(bundle["config"].get("ollama_api", "http://127.0.0.1:11434"), bundle["retry"].get("max_transport_retries", 1))
+    try: response = adapter.infer(item)
+    except Exception as exc: response = {"status": "runner_exception", "error": f"{type(exc).__name__}: {exc}", "finished_at": now()}
+    evidence = store.save_inference(item, attempt_id, response); key = logical_key(item)
+    state["items"][key] = {"inference_status": evidence["inference_status"], "scoring_status": "probe_only", "raw_path": evidence["raw_path"]}; store.checkpoint(state)
+    return evidence
+
+
+def validate_calibration_r2(run_dir: Path, formal_items: list[dict[str, Any]], probe_item: dict[str, Any], resume_result: dict[str, Any]) -> dict[str, Any]:
+    state = EvidenceStore(run_dir).load_state(); state_items = state.get("items") or {}; formal_keys = {logical_key(item) for item in formal_items}; probe_key = logical_key(probe_item)
+    formal_evidence: list[tuple[dict[str, Any], dict[str, Any], dict[str, Any]]] = []; raw_ok = True; score_ok = True; guardian_requests_ok = True; guardian_predictions_ok = True; performance_status = None; scoring_error_keys: set[str] = set()
+    events_path = run_dir / "events.jsonl"
+    if events_path.is_file():
+        with events_path.open(encoding="utf-8") as handle:
+            for line in handle:
+                try: event = json.loads(line)
+                except json.JSONDecodeError: continue
+                if event.get("event") == "scoring_error" and event.get("logical_key") in formal_keys: scoring_error_keys.add(str(event["logical_key"]))
+    for item in formal_items:
+        key = logical_key(item); entry = state_items.get(key) or {}; raw_path, evidence = _raw_evidence(run_dir, entry); raw_ok = raw_ok and evidence is not None
+        score_path = _score_path(run_dir, raw_path); score = read(score_path) if score_path and score_path.is_file() else None; score_ok = score_ok and score is not None and entry.get("scoring_status") != "scoring_error" and key not in scoring_error_keys
+        if evidence is not None and score is not None: formal_evidence.append((item, evidence, score))
+        if item["model"] == "granite4.1-guardian:8b" and item["track"] == "safety":
+            guardian_requests_ok = guardian_requests_ok and (evidence or {}).get("request_payload", {}).get("think") is False
+            guardian_predictions_ok = guardian_predictions_ok and score is not None and score.get("prediction") is not None
+        if item["task_id"] == "PERF_01": performance_status = (evidence or {}).get("inference_status")
+    probe_entry = state_items.get(probe_key) or {}; probe_raw_path, persisted_probe = _raw_evidence(run_dir, probe_entry); raw_ok = raw_ok and persisted_probe is not None
+    probe = persisted_probe or {}
+    probe_request = probe.get("request_payload") or {}
+    thinking_ok = probe_request.get("think") is True and isinstance(probe.get("thinking"), str) and bool(probe.get("thinking")) and isinstance(probe.get("final_answer"), str) and bool(probe.get("final_answer")) and probe["thinking"] not in probe["final_answer"]
+    gates = {
+        "scorer_path": bool(formal_items) and score_ok,
+        "thinking_separation": thinking_ok,
+        "resume_dedup": bool(resume_result.get("ok")),
+        "tool_loop": any(evidence.get("tool_trace") for _, evidence, _ in formal_evidence),
+        "image_path": any(evidence.get("images_sent") and ((evidence.get("request_payload") or {}).get("messages") or (evidence.get("request_payload") or {}).get("images")) for _, evidence, _ in formal_evidence),
+        "embed_path": any(evidence.get("corpus_embeddings") and evidence.get("query_embedding") for _, evidence, _ in formal_evidence),
+        "safety_parser": guardian_requests_ok and guardian_predictions_ok,
+        "performance_path": performance_status == "completed",
+        "raw_persistence": raw_ok and set(state_items).issuperset(formal_keys | {probe_key}),
+    }
+    result = {"schema_version": 2, "benchmark_version": "1.0-rc1", "calibration": "R2", "semantic_correctness_is_not_a_gate": True, "gates": gates, "approved": all(gates.values()), "details": {"guardian_think_false": guardian_requests_ok, "guardian_prediction_present": guardian_predictions_ok, "performance_status": performance_status, "probe_task_id": probe_item["task_id"], "resume": resume_result}}
+    (run_dir / "calibration_r2_validation.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return result
+
+
 def calibrate(bundle: dict[str,Any], args: argparse.Namespace) -> int:
     if not args.mock:
         if not args.allow_inference:
             print(json.dumps({"status":"NOT_RUN","reason":"calibration requires --allow-inference and explicit approved configuration","plan":str(CONFIG_DIR/"calibration_plan.rc1.json")},ensure_ascii=False,indent=2)); return 2
         allowed={x["model"]:set(x["task_ids"]) for x in _calibration_entries()}; items=[x for x in RC1ItemBuilder(bundle).all_items() if x["model"] in allowed and x["task_id"] in allowed[x["model"]]]
         run_dir=Path(args.run_dir) if args.run_dir else DEFAULT_RUN_ROOT/"calibration"
-        _run_items(bundle,items,run_dir,False,f"python scripts/rc1_runner.py calibrate --allow-inference --run-dir {run_dir}"); before=(run_dir/"events.jsonl").read_text(encoding="utf-8").count('"event":"inference_saved"'); _run_items(bundle,items,run_dir,False,"resume"); after=(run_dir/"events.jsonl").read_text(encoding="utf-8").count('"event":"inference_saved"'); validation=validate_calibration(run_dir,before==after)
-        print(json.dumps({"status":"COMPLETED" if validation["approved"] else "FAILED","items":len(items),"run_dir":str(run_dir),"gates":validation["gates"]},ensure_ascii=False,indent=2)); return 0 if validation["approved"] else 2
+        _run_items(bundle,items,run_dir,False,f"python scripts/rc1_runner.py calibrate --allow-inference --run-dir {run_dir}"); resume_result=_resume_calibration(bundle,items,run_dir,False,f"python scripts/rc1_runner.py calibrate --allow-inference --run-dir {run_dir}"); validation=validate_calibration(run_dir,resume_result["ok"])
+        print(json.dumps({"status":"COMPLETED" if validation["approved"] else "FAILED","items":len(items),"run_dir":str(run_dir),"gates":validation["gates"],"resume":resume_result},ensure_ascii=False,indent=2)); return 0 if validation["approved"] else 2
     allowed={x["model"]:set(x["task_ids"]) for x in _calibration_entries()}; items=[x for x in RC1ItemBuilder(bundle).all_items() if x["model"] in allowed and x["task_id"] in allowed[x["model"]]]
     run_dir=Path(args.run_dir) if args.run_dir else DEFAULT_RUN_ROOT/"mock_calibration"
-    _run_items(bundle,items,run_dir,True,f"python scripts/rc1_runner.py calibrate --mock --run-dir {run_dir}"); before=(run_dir/"events.jsonl").read_text(encoding="utf-8").count('"event":"inference_saved"'); _run_items(bundle,items,run_dir,True,"resume"); after=(run_dir/"events.jsonl").read_text(encoding="utf-8").count('"event":"inference_saved"'); validation=validate_calibration(run_dir,before==after)
-    print(json.dumps({"status":"MOCK_COMPLETED" if validation["approved"] else "MOCK_FAILED","items":len(items),"run_dir":str(run_dir),"gates":validation["gates"]},ensure_ascii=False,indent=2)); return 0 if validation["approved"] else 2
+    _run_items(bundle,items,run_dir,True,f"python scripts/rc1_runner.py calibrate --mock --run-dir {run_dir}"); resume_result=_resume_calibration(bundle,items,run_dir,True,f"python scripts/rc1_runner.py calibrate --mock --run-dir {run_dir}"); validation=validate_calibration(run_dir,resume_result["ok"])
+    print(json.dumps({"status":"MOCK_COMPLETED" if validation["approved"] else "MOCK_FAILED","items":len(items),"run_dir":str(run_dir),"gates":validation["gates"],"resume":resume_result},ensure_ascii=False,indent=2)); return 0 if validation["approved"] else 2
+
+
+def calibrate_r2(bundle: dict[str, Any], args: argparse.Namespace) -> int:
+    if not args.mock and not args.allow_inference:
+        print(json.dumps({"status": "NOT_RUN", "reason": "calibration R2 requires --allow-inference", "plan": str(R2_CALIBRATION_PLAN)}, ensure_ascii=False, indent=2)); return 2
+    formal_items = _r2_formal_items(bundle); probe_item = _build_r2_thinking_probe(bundle); run_dir = Path(args.run_dir) if args.run_dir else DEFAULT_RUN_ROOT / "calibration_r2"
+    _run_items(bundle, formal_items, run_dir, args.mock, f"python scripts/rc1_runner.py calibrate-r2 {'--mock ' if args.mock else '--allow-inference '}--run-dir {run_dir}")
+    probe_evidence = _run_r2_thinking_probe(bundle, probe_item, run_dir, args.mock)
+    resume_result = _resume_calibration(bundle, formal_items, run_dir, args.mock, f"python scripts/rc1_runner.py calibrate-r2 {'--mock ' if args.mock else '--allow-inference '}--run-dir {run_dir}")
+    validation = validate_calibration_r2(run_dir, formal_items, probe_item, resume_result)
+    status = "CALIBRATION_R2_PASS" if validation["approved"] else "CALIBRATION_R2_BLOCKED"
+    print(json.dumps({"status": status, "formal_items": len(formal_items), "probe_task_id": probe_item["task_id"], "run_dir": str(run_dir), "gates": validation["gates"], "resume": resume_result}, ensure_ascii=False, indent=2))
+    return 0 if validation["approved"] else 2
 
 
 def run_all(bundle: dict[str,Any], args: argparse.Namespace) -> int:
@@ -390,7 +536,7 @@ def launch(bundle: dict[str,Any], args: argparse.Namespace) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser=argparse.ArgumentParser(description="SummerTestModel RC1 formal execution wiring")
-    parser.add_argument("command",choices=["doctor","calibrate","run-all","resume","status","finalize","launch"])
+    parser.add_argument("command",choices=["doctor","calibrate","calibrate-r2","run-all","resume","status","finalize","launch"])
     parser.add_argument("--config",default=str(DEFAULT_CONFIG)); parser.add_argument("--run-dir"); parser.add_argument("--output"); parser.add_argument("--model"); parser.add_argument("--task"); parser.add_argument("--mock",action="store_true"); parser.add_argument("--allow-inference",action="store_true")
     args=parser.parse_args(argv); bundle=config_bundle(Path(args.config))
     if args.command=="doctor":
@@ -398,6 +544,7 @@ def main(argv: list[str] | None = None) -> int:
         else: result,checks=luna_doctor(Path(args.config))
         print(json.dumps({"result":result,"checks":checks},ensure_ascii=False,indent=2)); return 0 if result=="READY" else 1
     if args.command=="calibrate": return calibrate(bundle,args)
+    if args.command=="calibrate-r2": return calibrate_r2(bundle,args)
     if args.command in {"run-all","resume"}: return run_all(bundle,args)
     if args.command=="status": return status_command(args)
     if args.command=="finalize": return finalize_command(args)

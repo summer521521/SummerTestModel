@@ -59,6 +59,25 @@ class ExecutorTests(unittest.TestCase):
         base = {"benchmark_version":"1", "task_manifest_hash":"a", "model_digest":"d", "profile":"p", "task_id":"t"}
         self.assertNotEqual(logical_key(base), logical_key({**base, "task_manifest_hash":"b"}))
 
+    def test_resume_gate_skips_terminal_and_retries_stream_interrupted(self):
+        class SequenceAdapter:
+            def __init__(self): self.calls=0
+            def infer(self, item):
+                self.calls += 1
+                if self.calls == 1: return {"status":"stream_interrupted","raw_response":[{"partial":"x"}]}
+                return {"status":"completed","final_answer":"ok","raw_response":[{"content":"ok"}]}
+        class Scorer:
+            def score(self, evidence, item): return {"status":"scored","score":1.0}
+        item={"benchmark_version":"1.0-rc1","task_manifest_hash":"t","model_digest":"d","profile":"general","task_id":"T","model":"m"}
+        with tempfile.TemporaryDirectory() as td:
+            run=Path(td); adapter=SequenceAdapter(); scorer=Scorer()
+            Executor(EvidenceStore(run),adapter,scorer,CircuitBreaker(CircuitConfig(3,0,1),lambda:True,sleep=lambda _:None)).run([item])
+            first=(run/"events.jsonl").read_text(encoding="utf-8").count('"event":"inference_saved"')
+            self.assertEqual(first,1)
+            Executor(EvidenceStore(run),adapter,scorer,CircuitBreaker(CircuitConfig(3,0,1),lambda:True,sleep=lambda _:None)).run([item])
+            second=(run/"events.jsonl").read_text(encoding="utf-8").count('"event":"inference_saved"')
+            self.assertEqual(second,2); self.assertEqual(adapter.calls,2)
+
     def test_tool_loop_fixture_and_limit(self):
         calls = iter([{"tool_calls":[{"function":{"name":"fixture","arguments":{"x":2}}}]}, {"content":"done"}])
         result = ToolLoopEngine({"fixture": lambda args: args["x"] * 2}).run([], lambda _: next(calls))

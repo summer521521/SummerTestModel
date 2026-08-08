@@ -20,7 +20,10 @@ class OllamaAdapter:
         return options, {"seed_applied": applied, "seed_reason": "verified" if applied else "not_verified"}
 
     @staticmethod
-    def _think(profile, capabilities):
+    def _think(profile, capabilities, runtime_overrides=None):
+        overrides = runtime_overrides if isinstance(runtime_overrides, dict) else {}
+        if "think" in overrides:
+            return bool(overrides["think"]), "explicit_model_runtime_override"
         supports = "thinking" in set(capabilities or [])
         requested = profile.get("think")
         if requested is None or not supports: return None, "unsupported_or_not_requested"
@@ -80,7 +83,7 @@ class OllamaAdapter:
         profile = dict(item.get("profile_config") or {})
         caps = item.get("capabilities") or item.get("metadata_capabilities") or []
         options, seed_info = self._options({**profile, "temperature":0, "seed":42}, item.get("seed_supported"))
-        think, think_reason = self._think(profile, caps)
+        think, think_reason = self._think(profile, caps, item.get("runtime_overrides"))
         payload = {"model": item["model"], "stream": True, "options": options, "keep_alive": profile.get("keep_alive_seconds", 300)}
         if item.get("messages") is not None:
             payload["messages"] = item["messages"]

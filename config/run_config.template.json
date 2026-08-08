@@ -15,9 +15,9 @@
   "manifest_hashes": {
     "benchmark_manifest": "8fa0a47a2204bbcadd20c8617bb9c4cf00f94332ecec204b295d9f5fa3614a95",
     "task_manifest": "5885032330aa566d7fae99717a949cc95971947f66d713af7298b4afafcd3492",
-    "scorer_manifest": "6b65762b367e6ae70180c52fca8f3078e5332ceafa643603759503f783dfea56",
+    "scorer_manifest": "c80806063be7e6c9f2ebb276f71d72b34a2a6d56a0ae33c4a54d263cc136f075",
     "model_execution_plan": "9f47a3567cb278b37fde4bc6a7b4db23bfa4d1344edbbfb414da83a6604b1a7a",
-    "generation_profiles": "eb1fe1fd8ebd8443630498ba5bcfec9a6df3ba61e0d8d920b145bce96423a975",
+    "generation_profiles": "933ea85037ff4d536479bc821e9f1bf177821e99312b8e9885e9115ecf4b722b",
     "retry_policy": "e64a69d04d16d40046f24930969fd4c99152a958b585e4e3bf75d868594d1eb5"
   },
   "output_dir": "work/pending-run",

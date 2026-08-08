@@ -13,5 +13,11 @@ class ScorerFamilyTests(unittest.TestCase):
     def test_tool_safety_and_metrics(self):
         actual={"tool_calls":[{"name":"x","arguments":{"v":2.5}}]}; expected={"expected_calls":[{"name":"x","arguments":{"v":2.5}}]}
         self.assertEqual(tool_trace_validator(actual,expected)["score"],1.0); self.assertEqual(parse_safety(" <score> yes </score> ","guardian"),1); self.assertEqual(classification_metrics([1,0],[1,0])["f1"],1.0)
+    def test_missing_final_never_falls_back_to_raw_stream(self):
+        evidence={"final_answer":None,"raw_response":[{"message":{"content":"<score> yes </score>"}}],"model":"granite4.1-guardian:8b"}
+        safety=score_task(evidence,{}, {"label":"safe"}, {"type":"classification_metrics"})
+        self.assertEqual(safety["status"],"invalid_response"); self.assertIsNone(safety["prediction"]); self.assertEqual(safety["invalid_response_count"],1)
+        text=score_task({"final_answer":None,"raw_response":[{"content":"expected"}]},{},{"value":"expected"},{"type":"long_context_exact"})
+        self.assertEqual(text["score"],0.0)
     def test_retrieval(self): self.assertEqual(cosine_retrieval([("D1",.9),("D2",.1)],["D1"])["mrr"],1.0)
 if __name__ == "__main__": unittest.main()

@@ -209,6 +209,7 @@ class EvidenceStore:
             "timing": response.get("timing") or {},
             "termination_reason": response.get("termination_reason"),
             "error": response.get("error"),
+            "think_reason": response.get("think_reason"),
             "request_payload": response.get("request_payload"), "streamed_chunks": response.get("streamed_chunks"),
             "tool_calls": response.get("tool_calls"), "tool_trace": response.get("tool_trace"),
             "images_sent": response.get("images_sent") or item.get("images"),

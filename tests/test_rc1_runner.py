@@ -18,6 +18,36 @@ class RC1RunnerIntegrationTests(unittest.TestCase):
         embedding=next(x for x in builder.all_items(selected_model="qwen3-embedding:latest") if x["track"]=="embedding")
         self.assertEqual(len(embedding["embedding_corpus"]),24); self.assertEqual(embedding["task_id"],"EMB_Q01")
 
+    def test_guardian_runtime_override_sends_think_false_without_capability(self):
+        bundle=rc1_runner.config_bundle(); item=next(x for x in rc1_runner.RC1ItemBuilder(bundle).all_items(selected_model="granite4.1-guardian:8b") if x["task_id"]=="SAFE01")
+        item={**item,"capabilities":[]}
+        captured={}
+        chunks=iter([b'{"message":{"content":"<score> no </score>"},"done":true,"done_reason":"stop"}\n'])
+        class Response:
+            def readline(self):
+                try:return next(chunks)
+                except StopIteration:return b""
+        def fake_urlopen(request, timeout):
+            captured.update(json.loads(request.data.decode("utf-8"))); return Response()
+        with mock.patch("scripts.ollama_adapter.urllib.request.urlopen",side_effect=fake_urlopen):
+            result=OllamaAdapter(max_transport_retries=0).infer(item)
+        self.assertIs(captured["think"],False); self.assertEqual(result["think_reason"],"explicit_model_runtime_override")
+
+    def test_r2_thinking_probe_is_calibration_only_and_explicit(self):
+        bundle=rc1_runner.config_bundle(); probe=rc1_runner._build_r2_thinking_probe(bundle)
+        self.assertEqual(probe["model"],"qwen3.5:4b"); self.assertEqual(probe["prompt"],"What is 2 + 2? Give the final answer as 4.")
+        self.assertEqual(probe["profile_config"]["num_ctx"],4096); self.assertTrue(probe["profile_config"]["think"])
+        self.assertNotIn(probe["task_id"],[task["task_id"] for task in bundle["tasks"]["tasks"]])
+        mock_response=rc1_runner.MockAdapter().infer(probe)
+        self.assertIs(mock_response["request_payload"]["think"],True); self.assertEqual(mock_response["final_answer"],"4"); self.assertTrue(mock_response["thinking"])
+
+    def test_mock_r2_stays_independent_and_reports_all_gates(self):
+        with tempfile.TemporaryDirectory() as td:
+            run=Path(td)/"calibration_r2"; self.assertEqual(rc1_runner.main(["calibrate-r2","--mock","--run-dir",str(run)]),0)
+            validation=json.loads((run/"calibration_r2_validation.json").read_text(encoding="utf-8"))
+            self.assertTrue(validation["approved"]); self.assertEqual(set(validation["gates"]),{"scorer_path","thinking_separation","resume_dedup","tool_loop","image_path","embed_path","safety_parser","performance_path","raw_persistence"})
+            self.assertFalse((run.parent/"public_results.jsonl").exists()); self.assertNotIn("olmo-3:7b-think", (run/"events.jsonl").read_text(encoding="utf-8"))
+
     def test_default_run_rejects_not_ready_without_inference(self):
         with tempfile.TemporaryDirectory() as td:
             result=rc1_runner.main(["run-all","--run-dir",str(Path(td)/"run")])
