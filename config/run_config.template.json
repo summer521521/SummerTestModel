@@ -1,16 +1,24 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "benchmark_version": "1.0-rc1",
   "ollama_api": "http://127.0.0.1:11434",
   "inventory_path": "inventory/model_inventory.json",
-  "benchmark_manifest": "__PENDING_WEB_GPT_DECISION__",
+  "benchmark_manifest": "config/benchmark_manifest.rc1.json",
   "task_manifest": "__PENDING_WEB_GPT_DECISION__",
   "scorer_manifest": "__PENDING_WEB_GPT_DECISION__",
-  "model_execution_plan": "__PENDING_WEB_GPT_DECISION__",
-  "generation_profiles": "__PENDING_WEB_GPT_DECISION__",
-  "retry_policy": "__PENDING_WEB_GPT_DECISION__",
-  "manifest_hashes": "__PENDING_WEB_GPT_DECISION__",
+  "model_execution_plan": "config/model_execution_plan.rc1.json",
+  "generation_profiles": "config/generation_profiles.rc1.json",
+  "retry_policy": "config/retry_policy.rc1.json",
+  "manifest_hashes": {
+    "benchmark_manifest": "96b943b0b05a9b7d65bdfb0e6f3943534496f2ca66312ce24984e7b00eb22713",
+    "task_manifest": "__PENDING_WEB_GPT_DECISION__",
+    "scorer_manifest": "__PENDING_WEB_GPT_DECISION__",
+    "model_execution_plan": "f23a04cb0f38cc1b6bfde39800440f207742879c34ab7e9019a1c48d184462b3",
+    "generation_profiles": "eb1fe1fd8ebd8443630498ba5bcfec9a6df3ba61e0d8d920b145bce96423a975",
+    "retry_policy": "e64a69d04d16d40046f24930969fd4c99152a958b585e4e3bf75d868594d1eb5"
+  },
   "output_dir": "work/pending-run",
   "single_model_concurrency": true,
-  "unload_between_models": "__PENDING_WEB_GPT_DECISION__",
-  "warmup_behavior": "__PENDING_WEB_GPT_DECISION__"
+  "unload_between_models": "keep_alive_zero_then_healthcheck",
+  "warmup_behavior": "none_unless_manifest"
 }

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "benchmark_version": "1.0-rc1",
+  "max_transport_retries": 1,
+  "retryable_conditions": ["connection_reset_before_valid_response", "connection_refused", "http_500", "http_502", "http_503", "http_504", "stream_terminated_before_meaningful_token"],
+  "non_retryable_conditions": ["wrong_answer", "invalid_json", "malformed_model_output", "syntax_error", "policy_refusal", "truncation", "absolute_timeout", "inactivity_timeout_after_output", "repetition_degeneration", "tool_argument_error", "scorer_failure"],
+  "circuit_breaker": {"consecutive_connection_refused_threshold": 3, "healthcheck_wait_seconds": 30, "max_recovery_seconds": 900, "auto_restart": false}
+}

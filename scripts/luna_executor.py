@@ -16,6 +16,16 @@ except ModuleNotFoundError:  # Package import during unit tests.
 
 ROOT = Path(__file__).resolve().parents[1]
 
+def pending_markers(value: Any, prefix: str = "") -> list[str]:
+    paths = []
+    if value == PENDING:
+        paths.append(prefix or "$")
+    elif isinstance(value, dict):
+        for key, child in value.items(): paths.extend(pending_markers(child, f"{prefix}.{key}" if prefix else str(key)))
+    elif isinstance(value, list):
+        for index, child in enumerate(value): paths.extend(pending_markers(child, f"{prefix}[{index}]"))
+    return paths
+
 
 def file_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -39,6 +49,7 @@ def doctor(config_path: Path) -> tuple[str, list[dict[str, str]]]:
     pending = unresolved(config)
     checks.append({"check": "unresolved_placeholders", "status": "FAIL" if pending else "PASS", "detail": ", ".join(pending) if pending else "none"})
     api = str(config.get("ollama_api") or "http://127.0.0.1:11434")
+    checks.append({"check": "benchmark_version", "status": "PASS" if config.get("benchmark_version") in (None, "1.0-rc1") else "FAIL", "detail": str(config.get("benchmark_version"))})
     checks.append({"check": "ollama_reachable", "status": "PASS" if healthcheck(api) else "FAIL", "detail": api})
     inventory = ROOT / str(config.get("inventory_path") or "")
     checks.append({"check": "inventory_available", "status": "PASS" if inventory.is_file() else "FAIL", "detail": str(config.get("inventory_path"))})
@@ -46,6 +57,22 @@ def doctor(config_path: Path) -> tuple[str, list[dict[str, str]]]:
         value = config.get(key)
         path = ROOT / str(value) if value not in (None, PENDING) else None
         checks.append({"check": key, "status": "PASS" if path and path.is_file() else "FAIL", "detail": str(value)})
+        if path and path.is_file():
+            nested_pending = pending_markers(load_json(path))
+            checks.append({"check": f"placeholders:{key}", "status": "FAIL" if nested_pending else "PASS", "detail": ", ".join(nested_pending) if nested_pending else "none"})
+    if config.get("benchmark_version") == "1.0-rc1":
+        try:
+            manifest = load_json(ROOT / str(config["benchmark_manifest"]))
+            checks.append({"check":"rc1_track_ids","status":"PASS" if manifest.get("track_ids") == ["core","reasoning","code","translation","tools","vision","ocr","long_context","embedding","safety","medical","performance"] else "FAIL","detail":"frozen track list"})
+            plan = load_json(ROOT / str(config["model_execution_plan"]))
+            bad_retention = [m.get("model") for m in plan.get("models",[]) if m.get("retention_status") != "UNASSESSED"]
+            checks.append({"check":"retention_unassessed","status":"PASS" if not bad_retention else "FAIL","detail":"all candidates UNASSESSED" if not bad_retention else ",".join(bad_retention)})
+            retry = load_json(ROOT / str(config["retry_policy"]))
+            circuit = retry.get("circuit_breaker") or {}
+            retry_ok = retry.get("max_transport_retries") == 1 and circuit == {"consecutive_connection_refused_threshold":3,"healthcheck_wait_seconds":30,"max_recovery_seconds":900,"auto_restart":False}
+            checks.append({"check":"rc1_retry_and_circuit","status":"PASS" if retry_ok else "FAIL","detail":"retry=1; circuit=3/30/900; no auto restart"})
+        except Exception as exc:
+            checks.append({"check":"rc1_policy_files","status":"FAIL","detail":f"{type(exc).__name__}: {exc}"})
     hashes = config.get("manifest_hashes") if isinstance(config.get("manifest_hashes"), dict) else {}
     for key, expected in hashes.items():
         value = config.get(key)
@@ -162,7 +189,7 @@ class MockScorer:
 
 def mock_run(output: Path) -> dict[str, Any]:
     scenarios = ["normal", "wrong", "malformed", "very_long", "truncated", "connection_refused", "http_500", "stream_interrupted", "scorer_exception", "runner_exception", "cancelled", "duplicate", "model_fatal_error"]
-    items = [{"benchmark_version": "mock-v1", "model": "mock:model", "model_digest": "mock-digest", "profile": "mock", "task_id": f"MOCK-{index:02d}", "scenario": scenario} for index, scenario in enumerate(scenarios, 1)]
+    items = [{"benchmark_version": "mock-v1", "task_manifest_hash": "mock-task-hash", "model": "mock:model", "model_digest": "mock-digest", "profile": "mock", "task_id": f"MOCK-{index:02d}", "scenario": scenario} for index, scenario in enumerate(scenarios, 1)]
     items.append(dict(items[-2]))
     store = EvidenceStore(output)
     breaker = CircuitBreaker(CircuitConfig(99, 0, 1), healthcheck=lambda: True, sleep=lambda _: None)

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "benchmark_version": "1.0-rc1",
+  "legacy_policy": "Legacy Experimental Evidence",
+  "formal_scope": {
+    "local_only": true,
+    "max_total_params_b": 10.0,
+    "retain_all_local_candidates": true,
+    "exclude_cloud": true
+  },
+  "track_ids": ["core", "reasoning", "code", "translation", "tools", "vision", "ocr", "long_context", "embedding", "safety", "medical", "performance"],
+  "context_tiers": {
+    "8k": {"minimum_declared_context": 8192},
+    "32k": {"minimum_declared_context": 32768}
+  },
+  "task_manifest": "__PENDING_WEB_GPT_DECISION__",
+  "scorer_manifest": "__PENDING_WEB_GPT_DECISION__",
+  "task_manifest_sha256": "__PENDING_WEB_GPT_DECISION__",
+  "scorer_manifest_sha256": "__PENDING_WEB_GPT_DECISION__",
+  "generation_profiles_sha256": "eb1fe1fd8ebd8443630498ba5bcfec9a6df3ba61e0d8d920b145bce96423a975"
+}

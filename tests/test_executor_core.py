@@ -10,6 +10,8 @@ from unittest import mock
 from scripts.executor_core import CircuitBreaker, CircuitConfig, EvidenceStore, Executor, SafeCodeHarness
 from scripts.luna_executor import MockAdapter, MockScorer, doctor, mock_run
 import scripts.luna_executor as luna_executor
+from scripts.ollama_adapter import OllamaAdapter
+from scripts.tool_loop import ToolLoopEngine
 
 
 class ExecutorTests(unittest.TestCase):
@@ -49,8 +51,36 @@ class ExecutorTests(unittest.TestCase):
         breaker = CircuitBreaker(CircuitConfig(2, 0, 5), lambda: next(health), sleep=lambda _: None)
         breaker.failure("connection_refused")
         breaker.failure("connection_refused")
-        self.assertFalse(breaker.permit())
         self.assertTrue(breaker.permit())
+        self.assertTrue(breaker.permit())
+
+    def test_logical_key_includes_task_manifest_hash(self):
+        from scripts.executor_core import logical_key
+        base = {"benchmark_version":"1", "task_manifest_hash":"a", "model_digest":"d", "profile":"p", "task_id":"t"}
+        self.assertNotEqual(logical_key(base), logical_key({**base, "task_manifest_hash":"b"}))
+
+    def test_tool_loop_fixture_and_limit(self):
+        calls = iter([{"tool_calls":[{"function":{"name":"fixture","arguments":{"x":2}}}]}, {"content":"done"}])
+        result = ToolLoopEngine({"fixture": lambda args: args["x"] * 2}).run([], lambda _: next(calls))
+        self.assertEqual(result["status"], "completed")
+        self.assertEqual(result["messages"][-2]["content"], 4)
+        limited = ToolLoopEngine({"fixture": lambda _: 1}, max_rounds=1).run([], lambda _: {"tool_calls":[{"name":"fixture","arguments":{}}]})
+        self.assertEqual(limited["status"], "tool_loop_limit")
+
+    def test_adapter_separates_thinking_and_answer_without_format(self):
+        adapter = OllamaAdapter(max_transport_retries=0)
+        chunks = iter([b'{"message":{"thinking":"plan"}}\n', b'{"message":{"content":"answer"},"done":true,"done_reason":"stop","eval_count":2}\n'])
+        class Response:
+            def readline(self):
+                try: return next(chunks)
+                except StopIteration: return b""
+        with mock.patch("scripts.ollama_adapter.urllib.request.urlopen", return_value=Response()):
+            result = adapter.infer({"model":"m","messages":[{"role":"user","content":"x"}],"profile_config":{"think":True,"inactivity_timeout_seconds":1,"absolute_timeout_seconds":5},"capabilities":["thinking"]})
+        self.assertEqual(result["thinking"], "plan")
+        self.assertEqual(result["final_answer"], "answer")
+        self.assertNotIn("format", result["request_payload"])
+        self.assertTrue(result["request_payload"]["think"])
+        self.assertEqual(adapter._think({"think":False}, ["completion"])[0], None)
 
     def test_doctor_ready_path_with_frozen_mock_manifests(self):
         with tempfile.TemporaryDirectory() as temporary:

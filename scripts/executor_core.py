@@ -21,8 +21,9 @@ TERMINAL_INFERENCE = {
     "malformed_response",
     "truncated",
     "model_fatal_error",
+    "truncated_before_final", "timeout_before_final", "absolute_timeout", "inactivity_timeout", "scoring_error",
 }
-INFRA_FAILURE = {"connection_refused", "http_500", "stream_interrupted", "timeout", "cancelled"}
+INFRA_FAILURE = {"connection_refused", "http_500", "http_502", "http_503", "http_504", "stream_interrupted", "timeout", "cancelled", "runner_exception"}
 
 
 def now() -> str:
@@ -78,7 +79,7 @@ def unresolved(value: Any, prefix: str = "") -> list[str]:
 
 
 def logical_key(item: dict[str, Any]) -> str:
-    fields = ("benchmark_version", "model_digest", "profile", "task_id")
+    fields = ("benchmark_version", "task_manifest_hash", "model_digest", "profile", "task_id")
     missing = [field for field in fields if not item.get(field)]
     if missing:
         raise ValueError(f"missing logical key fields: {missing}")
@@ -122,13 +123,13 @@ class CircuitBreaker:
     def permit(self) -> bool:
         if self.opened_at is None:
             return True
-        if self.healthcheck():
-            self.success()
-            return True
-        if time.monotonic() - self.opened_at >= self.config.max_recovery_seconds:
-            return False
-        self.sleep(self.config.recovery_wait_seconds)
-        return self.healthcheck()
+        started = self.opened_at
+        while time.monotonic() - started < self.config.max_recovery_seconds:
+            self.sleep(self.config.recovery_wait_seconds)
+            if self.healthcheck():
+                self.success()
+                return True
+        return False
 
 
 class EvidenceStore:
@@ -177,7 +178,9 @@ class EvidenceStore:
         append_jsonl(self.events, {
             "event": "attempt_started", "at": now(), "logical_key": logical_key(item), "attempt_id": attempt_id,
             "model": item["model"], "model_digest": item["model_digest"], "benchmark_version": item["benchmark_version"],
-            "task_id": item["task_id"], "profile": item["profile"],
+            "task_id": item["task_id"], "profile": item["profile"], "task_manifest_hash": item["task_manifest_hash"],
+            "exact_model_tag": item.get("exact_model_tag") or item.get("model"), "ollama_version": item.get("ollama_version"),
+            "machine_profile_hash": item.get("machine_profile_hash"), "scorer_version": item.get("scorer_version"),
         })
 
     def save_inference(self, item: dict[str, Any], attempt_id: str, response: dict[str, Any]) -> dict[str, Any]:
@@ -193,8 +196,11 @@ class EvidenceStore:
             "model": item["model"],
             "model_digest": item["model_digest"],
             "benchmark_version": item["benchmark_version"],
+            "task_manifest_hash": item["task_manifest_hash"],
             "task_id": item["task_id"],
             "profile": item["profile"],
+            "exact_model_tag": item.get("exact_model_tag") or item.get("model"),
+            "ollama_version": item.get("ollama_version"), "machine_profile_hash": item.get("machine_profile_hash"), "scorer_version": item.get("scorer_version"),
             "inference_status": response.get("status", "runner_exception"),
             "raw_response": response.get("raw_response"),
             "thinking": response.get("thinking"),
@@ -203,15 +209,18 @@ class EvidenceStore:
             "timing": response.get("timing") or {},
             "termination_reason": response.get("termination_reason"),
             "error": response.get("error"),
+            "request_payload": response.get("request_payload"), "streamed_chunks": response.get("streamed_chunks"),
+            "tool_calls": response.get("tool_calls"), "seed_applied": response.get("seed_applied"),
         }
         payload = (json.dumps(evidence, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
-        evidence["evidence_sha256"] = sha256_bytes(payload)
+        evidence["evidence_payload_sha256"] = sha256_bytes(payload)
         atomic_json(path, evidence)
+        raw_file_sha256 = sha256_bytes(path.read_bytes())
         relative = path.relative_to(self.run_dir).as_posix()
         append_jsonl(self.events, {
             "event": "inference_saved", "at": now(), "logical_key": key, "attempt_id": attempt_id,
             "inference_status": evidence["inference_status"], "raw_path": relative,
-            "raw_sha256": evidence["evidence_sha256"],
+            "raw_sha256": raw_file_sha256,
         })
         return {**evidence, "raw_path": relative}
 
@@ -230,11 +239,12 @@ class EvidenceStore:
 
 
 class Executor:
-    def __init__(self, store: EvidenceStore, adapter: Adapter, scorer: Scorer, breaker: CircuitBreaker):
+    def __init__(self, store: EvidenceStore, adapter: Adapter, scorer: Scorer, breaker: CircuitBreaker, resume_command: str | None = None):
         self.store = store
         self.adapter = adapter
         self.scorer = scorer
         self.breaker = breaker
+        self.resume_command = resume_command
 
     def run(self, items: list[dict[str, Any]]) -> dict[str, Any]:
         state = self.store.load_state()
@@ -245,7 +255,11 @@ class Executor:
                 continue
             if not self.breaker.permit():
                 state["halted_reason"] = "circuit_breaker_recovery_exhausted"
+                state["resume_command"] = self.resume_command
                 self.store.checkpoint(state)
+                append_jsonl(self.store.events, {"event":"circuit_breaker_recovery_exhausted","at":now(),"resume_command":self.resume_command})
+                if self.resume_command:
+                    print(f"RESUME_COMMAND: {self.resume_command}", flush=True)
                 break
             attempt_id = f"attempt-{int(time.time() * 1000)}"
             self.store.begin(item, attempt_id)
@@ -258,7 +272,7 @@ class Executor:
             evidence = self.store.save_inference(item, attempt_id, response)
             inference_status = evidence["inference_status"]
             self.breaker.failure(inference_status)
-            if inference_status not in INFRA_FAILURE and inference_status != "runner_exception":
+            if inference_status not in INFRA_FAILURE:
                 self.breaker.success()
             score_status = "not_scored"
             try:
@@ -281,8 +295,8 @@ class Executor:
 
 
 class SafeCodeHarness:
-    BANNED_NAMES = {"open", "exec", "eval", "compile", "__import__", "input", "breakpoint"}
-    BANNED_MODULES = {"os", "sys", "subprocess", "socket", "pathlib", "shutil", "requests", "urllib"}
+    BANNED_NAMES = {"open", "exec", "eval", "compile", "__import__", "input", "breakpoint", "globals", "locals", "vars", "getattr", "setattr", "delattr"}
+    BANNED_MODULES = {"os", "sys", "subprocess", "socket", "pathlib", "shutil", "requests", "urllib", "ctypes", "pickle", "marshal"}
 
     @classmethod
     def validate(cls, code: str) -> None:
@@ -290,8 +304,10 @@ class SafeCodeHarness:
         for node in ast.walk(tree):
             if isinstance(node, (ast.Import, ast.ImportFrom)):
                 raise ValueError("imports are disabled in the preparation harness")
-            if isinstance(node, ast.Name) and node.id in cls.BANNED_NAMES:
+            if isinstance(node, ast.Name) and node.id in cls.BANNED_NAMES | cls.BANNED_MODULES:
                 raise ValueError(f"blocked name: {node.id}")
+            if isinstance(node, ast.Attribute) and node.value.__class__ is ast.Name and node.value.id in cls.BANNED_MODULES:
+                raise ValueError(f"blocked module: {node.value.id}")
             if isinstance(node, ast.Attribute) and node.attr.startswith("_"):
                 raise ValueError("blocked private/dunder attribute")
 

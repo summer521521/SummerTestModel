@@ -1,4 +1,4 @@
-# Luna Max Mechanical Executor Manual
+# Luna Max Mechanical Executor Manual (Benchmark 1.0-rc1)
 
 Luna Max executes only a frozen architect specification. It does not interpret benchmark intent.
 
@@ -25,9 +25,19 @@ Luna Max executes only a frozen architect specification. It does not interpret b
 - Decide model inclusion, ranking, dominance, retention or supplementary tests.
 - Start a next phase not explicitly present in the frozen plan.
 
+The RC1 policy files are `config/benchmark_manifest.rc1.json`,
+`config/generation_profiles.rc1.json`, `config/retry_policy.rc1.json` and
+`config/model_execution_plan.rc1.json`. They define `1.0-rc1`, the 12 track
+IDs, local-only candidates at total parameters <=10B, separate thinking and
+final answers, no structured-output assistance, one model at a time, and the
+frozen transport/circuit values. They do not contain task questions or scorer
+semantics. Those architect-owned files and hashes must be supplied before
+doctor can return READY.
+
 ## Failure handling
 
 - A task/model/scorer/runtime error is recorded by the executor; Luna does not reinterpret it.
 - Repeated Ollama connection refusal is handled by the configured circuit breaker. If recovery is exhausted, retain the checkpoint and stop.
 - A design-level ambiguity, digest mismatch, manifest/hash mismatch or unresolved placeholder requires immediate stop and escalation to the user/Web GPT.
 - Never report `READY` when doctor reports `NOT_READY`.
+- Do not run Ollama generation during preparation or when the benchmark specification is absent.
