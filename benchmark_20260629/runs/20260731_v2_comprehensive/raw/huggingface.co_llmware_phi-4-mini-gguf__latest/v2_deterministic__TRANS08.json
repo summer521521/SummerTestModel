@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "huggingface.co/llmware/phi-4-mini-gguf:latest",
+    "prompt": "翻译为英文并原样保留 retry_count、max_retries、last_error、error_log：当 retry_count 超过 max_retries 时，将 last_error 写入 error_log。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "URLError: <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>",
+  "attempt": 3,
+  "started_at": "2026-08-01T09:14:25+08:00",
+  "finished_at": "2026-08-01T09:14:25+08:00",
+  "wall_seconds": 9.158,
+  "time_to_first_token": null
+}

@@ -1,0 +1,10 @@
+{
+  "run_id": "20260731_v2_comprehensive",
+  "attempt_records": 1974,
+  "canonical_records": 1567,
+  "unique_logical_keys": 1567,
+  "failures": [],
+  "old_results_sha256": "7c2127cc14757c745fa90da6440efbc2130bbc1dcbc0432478cc5b8273c5bdc3",
+  "historical_git_clean": true,
+  "status": "passed"
+}

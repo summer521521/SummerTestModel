@@ -1,0 +1,11 @@
+﻿model,profile,score,max_score,coverage,completed,required,avg_seconds
+olmo-3:7b-instruct,v2_deterministic,20,40,1.0,4,4,68.528
+lfm2.5:8b,v2_deterministic,10,40,1.0,4,4,12.712
+granite4:7b-a1b-h,v2_deterministic,0,40,1.0,4,4,2.112
+llama3.2:3b,v2_deterministic,0,40,1.0,4,4,4.531
+kaelri/hy-mt2:7b-q4_K_M,v2_deterministic,0,40,1.0,4,4,5.334
+huggingface.co/llmware/phi-4-mini-gguf:latest,v2_deterministic,0,40,1.0,4,4,6.228
+phi4-mini:latest,v2_deterministic,0,40,1.0,4,4,8.909
+mistral:7b,v2_deterministic,0,40,1.0,4,4,9.046
+smollm2:1.7b,v2_deterministic,0,40,1.0,4,4,11.206
+openbmb/minicpm5:Q4_K_M,v2_deterministic,0,40,1.0,4,4,13.084

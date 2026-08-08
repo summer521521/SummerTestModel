@@ -1,0 +1,53 @@
+{
+  "request": {
+    "model": "huggingface.co/llmware/phi-4-mini-gguf:latest",
+    "prompt": "只输出阿拉伯数字：17×19。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "18.3",
+  "thinking": "",
+  "final": {
+    "model": "huggingface.co/llmware/phi-4-mini-gguf:latest",
+    "created_at": "2026-07-31T19:18:23.1778294Z",
+    "response": "",
+    "done": true,
+    "done_reason": "stop",
+    "context": [
+      200021,
+      18637,
+      106627,
+      35922,
+      25557,
+      43692,
+      58226,
+      1817,
+      1422,
+      12378,
+      858,
+      788,
+      200020,
+      200019,
+      1157,
+      13,
+      18
+    ],
+    "total_duration": 289027900,
+    "load_duration": 226252200,
+    "prompt_eval_count": 14,
+    "prompt_eval_duration": 17350000,
+    "eval_count": 4,
+    "eval_duration": 39159000
+  },
+  "error": null,
+  "attempt": 1,
+  "started_at": "2026-08-01T03:18:23+08:00",
+  "finished_at": "2026-08-01T03:18:23+08:00",
+  "wall_seconds": 0.306,
+  "time_to_first_token": 0.266
+}

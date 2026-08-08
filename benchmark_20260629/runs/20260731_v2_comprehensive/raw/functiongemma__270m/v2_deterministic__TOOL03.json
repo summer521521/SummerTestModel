@@ -1,0 +1,39 @@
+{
+  "request": {},
+  "response": " call:search_document{query: 寄往 Osaka seine 快速运费,top_k:10}<end_function_call> call:create_draft_event{end:2024-06-14T23:59:59Z,start:2024-05-24T00:00:00Z,title: 快速运费}<end_function_call> end",
+  "thinking": "",
+  "final": {
+    "model": "functiongemma:270m",
+    "created_at": "2026-07-31T15:33:04.3011143Z",
+    "message": {
+      "role": "assistant",
+      "content": " call:search_document{query: 寄往 Osaka seine 快速运费,top_k:10}<end_function_call> call:create_draft_event{end:2024-06-14T23:59:59Z,start:2024-05-24T00:00:00Z,title: 快速运费}<end_function_call> end",
+      "tool_calls": [
+        {
+          "id": "call_rc5y3kqj",
+          "function": {
+            "index": 0,
+            "name": "calculate_shipping",
+            "arguments": {
+              "destination": " Osaka",
+              "express": true,
+              "weight_kg": 250
+            }
+          }
+        }
+      ]
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 3306180100,
+    "load_duration": 2790217300,
+    "prompt_eval_count": 365,
+    "prompt_eval_duration": 61522000,
+    "eval_count": 127,
+    "eval_duration": 448501000
+  },
+  "error": null,
+  "attempt": 1,
+  "wall_seconds": 0,
+  "time_to_first_token": null
+}

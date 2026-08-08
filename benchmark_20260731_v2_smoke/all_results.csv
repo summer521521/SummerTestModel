@@ -1,0 +1,7 @@
+﻿architecture,attempt,created_at,declared_capabilities,detected_capabilities,digest,done_reason,error,eval_count,eval_duration,family,final_answer,finished_at,first_token_at,load_duration,local_or_cloud,max_score,model,model_size_bytes,normalized_score,note,output_tokens_per_second,parameter_size,peak_system_ram_mb,peak_vram_mb,profile,prompt_eval_count,prompt_eval_duration,prompt_hash,prompt_tokens_per_second,quantization,raw_response_path,raw_sha256,request_options,retry_reason,run_id,score,scorer_version,started_at,status,tag,task_id,task_version,thinking,time_to_first_token,total_duration,track,wall_seconds
+,1,2026-07-31T23:30:32+08:00,"[""completion"", ""tools""]","[""completion"", ""tools""]",cef4a1e09247f018ca0c482ad4c2ce1474aba5e87f245dacf97f07948d05d8b4,stop,,59,527384000,llama,"{
+  ""total"": ""128.50"",
+  ""valid"": true,
+  ""code"": ""OK"",
+  ""summary"": ""小计: 73.25, 折扣: -18.75""
+}",2026-07-31T23:30:32+08:00,1.817,1736724600,local,10,smollm2:1.7b,1820428533,0.4,format arithmetic,111.873,1.7B,,,v2_deterministic,159,52564000,fdbd6ebc3c347a192a47b9bb70b303406405c83ee5c1a479aed4f8a338767e4e,3024.884,Q8_0,raw\smollm2__1.7b\v2_deterministic__FMT01.json,652f45062aa8ddcd6b389e50e9f2e3e559cbb6ee3252c9c17a58db871f092e16,"{""temperature"": 0, ""num_predict"": 4096, ""num_ctx"": 16384}",,benchmark_20260731_v2_smoke,4,v2.1.0,2026-07-31T23:30:32+08:00,completed,smollm2:1.7b,FMT01,20260731.v2,,1.817,2319998600,core,2.345

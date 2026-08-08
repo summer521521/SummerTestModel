@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "phi4-mini-reasoning:latest",
+    "prompt": "只输出完整 Python 代码，包含函数签名 def parse_log_counts(lines):\nCount exact [INFO], [WARN], [ERROR] lines, ignore malformed/unknown, return all three keys.\n不要读写文件、网络或执行系统命令。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "URLError: <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>",
+  "attempt": 3,
+  "started_at": "2026-08-01T09:29:42+08:00",
+  "finished_at": "2026-08-01T09:29:42+08:00",
+  "wall_seconds": 9.164,
+  "time_to_first_token": null
+}

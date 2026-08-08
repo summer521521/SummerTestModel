@@ -1,0 +1,365 @@
+{
+  "run_id": "20260731_v2_comprehensive",
+  "task_version": "20260731.v2",
+  "scorer_version": "v2.2.0-offline",
+  "derived_source": "offline_regrade.jsonl",
+  "record_count": 1567,
+  "attempt_record_count": 1974,
+  "model_count": 44,
+  "observed_model_count": 33,
+  "local_models": 39,
+  "cloud_models": 5,
+  "status_counts": {
+    "network_error": 235,
+    "runtime_error": 56,
+    "syntax_error": 39,
+    "completed": 1098,
+    "timeout_absolute": 19,
+    "truncated": 66,
+    "server_error": 9,
+    "truncated_before_final_answer": 16,
+    "invalid_response": 5,
+    "truncated_repetition": 5,
+    "unsafe_code_detected": 8,
+    "empty_response": 9,
+    "policy_rejected": 2
+  },
+  "infrastructure_failure_count": 263,
+  "scored_record_count": 1246,
+  "track_counts": {
+    "reasoning": 240,
+    "code": 240,
+    "translation": 192,
+    "runner": 9,
+    "ocr": 10,
+    "tool": 8,
+    "safety": 8,
+    "vision": 20,
+    "core": 744,
+    "planning": 96
+  },
+  "leaders": {
+    "core": [
+      {
+        "model": "hf.co/tiiuae/Falcon-H1R-7B-GGUF:Q4_K_M",
+        "profile": "v2_deterministic",
+        "score": 247,
+        "max_score": 310,
+        "coverage": 1.0,
+        "completed": 31,
+        "required": 31,
+        "avg_seconds": 19.303
+      },
+      {
+        "model": "hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M",
+        "profile": "v2_deterministic",
+        "score": 225,
+        "max_score": 310,
+        "coverage": 1.0,
+        "completed": 31,
+        "required": 31,
+        "avg_seconds": 18.294
+      },
+      {
+        "model": "nemotron-3-nano:4b",
+        "profile": "v2_deterministic",
+        "score": 221,
+        "max_score": 310,
+        "coverage": 1.0,
+        "completed": 31,
+        "required": 31,
+        "avg_seconds": 4.104
+      }
+    ],
+    "reasoning": [
+      {
+        "model": "olmo-3:7b-think",
+        "profile": "reasoning_native",
+        "score": 70,
+        "max_score": 70,
+        "coverage": 0.7,
+        "completed": 7,
+        "required": 10,
+        "avg_seconds": 474.378
+      },
+      {
+        "model": "hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL",
+        "profile": "reasoning_native",
+        "score": 10,
+        "max_score": 10,
+        "coverage": 0.1,
+        "completed": 1,
+        "required": 10,
+        "avg_seconds": 11.161
+      },
+      {
+        "model": "nemotron-3-nano:4b",
+        "profile": "reasoning_native",
+        "score": 90,
+        "max_score": 100,
+        "coverage": 1.0,
+        "completed": 10,
+        "required": 10,
+        "avg_seconds": 9.683
+      }
+    ],
+    "code": [
+      {
+        "model": "olmo-3:7b-think",
+        "profile": "v2_deterministic",
+        "score": 23.333333333333332,
+        "max_score": 40,
+        "coverage": 0.4,
+        "completed": 4,
+        "required": 10,
+        "avg_seconds": 189.436
+      },
+      {
+        "model": "huggingface.co/llmware/phi-4-mini-gguf:latest",
+        "profile": "v2_deterministic",
+        "score": 43.333333333333336,
+        "max_score": 80,
+        "coverage": 0.6,
+        "completed": 6,
+        "required": 10,
+        "avg_seconds": 2.208
+      },
+      {
+        "model": "hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL",
+        "profile": "v2_deterministic",
+        "score": 23.333333333333332,
+        "max_score": 50,
+        "coverage": 0.4,
+        "completed": 4,
+        "required": 10,
+        "avg_seconds": 30.061
+      }
+    ],
+    "translation": [
+      {
+        "model": "huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest",
+        "profile": "v2_deterministic",
+        "score": 80,
+        "max_score": 80,
+        "coverage": 1.0,
+        "completed": 8,
+        "required": 8,
+        "avg_seconds": 13.344
+      },
+      {
+        "model": "hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M",
+        "profile": "v2_deterministic",
+        "score": 80,
+        "max_score": 80,
+        "coverage": 1.0,
+        "completed": 8,
+        "required": 8,
+        "avg_seconds": 19.047
+      },
+      {
+        "model": "hf.co/tiiuae/Falcon-H1R-7B-GGUF:Q4_K_M",
+        "profile": "v2_deterministic",
+        "score": 78,
+        "max_score": 80,
+        "coverage": 1.0,
+        "completed": 8,
+        "required": 8,
+        "avg_seconds": 15.446
+      }
+    ],
+    "long_context": [],
+    "vision": [
+      {
+        "model": "qwen3.5:9b",
+        "profile": "v2_deterministic",
+        "score": 3.8,
+        "max_score": 5,
+        "coverage": 1.0,
+        "completed": 5,
+        "required": 5,
+        "avg_seconds": 15.879
+      },
+      {
+        "model": "minicpm-v4.6:latest",
+        "profile": "v2_deterministic",
+        "score": 3.4667,
+        "max_score": 5,
+        "coverage": 1.0,
+        "completed": 5,
+        "required": 5,
+        "avg_seconds": 5.058
+      },
+      {
+        "model": "hf.co/ibm-granite/granite-vision-4.1-4b-GGUF:Q4_K_M",
+        "profile": "v2_deterministic",
+        "score": 3.2666,
+        "max_score": 5,
+        "coverage": 1.0,
+        "completed": 5,
+        "required": 5,
+        "avg_seconds": 5.035
+      }
+    ],
+    "ocr": [
+      {
+        "model": "glm-ocr:latest",
+        "profile": "v2_deterministic",
+        "score": 3.8,
+        "max_score": 5,
+        "coverage": 0.0,
+        "completed": 0,
+        "required": 5,
+        "avg_seconds": 30.228
+      },
+      {
+        "model": "deepseek-ocr:latest",
+        "profile": "v2_deterministic",
+        "score": 0.0,
+        "max_score": 5,
+        "coverage": 1.0,
+        "completed": 5,
+        "required": 5,
+        "avg_seconds": 10.573
+      }
+    ],
+    "safety": [
+      {
+        "model": "granite4.1-guardian:8b",
+        "profile": "v2_deterministic",
+        "score": 4,
+        "max_score": 4,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 27.047
+      },
+      {
+        "model": "shieldgemma:2b",
+        "profile": "v2_deterministic",
+        "score": 3,
+        "max_score": 4,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 3.468
+      }
+    ],
+    "tool": [
+      {
+        "model": "functiongemma:270m",
+        "profile": "v2_deterministic",
+        "score": 3,
+        "max_score": 8,
+        "coverage": 0.375,
+        "completed": 3,
+        "required": 8,
+        "avg_seconds": 0.0
+      }
+    ],
+    "embedding": [],
+    "performance": [],
+    "robustness": [],
+    "planning": [
+      {
+        "model": "olmo-3:7b-instruct",
+        "profile": "v2_deterministic",
+        "score": 20,
+        "max_score": 40,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 68.528
+      },
+      {
+        "model": "lfm2.5:8b",
+        "profile": "v2_deterministic",
+        "score": 10,
+        "max_score": 40,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 12.712
+      },
+      {
+        "model": "granite4:7b-a1b-h",
+        "profile": "v2_deterministic",
+        "score": 0,
+        "max_score": 40,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 2.112
+      },
+      {
+        "model": "llama3.2:3b",
+        "profile": "v2_deterministic",
+        "score": 0,
+        "max_score": 40,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 4.531
+      },
+      {
+        "model": "kaelri/hy-mt2:7b-q4_K_M",
+        "profile": "v2_deterministic",
+        "score": 0,
+        "max_score": 40,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 5.334
+      },
+      {
+        "model": "huggingface.co/llmware/phi-4-mini-gguf:latest",
+        "profile": "v2_deterministic",
+        "score": 0,
+        "max_score": 40,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 6.228
+      },
+      {
+        "model": "phi4-mini:latest",
+        "profile": "v2_deterministic",
+        "score": 0,
+        "max_score": 40,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 8.909
+      },
+      {
+        "model": "mistral:7b",
+        "profile": "v2_deterministic",
+        "score": 0,
+        "max_score": 40,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 9.046
+      },
+      {
+        "model": "smollm2:1.7b",
+        "profile": "v2_deterministic",
+        "score": 0,
+        "max_score": 40,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 11.206
+      },
+      {
+        "model": "openbmb/minicpm5:Q4_K_M",
+        "profile": "v2_deterministic",
+        "score": 0,
+        "max_score": 40,
+        "coverage": 1.0,
+        "completed": 4,
+        "required": 4,
+        "avg_seconds": 13.084
+      }
+    ]
+  }
+}

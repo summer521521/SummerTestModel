@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "kaelri/hy-mt2:7b-q4_K_M",
+    "prompt": "owner=Lin，region=EU，budget 未提供，deadline 未提供。严格 JSON，未知用 null。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "{\"status\":\"success\",\"message\":\"任务已成功创建。\"}",
+  "thinking": "",
+  "final": {},
+  "error": null,
+  "attempt": 1,
+  "started_at": "2026-08-01T04:12:14+08:00",
+  "finished_at": "2026-08-01T04:12:14+08:00",
+  "wall_seconds": 0.722,
+  "time_to_first_token": 0.304
+}

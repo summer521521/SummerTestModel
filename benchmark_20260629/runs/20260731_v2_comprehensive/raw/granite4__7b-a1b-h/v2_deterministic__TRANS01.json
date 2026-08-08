@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "granite4:7b-a1b-h",
+    "prompt": "把这句翻译成英文并保留 p95 latency、RAG、tenant_id、LoRA、KV cache：为了降低 p95 latency，我们缓存 RAG 结果10分钟，但不能跨 tenant_id 复用；微调只允许 LoRA，推理监控 KV cache 命中率。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "URLError: <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>",
+  "attempt": 3,
+  "started_at": "2026-08-01T09:01:38+08:00",
+  "finished_at": "2026-08-01T09:01:38+08:00",
+  "wall_seconds": 9.16,
+  "time_to_first_token": null
+}

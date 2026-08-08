@@ -1,0 +1,23 @@
+{
+  "request": {
+    "model": "deepseek-r1:8b",
+    "prompt": "C在第4，A在C前且不在第1，B紧接D后。输出演讲顺序数组。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 16384,
+      "num_ctx": 32768
+    },
+    "keep_alive": 300,
+    "think": true
+  },
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "URLError: <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>",
+  "attempt": 3,
+  "started_at": "2026-08-02T07:57:40+08:00",
+  "finished_at": "2026-08-02T07:57:40+08:00",
+  "wall_seconds": 9.115,
+  "time_to_first_token": null
+}

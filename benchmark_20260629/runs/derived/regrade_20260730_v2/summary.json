@@ -1,0 +1,18 @@
+{
+  "source": "benchmark_20260629\\runs\\20260730_incremental\\results.jsonl",
+  "row_count": 288,
+  "completion_classes": {
+    "truncated": 37,
+    "truncated_before_final_answer": 39,
+    "completed_with_final_answer": 152,
+    "grader_policy_rejected": 17,
+    "empty_response": 22,
+    "transport_failure": 21
+  },
+  "code_policy_counts": {
+    "": 9,
+    "unsafe_code_detected": 10,
+    "policy_pass": 9,
+    "syntax_error": 7
+  }
+}

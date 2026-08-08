@@ -1,0 +1,22 @@
+{
+  "source_attempt_records": 1974,
+  "canonical_records": 1567,
+  "offline_records": 1567,
+  "offline_status_counts": {
+    "network_error": 235,
+    "runtime_error": 56,
+    "syntax_error": 39,
+    "completed": 1098,
+    "timeout_absolute": 19,
+    "truncated": 66,
+    "server_error": 9,
+    "truncated_before_final_answer": 16,
+    "invalid_response": 5,
+    "truncated_repetition": 5,
+    "unsafe_code_detected": 8,
+    "empty_response": 9,
+    "policy_rejected": 2
+  },
+  "infrastructure_failures": 263,
+  "scorer_version": "v2.2.0-offline"
+}

@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "olmo-3:7b-think",
+    "prompt": "翻译为正式英文：请在完成安全审查后再发布版本，并将审查记录附在发布说明中。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "",
+  "thinking": "Okay, I need to translate the Chinese sentence \"请在完成安全审查后再发布版本，并将审查记录附在发布说明中。\" into formal English. Let me break it down step by step.\n\nFirst, the main components of the sentence are:\n\n1. \"请在完成安全审查后再发布版本\"\n2. \"并将审查记录附在发布说明中\"\n\nStarting with the first part: \"请在完成安全审查后再发布版本\". The phrase \"请\" here is a polite request, so in formal English, I can use \"It is",
+  "final": {},
+  "error": null,
+  "attempt": 1,
+  "started_at": "2026-08-01T04:42:06+08:00",
+  "finished_at": "2026-08-01T04:42:06+08:00",
+  "wall_seconds": 12.066,
+  "time_to_first_token": 5.869
+}

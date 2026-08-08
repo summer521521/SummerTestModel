@@ -1,0 +1,25 @@
+{
+  "request": {},
+  "response": "I can certainly help with inventory management. Could you please specify the SKU for the inventory?",
+  "thinking": "",
+  "final": {
+    "model": "functiongemma:270m",
+    "created_at": "2026-07-31T15:33:00.9654516Z",
+    "message": {
+      "role": "assistant",
+      "content": "I can certainly help with inventory management. Could you please specify the SKU for the inventory?"
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 2953278300,
+    "load_duration": 2817009800,
+    "prompt_eval_count": 357,
+    "prompt_eval_duration": 59187000,
+    "eval_count": 19,
+    "eval_duration": 73614000
+  },
+  "error": null,
+  "attempt": 1,
+  "wall_seconds": 0,
+  "time_to_first_token": null
+}

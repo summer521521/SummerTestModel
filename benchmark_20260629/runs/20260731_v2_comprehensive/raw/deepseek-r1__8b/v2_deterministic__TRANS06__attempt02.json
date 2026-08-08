@@ -1,0 +1,26 @@
+{
+  "request": {
+    "model": "deepseek-r1:8b",
+    "prompt": "翻译成简洁中文 UI：Connection lost. Retry without discarding the unsaved draft.",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "URLError: <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>",
+  "attempt": 3,
+  "started_at": "2026-08-08T09:55:23+08:00",
+  "finished_at": "2026-08-08T09:55:32+08:00",
+  "wall_seconds": 9.102,
+  "time_to_first_token": null,
+  "request_policy": {
+    "inactivity": 1200,
+    "absolute": 3600
+  }
+}

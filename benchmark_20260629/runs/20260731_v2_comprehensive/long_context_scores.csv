@@ -1,0 +1,1 @@
+﻿model,local_or_cloud,profile,task_id,status,score,max_score,normalized_score,wall_seconds,time_to_first_token,prompt_eval_count,eval_count,output_tokens_per_second,digest,legacy_status,legacy_score,semantic_score,protocol_score,infrastructure_failure,offline_note,raw_response_path

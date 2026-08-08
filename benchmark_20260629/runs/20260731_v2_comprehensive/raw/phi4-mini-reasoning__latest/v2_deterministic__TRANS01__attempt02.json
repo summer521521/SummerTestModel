@@ -1,0 +1,26 @@
+{
+  "request": {
+    "model": "phi4-mini-reasoning:latest",
+    "prompt": "把这句翻译成英文并保留 p95 latency、RAG、tenant_id、LoRA、KV cache：为了降低 p95 latency，我们缓存 RAG 结果10分钟，但不能跨 tenant_id 复用；微调只允许 LoRA，推理监控 KV cache 命中率。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "timeout_absolute: timeout_absolute: 3600s",
+  "attempt": 3,
+  "started_at": "2026-08-08T03:06:42+08:00",
+  "finished_at": "2026-08-08T09:36:02+08:00",
+  "wall_seconds": 23374.043,
+  "time_to_first_token": null,
+  "request_policy": {
+    "inactivity": 1200,
+    "absolute": 3600
+  }
+}

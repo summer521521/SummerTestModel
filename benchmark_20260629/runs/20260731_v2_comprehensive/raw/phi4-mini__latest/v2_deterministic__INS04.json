@@ -1,0 +1,62 @@
+{
+  "request": {
+    "model": "phi4-mini:latest",
+    "prompt": "用英文一行回答：What does CPU stand for? 只回答 Central Processing Unit。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 0
+  },
+  "response": "Central Processing Unit.",
+  "thinking": "",
+  "final": {
+    "model": "phi4-mini:latest",
+    "created_at": "2026-07-31T18:03:05.497555Z",
+    "response": "",
+    "done": true,
+    "done_reason": "stop",
+    "context": [
+      200021,
+      5615,
+      149099,
+      2432,
+      6550,
+      89785,
+      1817,
+      4827,
+      2226,
+      28391,
+      3182,
+      395,
+      30,
+      220,
+      18637,
+      89785,
+      13399,
+      44532,
+      14856,
+      788,
+      200020,
+      200019,
+      50659,
+      44532,
+      14856,
+      13
+    ],
+    "total_duration": 3332311900,
+    "load_duration": 3188168200,
+    "prompt_eval_count": 22,
+    "prompt_eval_duration": 80405000,
+    "eval_count": 5,
+    "eval_duration": 59352000
+  },
+  "error": null,
+  "attempt": 1,
+  "started_at": "2026-08-01T02:03:05+08:00",
+  "finished_at": "2026-08-01T02:03:05+08:00",
+  "wall_seconds": 3.354,
+  "time_to_first_token": 3.294
+}

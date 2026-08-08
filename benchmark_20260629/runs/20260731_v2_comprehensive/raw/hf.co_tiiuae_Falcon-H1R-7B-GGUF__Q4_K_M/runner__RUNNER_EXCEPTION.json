@@ -1,0 +1,9 @@
+{
+  "request": {},
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "AttributeError: 'dict' object has no attribute 'startswith'",
+  "attempt": 1,
+  "wall_seconds": 0
+}

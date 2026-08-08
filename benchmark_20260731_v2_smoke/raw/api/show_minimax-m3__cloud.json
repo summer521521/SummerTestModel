@@ -1,0 +1,23 @@
+{
+  "details": {
+    "parent_model": "minimax-m3",
+    "format": "",
+    "family": "minimax-m3",
+    "families": null,
+    "parameter_size": "0",
+    "quantization_level": ""
+  },
+  "model_info": {
+    "general.architecture": "minimax-m3",
+    "general.parameter_count": 0,
+    "minimax-m3.context_length": 524288,
+    "minimax-m3.embedding_length": 0
+  },
+  "capabilities": [
+    "completion",
+    "tools",
+    "thinking",
+    "vision"
+  ],
+  "modified_at": "2026-06-01T00:00:00Z"
+}

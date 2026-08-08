@@ -1,0 +1,60 @@
+{
+  "request": {
+    "model": "gemma3n:e4b",
+    "prompt": "只输出阿拉伯数字：17×19。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "323\n",
+  "thinking": "",
+  "final": {
+    "model": "gemma3n:e4b",
+    "created_at": "2026-07-31T18:56:12.9952384Z",
+    "response": "",
+    "done": true,
+    "done_reason": "stop",
+    "context": [
+      105,
+      2430,
+      107,
+      110778,
+      33232,
+      181313,
+      32742,
+      237184,
+      236770,
+      236832,
+      237858,
+      236770,
+      236819,
+      236924,
+      106,
+      107,
+      105,
+      2028,
+      107,
+      236743,
+      236800,
+      236778,
+      236800,
+      107
+    ],
+    "total_duration": 613228900,
+    "load_duration": 450116800,
+    "prompt_eval_count": 20,
+    "prompt_eval_duration": 70399000,
+    "eval_count": 5,
+    "eval_duration": 86052000
+  },
+  "error": null,
+  "attempt": 1,
+  "started_at": "2026-08-01T02:56:12+08:00",
+  "finished_at": "2026-08-01T02:56:12+08:00",
+  "wall_seconds": 0.634,
+  "time_to_first_token": 0.547
+}

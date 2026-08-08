@@ -1,0 +1,26 @@
+{
+  "request": {
+    "model": "kaelri/hy-mt2:7b-q4_K_M",
+    "prompt": "术语表：model registry=模型注册表，roll back=回滚，deployment slot=部署槽。翻译：Roll back the deployment slot only after the model registry confirms the previous version。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "URLError: <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>",
+  "attempt": 3,
+  "started_at": "2026-08-08T09:49:23+08:00",
+  "finished_at": "2026-08-08T09:49:32+08:00",
+  "wall_seconds": 9.079,
+  "time_to_first_token": null,
+  "request_policy": {
+    "inactivity": 1200,
+    "absolute": 3600
+  }
+}

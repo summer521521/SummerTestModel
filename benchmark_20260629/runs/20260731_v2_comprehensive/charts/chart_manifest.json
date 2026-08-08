@@ -1,0 +1,15 @@
+{
+  "generated_by": "finalize_v2.py",
+  "charts": [
+    "core_leaders.svg",
+    "status_counts.svg",
+    "track_records.svg",
+    "core_heatmap.svg",
+    "core_score_vs_speed.svg",
+    "core_score_vs_size.svg",
+    "reasoning_score_vs_tokens.svg",
+    "code_pass_at_1.svg",
+    "specialist_track_means.svg",
+    "local_pareto_score_size_speed.svg"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "request": {
+    "model": "phi4-mini:latest",
+    "prompt": "只输出阿拉伯数字：17×19。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 0
+  },
+  "response": "18,3",
+  "thinking": "",
+  "final": {
+    "model": "phi4-mini:latest",
+    "created_at": "2026-07-31T18:03:12.4219121Z",
+    "response": "",
+    "done": true,
+    "done_reason": "stop",
+    "context": [
+      200021,
+      18637,
+      106627,
+      35922,
+      25557,
+      43692,
+      58226,
+      1817,
+      1422,
+      12378,
+      858,
+      788,
+      200020,
+      200019,
+      1157,
+      11,
+      18
+    ],
+    "total_duration": 3279036600,
+    "load_duration": 3153603800,
+    "prompt_eval_count": 14,
+    "prompt_eval_duration": 76188000,
+    "eval_count": 4,
+    "eval_duration": 45832000
+  },
+  "error": null,
+  "attempt": 1,
+  "started_at": "2026-08-01T02:03:12+08:00",
+  "finished_at": "2026-08-01T02:03:12+08:00",
+  "wall_seconds": 3.3,
+  "time_to_first_token": 3.253
+}

@@ -1,0 +1,23 @@
+{
+  "request": {
+    "model": "lfm2.5:8b",
+    "prompt": "0到9组成5位数，数字不重复，首位非0，恰好两个偶数（0算偶数）。输出数量。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 16384,
+      "num_ctx": 32768
+    },
+    "keep_alive": 300,
+    "think": true
+  },
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "URLError: <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>",
+  "attempt": 3,
+  "started_at": "2026-08-02T07:54:32+08:00",
+  "finished_at": "2026-08-02T07:54:32+08:00",
+  "wall_seconds": 9.142,
+  "time_to_first_token": null
+}

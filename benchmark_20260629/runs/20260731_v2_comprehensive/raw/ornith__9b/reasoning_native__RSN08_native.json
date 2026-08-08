@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "ornith:9b",
+    "prompt": "P与Q恰好一个真；Q真则R真；R假。输出 P=true,Q=false,R=false。",
+    "stream": true,
+    "options": {
+      "num_predict": 16384,
+      "num_ctx": 32768
+    },
+    "keep_alive": 300,
+    "think": true
+  },
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "URLError: <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>",
+  "attempt": 3,
+  "started_at": "2026-08-02T07:53:50+08:00",
+  "finished_at": "2026-08-02T07:53:50+08:00",
+  "wall_seconds": 9.098,
+  "time_to_first_token": null
+}

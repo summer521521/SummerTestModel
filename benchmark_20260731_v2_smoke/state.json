@@ -1,0 +1,10 @@
+{
+  "run_id": "benchmark_20260731_v2_smoke",
+  "updated_at": "2026-07-31T23:30:32+08:00",
+  "record_count": 1,
+  "statuses": {
+    "completed": 1
+  },
+  "unique_keys": 1,
+  "last_checkpoint_at": "2026-07-31T23:30:32+08:00"
+}

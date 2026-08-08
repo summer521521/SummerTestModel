@@ -1,0 +1,25 @@
+{
+  "request": {},
+  "response": "I apologize, but I cannot provide an explanation or definition of caching. My current capabilities are limited to assisting with weather-related operations using the specified tools.",
+  "thinking": "",
+  "final": {
+    "model": "functiongemma:270m",
+    "created_at": "2026-07-31T15:33:07.3267947Z",
+    "message": {
+      "role": "assistant",
+      "content": "I apologize, but I cannot provide an explanation or definition of caching. My current capabilities are limited to assisting with weather-related operations using the specified tools."
+    },
+    "done": true,
+    "done_reason": "stop",
+    "total_duration": 3007654400,
+    "load_duration": 2830372300,
+    "prompt_eval_count": 360,
+    "prompt_eval_duration": 58000000,
+    "eval_count": 32,
+    "eval_duration": 114703000
+  },
+  "error": null,
+  "attempt": 1,
+  "wall_seconds": 0,
+  "time_to_first_token": null
+}

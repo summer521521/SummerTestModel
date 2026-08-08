@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL",
+    "prompt": "袋中红4蓝3绿2，不放回抽两个，颜色相同概率最简分数。",
+    "stream": true,
+    "options": {
+      "num_predict": 16384,
+      "num_ctx": 32768
+    },
+    "keep_alive": 300,
+    "think": true
+  },
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "URLError: <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>",
+  "attempt": 3,
+  "started_at": "2026-08-02T07:43:06+08:00",
+  "finished_at": "2026-08-02T07:43:06+08:00",
+  "wall_seconds": 9.056,
+  "time_to_first_token": null
+}

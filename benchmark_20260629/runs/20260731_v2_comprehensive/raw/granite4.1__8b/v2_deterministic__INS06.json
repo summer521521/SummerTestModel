@@ -1,0 +1,58 @@
+{
+  "request": {
+    "model": "granite4.1:8b",
+    "prompt": "只输出阿拉伯数字：17×19。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "323",
+  "thinking": "",
+  "final": {
+    "model": "granite4.1:8b",
+    "created_at": "2026-07-31T20:18:03.3008988Z",
+    "response": "",
+    "done": true,
+    "done_reason": "stop",
+    "context": [
+      100264,
+      882,
+      100265,
+      92780,
+      67117,
+      33443,
+      123,
+      73325,
+      17885,
+      107,
+      83687,
+      5232,
+      1114,
+      18028,
+      777,
+      1811,
+      100257,
+      198,
+      100264,
+      78191,
+      100265,
+      15726
+    ],
+    "total_duration": 389690800,
+    "load_duration": 119648400,
+    "prompt_eval_count": 21,
+    "prompt_eval_duration": 224337000,
+    "eval_count": 2,
+    "eval_duration": 38927000
+  },
+  "error": null,
+  "attempt": 1,
+  "started_at": "2026-08-01T04:18:03+08:00",
+  "finished_at": "2026-08-01T04:18:03+08:00",
+  "wall_seconds": 0.411,
+  "time_to_first_token": 0.371
+}

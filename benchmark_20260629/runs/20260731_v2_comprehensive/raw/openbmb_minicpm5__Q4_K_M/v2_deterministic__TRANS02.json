@@ -1,0 +1,22 @@
+{
+  "request": {
+    "model": "openbmb/minicpm5:Q4_K_M",
+    "prompt": "翻译为中文并保留 cache_key、HTTP 429、Retry-After、tenant_id：If cache_key is missing, return HTTP 429 and read the Retry-After header before retrying. Never reuse data across tenant_id.",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "",
+  "thinking": "",
+  "final": {},
+  "error": "URLError: <urlopen error [WinError 10061] 由于目标计算机积极拒绝，无法连接。>",
+  "attempt": 3,
+  "started_at": "2026-08-01T08:55:56+08:00",
+  "finished_at": "2026-08-01T08:55:56+08:00",
+  "wall_seconds": 9.127,
+  "time_to_first_token": null
+}

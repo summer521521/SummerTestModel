@@ -1,0 +1,26 @@
+{
+  "request": {
+    "model": "llama3.2:3b",
+    "prompt": "只输出完整 Python 代码，包含函数签名 def topological_order(tasks, dependencies):\nReturn lexicographically smallest valid topological ordering, or [] for cycles/unknown tasks.\n不要读写文件、网络或执行系统命令。",
+    "stream": true,
+    "options": {
+      "temperature": 0,
+      "num_predict": 4096,
+      "num_ctx": 16384
+    },
+    "keep_alive": 300
+  },
+  "response": "```python\nfrom collections import defaultdict, deque\n\ndef find_cycle(graph):\n    \"\"\"Check if a graph contains a cycle.\"\"\"\n    in_degree = defaultdict(int)\n    for node in graph:\n        for neighbor in graph[node]:\n            in_degree[neighbor] += 1\n    \n    queue = deque([node for node in graph if in_degree[node] == 0])\n    \n    while queue:\n        node = queue.popleft()\n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    \n    return any(in_degree[node] > 0 for node in graph)\n\ndef topological_order(tasks, dependencies):\n    \"\"\"Return lexicographically smallest valid topological ordering.\"\"\"\n    # Create a directed acyclic graph (DAG) from the given tasks and",
+  "thinking": "",
+  "final": {},
+  "error": null,
+  "attempt": 1,
+  "started_at": "2026-08-08T09:42:23+08:00",
+  "finished_at": "2026-08-08T09:42:26+08:00",
+  "wall_seconds": 3.348,
+  "time_to_first_token": 1.178,
+  "request_policy": {
+    "inactivity": 1200,
+    "absolute": 3600
+  }
+}

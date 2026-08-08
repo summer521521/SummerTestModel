@@ -1,0 +1,6 @@
+{
+  "version": "v2.1.0",
+  "task_count": 90,
+  "code_policy": "AST allowlist + python -I -S child process",
+  "planning": "constraint-aware JSON feasibility checks"
+}

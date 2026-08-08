@@ -1,0 +1,17 @@
+{
+  "publication_scorer_version": "v2.2.0-offline",
+  "task_version": "20260731.v2",
+  "legacy_scorer_version": "v2.1.0",
+  "mode": "offline_regrade_existing_raw",
+  "raw_inputs_unchanged": true,
+  "regrade_script": "benchmark_20260629/scripts/regrade_v2_offline.py",
+  "rules": [
+    "ordered fenced JSON extraction",
+    "quoted instruction translation semantics",
+    "fenced code extraction with policy and isolated execution",
+    "exact tool name and parameter validation",
+    "safety yes/no mapping and confusion metrics",
+    "OCR semantic score separated from repetition and truncation",
+    "infrastructure failures excluded from capability denominators"
+  ]
+}
