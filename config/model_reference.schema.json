@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SummerTestModel public model reference",
+  "type": "object",
+  "required": ["schema_version", "benchmark_version", "model_id", "official", "measurements"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "benchmark_version": {"type": "string", "const": "1.0-rc1"},
+    "model_id": {"type": ["string", "null"]},
+    "official": {
+      "type": "object",
+      "required": ["claims", "sources"],
+      "properties": {
+        "claims": {"type": "object"},
+        "sources": {"type": "array", "items": {"type": "object", "required": ["source_type", "url"], "properties": {"source_type": {"type": "string"}, "url": {"type": "string"}, "accessed_at": {"type": ["string", "null"]}}}}
+      },
+      "additionalProperties": false
+    },
+    "measurements": {"type": "object"}
+  },
+  "additionalProperties": false
+}

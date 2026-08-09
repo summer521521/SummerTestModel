@@ -13,15 +13,17 @@
   "generation_profiles": "config/generation_profiles.rc1.json",
   "retry_policy": "config/retry_policy.rc1.json",
   "manifest_hashes": {
-    "benchmark_manifest": "8fa0a47a2204bbcadd20c8617bb9c4cf00f94332ecec204b295d9f5fa3614a95",
-    "task_manifest": "5885032330aa566d7fae99717a949cc95971947f66d713af7298b4afafcd3492",
+    "benchmark_manifest": "fd9d7be1b002962036d8770ca13617888704c4725b35326d5b199aba36349d06",
+    "task_manifest": "3c358ffd10898c074c04674d81c2cf4ad9e34d5bb1e51cc908716b0d505b60ec",
     "scorer_manifest": "c80806063be7e6c9f2ebb276f71d72b34a2a6d56a0ae33c4a54d263cc136f075",
-    "model_execution_plan": "9f47a3567cb278b37fde4bc6a7b4db23bfa4d1344edbbfb414da83a6604b1a7a",
-    "generation_profiles": "933ea85037ff4d536479bc821e9f1bf177821e99312b8e9885e9115ecf4b722b",
-    "retry_policy": "e64a69d04d16d40046f24930969fd4c99152a958b585e4e3bf75d868594d1eb5"
+    "model_execution_plan": "8b9d9df73844b3686d5eba05e6e83877a7e300a668778277baac9cbba07b9041",
+    "generation_profiles": "6bdbb77cb250f85610621154909aa787e65a9faee4ebc170520cc318c384e99e",
+    "retry_policy": "e64a69d04d16d40046f24930969fd4c99152a958b585e4e3bf75d868594d1eb5",
+    "model_runtime_defaults": "d2356ba9f34af67777a78c003327acb83daf4c2f45ae6958b4a48766cec357f6"
   },
   "output_dir": "work/pending-run",
   "single_model_concurrency": true,
   "unload_between_models": "keep_alive_zero_then_healthcheck",
-  "warmup_behavior": "none_unless_manifest"
+  "warmup_behavior": "none_unless_manifest",
+  "model_runtime_defaults": "inventory/model_runtime_defaults.rc1.json"
 }

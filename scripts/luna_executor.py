@@ -195,10 +195,14 @@ def status(run_dir: Path) -> dict[str, Any]:
     items = state.get("items") or {}
     statuses: dict[str, int] = {}
     scorer_failures = 0
+    runtime_anomalies = 0
+    terminal_records_missing = 0
     for item in items.values():
         name = item.get("inference_status") or "unknown"
         statuses[name] = statuses.get(name, 0) + 1
         scorer_failures += int(item.get("scoring_status") == "scoring_error")
+        runtime_anomalies += int(item.get("runtime_anomaly") is True)
+        terminal_records_missing += int(item.get("terminal_record_seen") is False)
     return {
         "run_id": run_dir.name,
         "benchmark_version": state.get("benchmark_version"),
@@ -208,8 +212,10 @@ def status(run_dir: Path) -> dict[str, Any]:
         "current_task": state.get("current_task"),
         "successful_tasks": statuses.get("completed", 0),
         "model_failures": sum(value for key, value in statuses.items() if key in {"model_capability_failure", "malformed_response", "truncated", "model_fatal_error"}),
-        "infrastructure_failures": sum(value for key, value in statuses.items() if key in {"connection_refused", "http_500", "stream_interrupted", "timeout", "cancelled"}),
+        "infrastructure_failures": sum(value for key, value in statuses.items() if key in {"connection_refused", "http_500", "http_502", "http_503", "http_504", "stream_interrupted", "stream_interrupted_before_output", "timeout", "cancelled"}),
         "scorer_failures": scorer_failures,
+        "runtime_anomalies": runtime_anomalies,
+        "terminal_records_missing": terminal_records_missing,
         "last_checkpoint": state.get("last_checkpoint"),
         "ollama_health": "not_checked_by_status",
         "remaining_task_count": state.get("remaining_task_count"),

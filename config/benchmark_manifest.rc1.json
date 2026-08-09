@@ -9,17 +9,36 @@
     "retain_all_local_candidates": true,
     "exclude_cloud": true
   },
-  "track_ids": ["core", "reasoning", "code", "translation", "tools", "vision", "ocr", "long_context", "embedding", "safety", "medical", "performance"],
+  "track_ids": [
+    "core",
+    "reasoning",
+    "code",
+    "translation",
+    "tools",
+    "vision",
+    "ocr",
+    "long_context",
+    "embedding",
+    "safety",
+    "medical",
+    "performance"
+  ],
   "context_tiers": {
-    "8k": {"minimum_declared_context": 8192},
-    "32k": {"minimum_declared_context": 32768}
+    "8k": {
+      "minimum_declared_context": 8192
+    },
+    "32k": {
+      "minimum_declared_context": 32768
+    }
   },
   "task_manifest": "config/task_manifest.rc1.public.json",
   "scorer_manifest": "config/scorer_manifest.rc1.public.json",
-  "task_manifest_sha256": "5885032330aa566d7fae99717a949cc95971947f66d713af7298b4afafcd3492",
+  "task_manifest_sha256": "3c358ffd10898c074c04674d81c2cf4ad9e34d5bb1e51cc908716b0d505b60ec",
   "scorer_manifest_sha256": "6b65762b367e6ae70180c52fca8f3078e5332ceafa643603759503f783dfea56",
-  "private_package_manifest_sha256": "95c3751814f05fa37bf00c7122bc38a67b43b67bbd050dcd15b64e31fbb75149",
+  "private_package_manifest_sha256": "f8086f75cc9e36c4e10f816676dde080774f657dccfa075dd404691d3beb2877",
   "model_execution_plan": "config/model_execution_plan.rc1.public.json",
-  "model_execution_plan_sha256": "9f47a3567cb278b37fde4bc6a7b4db23bfa4d1344edbbfb414da83a6604b1a7a",
-  "generation_profiles_sha256": "eb1fe1fd8ebd8443630498ba5bcfec9a6df3ba61e0d8d920b145bce96423a975"
+  "model_execution_plan_sha256": "8b9d9df73844b3686d5eba05e6e83877a7e300a668778277baac9cbba07b9041",
+  "generation_profiles_sha256": "6bdbb77cb250f85610621154909aa787e65a9faee4ebc170520cc318c384e99e",
+  "model_runtime_defaults": "inventory/model_runtime_defaults.rc1.json",
+  "model_runtime_defaults_sha256": "d2356ba9f34af67777a78c003327acb83daf4c2f45ae6958b4a48766cec357f6"
 }

@@ -60,8 +60,10 @@ class Phase3SIntegrityTests(unittest.TestCase):
         plan=json.loads((ROOT/"config/model_execution_plan.rc1.public.json").read_text(encoding="utf-8")); models={x["model"]:x for x in plan["models"]}; self.assertFalse(any(x.startswith("CTX") for x in models["gemma3n:e4b"]["task_ids"])); self.assertFalse(any(x.startswith("CTX32") for x in models["smollm2:1.7b"]["task_ids"]))
 
     def test_performance_is_telemetry_only(self):
-        task=next(x for x in json.loads((ROOT/"config/task_manifest.rc1.public.json").read_text(encoding="utf-8"))["tasks"] if x["task_id"]=="PERF_01")
-        self.assertFalse(task["scored"]); self.assertTrue(task["telemetry_only"])
+        tasks=[x for x in json.loads((ROOT/"config/task_manifest.rc1.public.json").read_text(encoding="utf-8"))["tasks"] if x["task_id"] in {"PERF_COLD_01","PERF_WARM_01"}]
+        self.assertEqual({x["task_id"] for x in tasks},{"PERF_COLD_01","PERF_WARM_01"})
+        self.assertTrue(all(not x["scored"] and x["telemetry_only"] for x in tasks))
+        self.assertNotIn("PERF_01", {x["task_id"] for x in json.loads((ROOT/"config/task_manifest.rc1.public.json").read_text(encoding="utf-8"))["tasks"]})
 
     def test_translation_weights_and_assets(self):
         for p in sorted((ROOT/"private_benchmark/1.0-rc1/scoring_specs").glob("TRANS_*.json")): self.assertEqual(json.loads(p.read_text(encoding="utf-8"))["weight_sum"],10)

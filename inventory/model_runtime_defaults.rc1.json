@@ -1,0 +1,594 @@
+{
+  "schema_version": 1,
+  "benchmark_version": "1.0-rc1",
+  "collected_at": "2026-08-08T20:28:56+08:00",
+  "ollama_version": "0.32.6",
+  "source": "ollama show --modelfile",
+  "models": [
+    {
+      "exact_name": "deepscaler:1.5b",
+      "digest": "0031bcf7459f9405e9ae68b522c3fb791ad64814eff25dbec007435d837977e6",
+      "modelfile_sha256": "bc78f7ebd6b6944ad4b6ddf39ae932ec69d2613d6d061843490c48a9aef0b78d",
+      "visible_declared_defaults": {
+        "temperature": 0.6,
+        "top_k": null,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 4,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "deepseek-ocr:latest",
+      "digest": "0e7b018b8a22373167ee79c9a852821235488cbd2a2a5a93495558627423278c",
+      "modelfile_sha256": "27ec6ba2a9cca1dbbb55efe6a2309a042295b29a3c75b49903175b9c9bc56e46",
+      "visible_declared_defaults": {
+        "temperature": 0,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "deepseek-r1:8b",
+      "digest": "6995872bfe4c521a67b32da386cd21d5c6e819b6e0d62f79f64ec83be99f5763",
+      "modelfile_sha256": "1147ce5608ef58cb0501aac9a17545bc611e613a58f5f16dd6b40294dcd04d84",
+      "visible_declared_defaults": {
+        "temperature": 0.6,
+        "top_k": null,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 4,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "functiongemma:270m",
+      "digest": "7c19b650567acfb1bee50d12bb286370e8a54d8877f6a0ecfd01f8c8fdc223bb",
+      "modelfile_sha256": "6fec94223e49ea7f5b699a816441a2b5050368515bfc7a61f82abb264e577122",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": 64,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "gemma3n:e4b",
+      "digest": "15cb39fd9394fd2549f6df9081cfc84dd134ecf2c9c5be911e5629920489ac32",
+      "modelfile_sha256": "f53848704ad8f8c6206ce3eb72fb7dbe3d12a9ddd6253964bf1bf31adc87b1b0",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "gemma4:e4b",
+      "digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "modelfile_sha256": "e0954bbcd525b82f5a8666fdc3d22466ce33ee1c60066c390017bd32717d83c1",
+      "visible_declared_defaults": {
+        "temperature": 1,
+        "top_k": 64,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "glm-ocr:latest",
+      "digest": "6effedd0dc8aec66ad86c94b8099395376e212f22c87a9d7147c422f7e447be4",
+      "modelfile_sha256": "cb980c9f36f03c882ef8c81f8aadfe1fe8b201a2a02d464a2d1c2c32d796cc58",
+      "visible_declared_defaults": {
+        "temperature": 0,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "granite4.1-guardian:8b",
+      "digest": "f82c0882cec110279601307cdd632d868e29f16eaa59947bef51096e5f740492",
+      "modelfile_sha256": "793cb3b95caac4dd6aad584e6c0fa8659ea5af7b42d642773e69517563c54ccc",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "granite4.1:8b",
+      "digest": "444af1c4b2fedd6b54041aca558e7300b0b3d5c0468c44619126240323ba2852",
+      "modelfile_sha256": "5432f27d9ebd508c64b8d38818901a51ea8ffc08255e70ce3431de1a336c0be4",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "granite4:7b-a1b-h",
+      "digest": "566b725534ea0e9824f844abe6a78e1ab6f7357f1efb549be94908cb681513bb",
+      "modelfile_sha256": "e776ffd81ad9fae19222e997ea49d8a0a37af8135c9f424948ea24a4c05cf991",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "hf.co/ibm-granite/granite-vision-4.1-4b-GGUF:Q4_K_M",
+      "digest": "b4e09c173a61e28b963fc043aa86715045a50587a17a735529132fde8f979aa1",
+      "modelfile_sha256": "2b663285d7d7b2a156f16c437e35b0b5928d924e489caa86a707029e9fc119ec",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 4,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M",
+      "digest": "f1ab988bb6ceec875a24553886116b82b15aa804e9cb6a374a2e5e1133dd0b7d",
+      "modelfile_sha256": "65778f7e9e2a7f4cdd24ea3e0ccd9cc079897b7a188fdc778e8832d29b0a45e3",
+      "visible_declared_defaults": {
+        "temperature": 0.6,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": 1
+      },
+      "stop_count": 2,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "hf.co/tiiuae/Falcon-H1R-7B-GGUF:Q4_K_M",
+      "digest": "7a8fccc56374707c68bd2f899aeaf06b7977a71a5ea1f34b81d4c0afecd77552",
+      "modelfile_sha256": "689eb8def2579e0ccc6285a71039696053d321f5593553155d0542a5b9ab6e22",
+      "visible_declared_defaults": {
+        "temperature": 0.6,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": 1
+      },
+      "stop_count": 2,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL",
+      "digest": "49c1cb13df5f6647f0a1765a23d420f08a60bf844b1730054c59b271ea99804b",
+      "modelfile_sha256": "4de365ec0f1a9f0fec4e8f1cb42a9a64f3a966ab8200d4370eed456a14e25fb4",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 3,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "huggingface.co/llmware/phi-4-mini-gguf:latest",
+      "digest": "812893abf9e42b8b19361eff7b2f4355ccdef03bfae6283c316ca0fb286e14d0",
+      "modelfile_sha256": "f74fe073b717ee215b4fb0de030e22d49c91beea5e806e2fcc8c31b933f5d521",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest",
+      "digest": "1a41a532bd9af10aa092d04bcd0ed7a20c9f4f39bf592d9cea55f46efae6b2f9",
+      "modelfile_sha256": "933f956b57d8485f64cb05e6167c244762fb4e8830875dc4d6236358daedaeb6",
+      "visible_declared_defaults": {
+        "temperature": 0.6,
+        "top_k": null,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "kaelri/hy-mt2:7b-q4_K_M",
+      "digest": "1981e6ac165f7a519ae9fd6571b78284dae89d6d8fa7bd11ab20c1c7a7f89144",
+      "modelfile_sha256": "b4e58321a26a0e2ba3e092825b9d50dd9a6590bee4b6ded43cd4cf927ac2626d",
+      "visible_declared_defaults": {
+        "temperature": 0.7,
+        "top_k": 20,
+        "top_p": 0.6,
+        "min_p": null,
+        "repeat_penalty": 1.05
+      },
+      "stop_count": 7,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "lfm2.5:8b",
+      "digest": "9cf756159fc2f3b9128c6a3f544ec90c5e9b8afdbb4179a57b8aea9de589cfb2",
+      "modelfile_sha256": "0030cd37b2170ddab67ecbfa408b9c5e74fed36768e5f4b43935f3875d2dd298",
+      "visible_declared_defaults": {
+        "temperature": 0.2,
+        "top_k": 80,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": 1.05
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "modelfile_sha256": "8a859ef8af7f7c8f2ca8c65afbd8c1a2f8b8abdb379cc25b49cc4ac1331e8a4c",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 3,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "medgemma1.5:4b",
+      "digest": "433252621ab154668b5d8be6aff6c1b771bacba045e46e6193da8d6ad1630f2c",
+      "modelfile_sha256": "a5277e4941fd20e2beecccc9d6775658bf2283f6ef59c4067c26d5034ab804d5",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 1,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "minicpm-v4.6:latest",
+      "digest": "e95583acac773b45d95469c069db44808c87295f924183f4c942d52616b2d132",
+      "modelfile_sha256": "6e17f52dea202cc16272502410040efe8d7f5306310439275e66bed943a7e0a7",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "ministral-3:8b",
+      "digest": "1922accd5827ebe6829e536369195db25eaf664528dc66206d646ea3bb386b71",
+      "modelfile_sha256": "32deb28ee763121edc91a43d0fb9be14e68108db18e46cacfb4452258f3ba632",
+      "visible_declared_defaults": {
+        "temperature": 0.15,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "mistral:7b",
+      "digest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf",
+      "modelfile_sha256": "0b62c51515eeab934c2367305e3ba3c4eb5182eff7fc1847aa623e6ced47fe03",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 2,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "nemotron-3-nano:4b",
+      "digest": "6cc467f054393a55e98a74098abde0c762ffb6d1d8cd64becf30458f38886197",
+      "modelfile_sha256": "4062ab0d27164293211b8a61a3d06f7cbcb704bdac0f1d74345e3aec7be086ab",
+      "visible_declared_defaults": {
+        "temperature": 1,
+        "top_k": null,
+        "top_p": 1,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "olmo-3:7b-instruct",
+      "digest": "ea72df8c85d75c6783ab0d00278803c53a634fc9d0fe38d3fd4ab6f35adbdbb2",
+      "modelfile_sha256": "35664d6e71a9ad93ca339e1cce0b6ab1bb2a14d6bf2b110024f6379f2f5b7876",
+      "visible_declared_defaults": {
+        "temperature": 0.6,
+        "top_k": null,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "olmo-3:7b-think",
+      "digest": "b8d4c92ac9c103f858f4f09a418b62de8ca1abf1b20b4020006346535634dd35",
+      "modelfile_sha256": "926b7133907bdc08652d9673beebb1ddf83f957e184d846feba2d7124bf22c29",
+      "visible_declared_defaults": {
+        "temperature": 0.6,
+        "top_k": null,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "openbmb/minicpm5:Q4_K_M",
+      "digest": "08239e8f70e09fc079ff3b5c4f011fd846d452ae9ba4e4b4c40e526bd4950ded",
+      "modelfile_sha256": "2b3eb30f6d64a9ba5709045d4a31a4868e0002866a4b6ebf3f9e29ba8462a645",
+      "visible_declared_defaults": {
+        "temperature": 0.7,
+        "top_k": null,
+        "top_p": 0.8,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 2,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "ornith:9b",
+      "digest": "a75697c145891910e312c95e4a9fc1ccb8653e5ef543b23b0403a4665b82fd91",
+      "modelfile_sha256": "81bcc5c1900d2998f14ce8f56309844b1d1693e9b5575e12ce95426db06cfe68",
+      "visible_declared_defaults": {
+        "temperature": 0.6,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 1,
+      "template_present": true,
+      "system_present": true
+    },
+    {
+      "exact_name": "phi4-mini-reasoning:latest",
+      "digest": "3ca8c2865ce91b6be853a25e56edfefa4f473db55a391611989b753ecf0fa419",
+      "modelfile_sha256": "a9e5828fdafc4493efb634cf9894e7369b1b61f822e944848b0f170a15935802",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": true
+    },
+    {
+      "exact_name": "phi4-mini:latest",
+      "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753",
+      "modelfile_sha256": "caefd012743ab95b54cc7ad3bee90e03a73b41e8d0e57b83dec62e83981e1a2a",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "qwen3-embedding:latest",
+      "digest": "64b933495768fbd3b87c20583d379728a07471e0c66733a9df87cd1901b3c44b",
+      "modelfile_sha256": "c7146b6fa49ecf56551e2e78aef2ef16bae69011dd7bcf111efa9aad74b02831",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "qwen3-vl:8b",
+      "digest": "901cae73216286ea8c5aba8b46d307ff7188f737285ec500c795a12f05225d28",
+      "modelfile_sha256": "4eae62e72ef9cd84f8c07c3d6e2913e14b275e7ddb0a9e0312a5bc10c3f77335",
+      "visible_declared_defaults": {
+        "temperature": 1,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "qwen3.5:4b",
+      "digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+      "modelfile_sha256": "9120954a43d0591f5621ed461fa795da6f038821863ccebd7245dbf6edb79f52",
+      "visible_declared_defaults": {
+        "temperature": 1,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "qwen3.5:9b",
+      "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+      "modelfile_sha256": "3898b7dacfb9ac966fdfde54e8777c5d64615c8cf9206f13f91640032264888d",
+      "visible_declared_defaults": {
+        "temperature": 1,
+        "top_k": 20,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "rnj-1:latest",
+      "digest": "d20e29ab8d0f11423b1e8da33764c8bdafc1d0abbb9971f68edd0f6d4176435f",
+      "modelfile_sha256": "33e5481c8faf4107929c716ddee397399dd0431699737a4be9cd02140f36008c",
+      "visible_declared_defaults": {
+        "temperature": 0.2,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 3,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "shieldgemma:2b",
+      "digest": "5aad5044d142232b67c4d531aecc022165f06ba40235a60b3a77824c66dfc360",
+      "modelfile_sha256": "d8b5a31fddfdb3a8a95992d5582ee2d77f05c08d2b2ec02205934cd5cfed0555",
+      "visible_declared_defaults": {
+        "temperature": 0,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 0,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "smollm2:1.7b",
+      "digest": "cef4a1e09247f018ca0c482ad4c2ce1474aba5e87f245dacf97f07948d05d8b4",
+      "modelfile_sha256": "497a18a1ebe639d0cd90d63bac31c093b84c7bb32595df24833262daaf796460",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 2,
+      "template_present": true,
+      "system_present": true
+    },
+    {
+      "exact_name": "starcoder2:7b",
+      "digest": "1550ab21b10d3b3a53bcb13e628f3de773d9dbabe814d2315e5c0d8b9f3ef7e6",
+      "modelfile_sha256": "2fec9bfbfef8e122b9e57802e5d255523d4f3987aa2657afc9b166ab87ff4df1",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": null,
+        "top_p": null,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 2,
+      "template_present": true,
+      "system_present": false
+    },
+    {
+      "exact_name": "translategemma:latest",
+      "digest": "c49d986b0764f5881c476eb21435bb62b7abc62347aab3d4a6071e811be510a1",
+      "modelfile_sha256": "7f09489f21e39bbadbb3774aedd0a64a4e3c9ad0396f84b41f26015985e6eae0",
+      "visible_declared_defaults": {
+        "temperature": null,
+        "top_k": 64,
+        "top_p": 0.95,
+        "min_p": null,
+        "repeat_penalty": null
+      },
+      "stop_count": 1,
+      "template_present": true,
+      "system_present": false
+    }
+  ]
+}

@@ -1093,7 +1093,7 @@
       "private_payload_present": true
     },
     {
-      "task_id": "PERF_01",
+      "task_id": "PERF_COLD_01",
       "version": "1.0-rc1",
       "track": "performance",
       "category": "performance",
@@ -1102,9 +1102,25 @@
       "scored": false,
       "diagnostic_only": false,
       "telemetry_only": true,
-      "prompt_sha256": "5c2d7523af64bb2fafd41b8228c12d3688110e0726154a19a04d9661a299703c",
+      "prompt_sha256": "9ddb99f6aa128001d1697995897f4942cf7a96b7606e55527e74a90fce223777",
       "ground_truth_sha256": null,
-      "scoring_spec_sha256": "9d1edaaaa9fdc0d137c7700bfcb4b848833f7ae369be5737f415ebc1faa5122f",
+      "scoring_spec_sha256": "249d097e22b391fee91a5e11237996192f6b638542fba4b2b61549f35cbd57e8",
+      "assets": [],
+      "private_payload_present": true
+    },
+    {
+      "task_id": "PERF_WARM_01",
+      "version": "1.0-rc1",
+      "track": "performance",
+      "category": "performance",
+      "profile": "performance",
+      "scorer_id": "performance_telemetry_v1",
+      "scored": false,
+      "diagnostic_only": false,
+      "telemetry_only": true,
+      "prompt_sha256": "9ddb99f6aa128001d1697995897f4942cf7a96b7606e55527e74a90fce223777",
+      "ground_truth_sha256": null,
+      "scoring_spec_sha256": "249d097e22b391fee91a5e11237996192f6b638542fba4b2b61549f35cbd57e8",
       "assets": [],
       "private_payload_present": true
     },
@@ -1981,8 +1997,8 @@
       "private_payload_present": true
     }
   ],
-  "task_count": 118,
+  "task_count": 119,
   "scored_task_count": 116,
   "diagnostic_task_count": 1,
-  "telemetry_task_count": 1
+  "telemetry_task_count": 2
 }

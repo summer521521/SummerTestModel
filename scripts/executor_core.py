@@ -22,8 +22,12 @@ TERMINAL_INFERENCE = {
     "truncated",
     "model_fatal_error",
     "truncated_before_final", "timeout_before_final", "absolute_timeout", "inactivity_timeout", "scoring_error",
+    "stream_interrupted_after_output",
 }
-INFRA_FAILURE = {"connection_refused", "http_500", "http_502", "http_503", "http_504", "stream_interrupted", "timeout", "cancelled", "runner_exception"}
+INFRA_FAILURE = {
+    "connection_refused", "http_500", "http_502", "http_503", "http_504",
+    "stream_interrupted", "stream_interrupted_before_output", "timeout", "cancelled", "runner_exception",
+}
 
 
 def now() -> str:
@@ -191,7 +195,7 @@ class EvidenceStore:
             "schema_version": 1,
             "logical_key": key,
             "attempt_id": attempt_id,
-            "started_at": response.get("started_at"),
+            "started_at": response.get("started_at") or response.get("request_started_at") or (response.get("timing") or {}).get("request_started_at"),
             "finished_at": response.get("finished_at") or now(),
             "model": item["model"],
             "model_digest": item["model_digest"],
@@ -202,6 +206,8 @@ class EvidenceStore:
             "exact_model_tag": item.get("exact_model_tag") or item.get("model"),
             "ollama_version": item.get("ollama_version"), "machine_profile_hash": item.get("machine_profile_hash"), "scorer_version": item.get("scorer_version"),
             "inference_status": response.get("status", "runner_exception"),
+            "meaningful": bool(response.get("meaningful", False)),
+            "retryable": response.get("retryable"),
             "raw_response": response.get("raw_response"),
             "thinking": response.get("thinking"),
             "final_answer": response.get("final_answer"),
@@ -216,6 +222,23 @@ class EvidenceStore:
             "embedding": response.get("embedding"), "query_embedding": response.get("query_embedding"),
             "embedding_corpus": response.get("embedding_corpus"), "corpus_embeddings": response.get("corpus_embeddings"),
             "seed_applied": response.get("seed_applied"),
+            "sampling_policy": response.get("sampling_policy", item.get("sampling_policy", "native_artifact")),
+            "runtime_defaults_snapshot_hash": item.get("runtime_defaults_snapshot_hash"),
+            "model_modelfile_sha256": item.get("model_modelfile_sha256"),
+            "reasoning_mode": response.get("reasoning_mode", item.get("reasoning_mode")),
+            "terminal_record_seen": bool(response.get("terminal_record_seen", False)),
+            "done_reason": response.get("done_reason", response.get("termination_reason")),
+            "runtime_anomaly": bool(response.get("runtime_anomaly", False)),
+            "completion_terminal_record": bool(response.get("completion_terminal_record", False)),
+            "practical_within_soft_limit": response.get("practical_within_soft_limit") if response.get("practical_within_soft_limit") is not None else (response.get("timing") or {}).get("practical_within_soft_limit"),
+            "preload": response.get("preload"),
+            "request_started_at": response.get("request_started_at") or (response.get("timing") or {}).get("request_started_at"),
+            "first_chunk_at": (response.get("timing") or {}).get("first_chunk_at"),
+            "first_generated_at": (response.get("timing") or {}).get("first_generated_at"),
+            "first_thinking_at": (response.get("timing") or {}).get("first_thinking_at"),
+            "first_final_at": (response.get("timing") or {}).get("first_final_at"),
+            "terminal_record_at": (response.get("timing") or {}).get("terminal_record_at"),
+            "request_finished_at": response.get("request_finished_at") or (response.get("timing") or {}).get("request_finished_at"),
         }
         payload = (json.dumps(evidence, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
         evidence["evidence_payload_sha256"] = sha256_bytes(payload)
@@ -226,6 +249,8 @@ class EvidenceStore:
             "event": "inference_saved", "at": now(), "logical_key": key, "attempt_id": attempt_id,
             "inference_status": evidence["inference_status"], "raw_path": relative,
             "raw_sha256": raw_file_sha256,
+            "terminal_record_seen": evidence["terminal_record_seen"],
+            "runtime_anomaly": evidence["runtime_anomaly"],
         })
         return {**evidence, "raw_path": relative}
 
@@ -280,20 +305,25 @@ class Executor:
             if inference_status not in INFRA_FAILURE:
                 self.breaker.success()
             score_status = "not_scored"
-            try:
-                score = self.scorer.score(evidence, item)
-                self.store.save_score({**item, "inference_status": inference_status}, attempt_id, score)
-                score_status = score.get("status", "scored")
-            except Exception as exc:
-                score_status = "scoring_error"
-                append_jsonl(self.store.events, {
-                    "event": "scoring_error", "at": now(), "logical_key": key,
-                    "attempt_id": attempt_id, "error": f"{type(exc).__name__}: {exc}",
-                })
+            if inference_status not in INFRA_FAILURE:
+                try:
+                    score = self.scorer.score(evidence, item)
+                    self.store.save_score({**item, "inference_status": inference_status}, attempt_id, score)
+                    score_status = score.get("status", "scored")
+                except Exception as exc:
+                    score_status = "scoring_error"
+                    append_jsonl(self.store.events, {
+                        "event": "scoring_error", "at": now(), "logical_key": key,
+                        "attempt_id": attempt_id, "error": f"{type(exc).__name__}: {exc}",
+                    })
+            else:
+                score_status = "infrastructure_incomplete"
             state["items"][key] = {
                 "inference_status": inference_status,
                 "scoring_status": score_status,
                 "raw_path": evidence["raw_path"],
+                "terminal_record_seen": evidence.get("terminal_record_seen"),
+                "runtime_anomaly": evidence.get("runtime_anomaly"),
             }
             self.store.checkpoint(state)
         return state

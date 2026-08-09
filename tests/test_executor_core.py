@@ -99,7 +99,7 @@ class ExecutorTests(unittest.TestCase):
         self.assertEqual(result["final_answer"], "answer")
         self.assertNotIn("format", result["request_payload"])
         self.assertTrue(result["request_payload"]["think"])
-        self.assertEqual(adapter._think({"think":False}, ["completion"])[0], None)
+        self.assertEqual(adapter._think({"think":False}, ["completion"])[0], False)
 
     def test_doctor_ready_path_with_frozen_mock_manifests(self):
         with tempfile.TemporaryDirectory() as temporary:
