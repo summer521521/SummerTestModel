@@ -1,0 +1,28 @@
+{
+  "benchmark_version": "1.0-rc1",
+  "scorer_version": "1.0-rc1.1",
+  "universal_overall_score": null,
+  "local": {
+    "models": 39,
+    "task_records": 1938,
+    "runtime_anomalies": 19,
+    "truncation_related": 104,
+    "scoring_errors": 0,
+    "infrastructure_failures": 0
+  },
+  "cloud_reference": {
+    "models_tested": 2,
+    "task_records": 142,
+    "unavailable_catalog_entries": 3,
+    "scoring_errors": 0,
+    "infrastructure_failures_in_task_records": 0
+  },
+  "official_reference_rows": 39,
+  "official_reference_urls": 38,
+  "artifacts": {
+    "track_scores": "public_results/rc1_track_scores.csv",
+    "performance": "public_results/rc1_performance.csv",
+    "failure_counts": "public_results/rc1_failure_counts.csv",
+    "official_references": "inventory/official_model_references.csv"
+  }
+}

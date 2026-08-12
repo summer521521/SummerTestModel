@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "benchmark_version": "1.0-rc1",
-  "scorer_version": "1.0-rc1",
+  "scorer_version": "1.0-rc1.1",
   "legacy_policy": "Legacy Experimental Evidence",
   "formal_scope": {
     "local_only": true,
@@ -34,10 +34,10 @@
   "task_manifest": "config/task_manifest.rc1.public.json",
   "scorer_manifest": "config/scorer_manifest.rc1.public.json",
   "task_manifest_sha256": "3c358ffd10898c074c04674d81c2cf4ad9e34d5bb1e51cc908716b0d505b60ec",
-  "scorer_manifest_sha256": "6b65762b367e6ae70180c52fca8f3078e5332ceafa643603759503f783dfea56",
+  "scorer_manifest_sha256": "042ad0a96549df77e1292c30b1a33c5fb5b69c55973e1fd5a003b7e6bda6b880",
   "private_package_manifest_sha256": "f8086f75cc9e36c4e10f816676dde080774f657dccfa075dd404691d3beb2877",
   "model_execution_plan": "config/model_execution_plan.rc1.public.json",
-  "model_execution_plan_sha256": "8b9d9df73844b3686d5eba05e6e83877a7e300a668778277baac9cbba07b9041",
+  "model_execution_plan_sha256": "d525db22f34142693cd6e5dea2d728651f517dc749417ba44eedb53ceff224c6",
   "generation_profiles_sha256": "6bdbb77cb250f85610621154909aa787e65a9faee4ebc170520cc318c384e99e",
   "model_runtime_defaults": "inventory/model_runtime_defaults.rc1.json",
   "model_runtime_defaults_sha256": "d2356ba9f34af67777a78c003327acb83daf4c2f45ae6958b4a48766cec357f6"

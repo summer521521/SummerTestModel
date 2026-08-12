@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "benchmark_version": "1.0-rc1",
+  "comparison_scope": "cloud_reference_only",
+  "local_baseline_impact": "none",
+  "assignment_policy": "reuse_task_ids_from_capability_equivalent_frozen_local_plan_row",
+  "models": [
+    {
+      "model": "gpt-oss:120b-cloud",
+      "digest": "569662207105c69bb0eca2f79a3fdf8691ad6301def477a5ec66f8e8bae237e3",
+      "capabilities": ["completion", "thinking", "tools"],
+      "reference_model": "deepscaler:1.5b",
+      "retention_status": "NOT_APPLICABLE_CLOUD_REFERENCE"
+    },
+    {
+      "model": "minimax-m3:cloud",
+      "digest": "d03a959f45c04ab183e245922ecb46ebccfb9d5e55bdee5e9055271ee70195e3",
+      "capabilities": ["completion", "thinking", "tools", "vision"],
+      "reference_model": "qwen3-vl:8b",
+      "retention_status": "NOT_APPLICABLE_CLOUD_REFERENCE"
+    },
+    {
+      "model": "devstral-2:123b-cloud",
+      "digest": "d37aca5b6a2738b66050b28cc95850a9c2073579415e1151a0cdfc3ec1c723af",
+      "capabilities": [],
+      "reference_model": null,
+      "retention_status": "NOT_APPLICABLE_CLOUD_REFERENCE"
+    },
+    {
+      "model": "qwen3-coder-next:cloud",
+      "digest": "aa626c11ae8dc60853e1dd7307035885eebd96de4e48ef0c76594e25fd8c0d67",
+      "capabilities": [],
+      "reference_model": null,
+      "retention_status": "NOT_APPLICABLE_CLOUD_REFERENCE"
+    },
+    {
+      "model": "qwen3-coder:480b-cloud",
+      "digest": "e30e45586389a1eb8d7616d16c7b692c89b903b58456ec5f20219cd4c9737f7e",
+      "capabilities": [],
+      "reference_model": null,
+      "retention_status": "NOT_APPLICABLE_CLOUD_REFERENCE"
+    }
+  ]
+}

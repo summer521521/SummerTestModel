@@ -192,7 +192,12 @@ def _core_score(text, task, ground_truth):
         semantic=sum(x in lower for x in required)/3
         if "logo" in lower: semantic=max(0.0,semantic-1/3)
     elif tid=="CORE_PRACT_04":
-        got,_=extract_json(answer); semantic=float(isinstance(got,list) and set(got)==set(expected))
+        got,_=extract_json(answer)
+        semantic=float(
+            isinstance(got,list)
+            and all(isinstance(value,str) for value in got)
+            and set(got)==set(expected)
+        )
     else:
         semantic=float(_simple_text(answer)==_simple_text(expected))
     return {"semantic_score":float(semantic),"protocol_score":float(protocol),"task_score":float(semantic*protocol if tid.startswith("CORE_FMT_") else semantic)}

@@ -7,6 +7,7 @@ Luna Max executes only a frozen architect specification. It does not interpret b
 1. Run `git status --short` and record the current branch/HEAD.
 2. Run `python scripts/rc1_runner.py doctor --config <frozen-run-config>`.
 3. If doctor prints `NOT_READY`, stop and report the failed checks exactly.
+   Ollama patch-version drift and Windows maintenance flags are environment warnings, not standalone blockers. Record the current values. API unreachability, capability/API breakage, digest/hash mismatch, private payload failure, or unsafe persistence remains blocking.
 4. Run calibration only when the user/Web GPT task book explicitly authorizes it: `python scripts/rc1_runner.py calibrate --allow-inference --run-dir <private-run-dir>`.
 5. If calibration validation fails, stop. Do not create an approved config and do not run the baseline.
 6. After a successful calibration, use only the local ignored approved config produced by the launch flow. Never edit the tracked template.

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "benchmark_version": "1.0-rc1",
+  "scorer_version": "1.0-rc1.1",
+  "regraded_at": "2026-08-12T14:10:41.964+08:00",
+  "source_run": "rc1_baseline_20260809",
+  "records": 1938,
+  "scored_records": 1938,
+  "infrastructure_records": 0,
+  "scoring_errors": 0,
+  "repaired_previous_scoring_errors": 3,
+  "raw_files": 1938,
+  "raw_unchanged": true,
+  "output": "public_results/rc1_baseline_20260809.scorer-1.0-rc1.1.jsonl",
+  "output_sha256": "6397bacbdb0ec61389c39c3c7350153c7b4c7af1d44c8016f543ad1189d2a0e9",
+  "errors": []
+}

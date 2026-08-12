@@ -1,0 +1,14 @@
+{
+  "status": "COMPLETE",
+  "comparison_scope": "cloud_reference_only",
+  "local_baseline_impact": "none",
+  "models_in_inventory": 5,
+  "models_tested": 2,
+  "models_unavailable": 3,
+  "task_records": 142,
+  "scoring_errors": 0,
+  "missing_raw": 0,
+  "output": "public_results/rc1_cloud_comparison_20260812.jsonl",
+  "output_sha256": "e80111f474068626045ff32349ba62f207bba3f33581176749f754cbafd82120",
+  "finalized_at": "2026-08-12T14:10:44.505+08:00"
+}

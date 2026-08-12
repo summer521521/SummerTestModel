@@ -2,6 +2,15 @@ import unittest
 from scripts.scorers import *
 
 class ScorerFamilyTests(unittest.TestCase):
+    def test_core_practical_rejects_object_array_without_crashing(self):
+        task={"task_id":"CORE_PRACT_04"}
+        ground_truth={"value":["manager","privacy"]}
+        scoring_spec={"type":"deterministic_core"}
+        evidence={"final_answer":'[{"rule":"manager"},{"rule":"privacy"}]'}
+        result=score_core(evidence,task,ground_truth,scoring_spec)
+        self.assertEqual(result["semantic_score"],0.0)
+        self.assertEqual(result["task_score"],0.0)
+
     def test_exact_numeric_and_sequences(self):
         expected = 220 + 32 / 100
         self.assertTrue(exact("a\r\nb\n", "a\nb")); self.assertEqual(numeric("answer: " + str(expected), expected)["score"],1.0); self.assertEqual(numeric("1 or 2",1)["status"],"invalid_answer")
