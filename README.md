@@ -1,6 +1,12 @@
 # SummerTestModel
 
+[English] · [简体中文](README.zh-CN.md)
+
 SummerTestModel evaluates interesting and capable small Ollama models on one consumer Windows laptop. The project now starts from a single normalized baseline: **SummerTestModel Benchmark 1.0-rc1**.
+
+> **Start with the complete phase report:** [design, results, all 39 model assessments, recommendations, and limitations](docs/final_report.en.md). The website version is published from the same structured public data.
+
+**Interactive bilingual website:** [summertestmodel-benchmark.walker-ethan.chatgpt.site](https://summertestmodel-benchmark.walker-ethan.chatgpt.site)
 
 ## Current baseline
 
@@ -41,8 +47,11 @@ Vision and OCR remain experimental because their current fixture sets are small 
 
 Start here:
 
+- [Complete phase report](docs/final_report.en.md) · [中文版](docs/final_report.zh-CN.md)
+- [Interactive bilingual website](https://summertestmodel-benchmark.walker-ethan.chatgpt.site)
 - [Full RC1 results report](docs/rc1_results.md)
 - [Current model report](model_report.md)
+- [Structured 39-model assessments](public_results/rc1_model_assessments.json)
 - [Track scores](public_results/rc1_track_scores.csv)
 - [Performance telemetry](public_results/rc1_performance.csv)
 - [Failure analysis](docs/rc1_failure_analysis.md)
@@ -94,3 +103,7 @@ legacy_evidence/           # additional historical evidence
 ## Historical reference
 
 Older V1, V2, and incremental experiments remain in [`benchmark_20260629/`](benchmark_20260629/) and [`legacy_evidence/`](legacy_evidence/). They are retained only for historical audit and are not part of the current results or ranking system. See the [brief history index](docs/legacy_history.md).
+
+## Language policy
+
+The project homepage, phase report, and current model report are maintained in English and Simplified Chinese. Machine-readable manifests, schemas, field names, and code remain in English so there is one executable interface; bilingual explanations link to the same underlying artifacts rather than duplicating data.

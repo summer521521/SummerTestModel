@@ -1,5 +1,7 @@
 # SummerTestModel Benchmark 1.0-rc1 Model Report
 
+[English] · [简体中文](model_report.zh-CN.md) · [Complete phase report](docs/final_report.en.md) · [Interactive website](https://summertestmodel-benchmark.walker-ethan.chatgpt.site)
+
 ## Scope
 
 This report covers the current normalized project baseline only:
