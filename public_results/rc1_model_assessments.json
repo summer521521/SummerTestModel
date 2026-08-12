@@ -1,0 +1,2621 @@
+{
+  "benchmark_version": "1.0-rc1",
+  "models": [
+    {
+      "model": "deepscaler:1.5b",
+      "short_name": "deepscaler:1.5b",
+      "digest": "0031bcf7459f9405e9ae68b522c3fb791ad64814eff25dbec007435d837977e6",
+      "parameter_size": "1.8B",
+      "quantization": "F16",
+      "disk_size_gib": 3.316,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools"
+      ],
+      "role": {
+        "zh": "推理候选",
+        "en": "reasoning candidate"
+      },
+      "official_model": "agentica-org/DeepScaleR-1.5B-Preview",
+      "official_source_url": "https://huggingface.co/agentica-org/DeepScaleR-1.5B-Preview",
+      "publisher_claim_summary": "1.5B reasoning model; publisher reports math/reasoning benchmark results.",
+      "match_confidence": "FAMILY_MATCH",
+      "scores": {
+        "code": {
+          "mean": 0.6125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.138889,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.0,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.453333,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.0,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.716667,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 9.0235,
+        "output_tokens_per_second_mean": 69.678137
+      },
+      "failures": {
+        "truncated": 3
+      },
+      "recommendation": {
+        "zh": "快速推理或代码草案的低成本候选。",
+        "en": "Low-cost candidate for fast reasoning or code drafts."
+      },
+      "caution": {
+        "zh": "通用、工具与长上下文结果弱；有 3 次截断。",
+        "en": "Weak core, tools, and long-context results; three truncations."
+      }
+    },
+    {
+      "model": "deepseek-ocr:latest",
+      "short_name": "deepseek-ocr",
+      "digest": "0e7b018b8a22373167ee79c9a852821235488cbd2a2a5a93495558627423278c",
+      "parameter_size": "3.3B",
+      "quantization": "F16",
+      "disk_size_gib": 6.228,
+      "context_length": 8192,
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "role": {
+        "zh": "OCR 专用",
+        "en": "OCR specialist"
+      },
+      "official_model": "deepseek-ai/DeepSeek-OCR",
+      "official_source_url": "https://huggingface.co/deepseek-ai/DeepSeek-OCR",
+      "publisher_claim_summary": "Document OCR model with publisher-reported OmniDocBench results.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "ocr": {
+          "mean": 0.384059,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": null,
+        "output_tokens_per_second_mean": null
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "当前 OCR 赛道中最值得继续研究的本地专用模型。",
+        "en": "The most promising local OCR specialist in the current track."
+      },
+      "caution": {
+        "zh": "语义分仅 0.384，仍不足以视为可靠生产 OCR。",
+        "en": "Semantic score is only 0.384; not production-reliable OCR yet."
+      }
+    },
+    {
+      "model": "deepseek-r1:8b",
+      "short_name": "deepseek-r1:8b",
+      "digest": "6995872bfe4c521a67b32da386cd21d5c6e819b6e0d62f79f64ec83be99f5763",
+      "parameter_size": "8.2B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.867,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools"
+      ],
+      "role": {
+        "zh": "推理候选",
+        "en": "reasoning candidate"
+      },
+      "official_model": "DeepSeek-R1 family",
+      "official_source_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+      "publisher_claim_summary": "Reasoning family with published math, coding, and knowledge evaluations.",
+      "match_confidence": "FAMILY_ONLY_LOCAL_TAG_AMBIGUOUS",
+      "scores": {
+        "code": {
+          "mean": 0.75,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.166667,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.4,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.95,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 12.7895,
+        "output_tokens_per_second_mean": 44.320596
+      },
+      "failures": {
+        "absolute_timeout": 2,
+        "runtime_anomaly": 9,
+        "stream_interrupted_after_output": 7,
+        "truncated": 8,
+        "truncated_before_final": 4
+      },
+      "recommendation": {
+        "zh": "适合容忍等待时间的代码与翻译辅助。",
+        "en": "Useful for code and translation when latency is acceptable."
+      },
+      "caution": {
+        "zh": "2 次绝对超时、9 个运行异常及多次截断，不适合稳定交互默认模型。",
+        "en": "Two absolute timeouts, nine runtime anomalies, and repeated truncation make it a poor default interactive model."
+      }
+    },
+    {
+      "model": "functiongemma:270m",
+      "short_name": "functiongemma:270m",
+      "digest": "7c19b650567acfb1bee50d12bb286370e8a54d8877f6a0ecfd01f8c8fdc223bb",
+      "parameter_size": "268.10M",
+      "quantization": "Q8_0",
+      "disk_size_gib": 0.28,
+      "context_length": 32768,
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "role": {
+        "zh": "工具调用专用",
+        "en": "tool-calling specialist"
+      },
+      "official_model": "google/functiongemma-270m-it",
+      "official_source_url": "https://ai.google.dev/gemma/docs/functiongemma/model_card",
+      "publisher_claim_summary": "270M specialist intended for function calling, not general conversation.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "tools": {
+          "mean": 0.0,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": null,
+        "output_tokens_per_second_mean": null
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "保留为极小工具路由器研究对象。",
+        "en": "Keep as a tiny tool-router research target."
+      },
+      "caution": {
+        "zh": "RC1 工具得分为 0；当前模板/调用链尚未证明可用。",
+        "en": "RC1 tools score is 0; the current template and tool path are not yet proven usable."
+      }
+    },
+    {
+      "model": "gemma3n:e4b",
+      "short_name": "gemma3n:e4b",
+      "digest": "15cb39fd9394fd2549f6df9081cfc84dd134ecf2c9c5be911e5629920489ac32",
+      "parameter_size": "6.9B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 7.029,
+      "context_length": 0,
+      "capabilities": [],
+      "role": {
+        "zh": "多模态/通用候选",
+        "en": "multimodal/general candidate"
+      },
+      "official_model": "google/gemma-3n-E4B-it",
+      "official_source_url": "https://huggingface.co/google/gemma-3n-E4B-it",
+      "publisher_claim_summary": "Mobile-oriented multimodal E4B model; official card distinguishes effective and total parameters.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.0,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.361111,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.833333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 8.961,
+        "output_tokens_per_second_mean": 58.540815
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "轻量翻译、摘要和普通文本任务。",
+        "en": "Lightweight translation, summarization, and ordinary text work."
+      },
+      "caution": {
+        "zh": "代码为 0，当前清单也未确认其多模态执行能力。",
+        "en": "Code scored 0, and multimodal execution was not confirmed by the current manifest."
+      }
+    },
+    {
+      "model": "gemma4:e4b",
+      "short_name": "gemma4:e4b",
+      "digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+      "parameter_size": "8.0B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 8.948,
+      "context_length": 131072,
+      "capabilities": [
+        "audio",
+        "completion",
+        "thinking",
+        "tools",
+        "vision"
+      ],
+      "role": {
+        "zh": "视觉/多模态候选",
+        "en": "vision or multimodal candidate"
+      },
+      "official_model": "Gemma 4 E4B",
+      "official_source_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+      "publisher_claim_summary": "4.5B effective / 8B total, 128K, multimodal; official card publishes MMLU-Pro, AIME, code and vision results.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.0,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.736111,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.5,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "ocr": {
+          "mean": 0.0,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.4,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 1.0,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "vision": {
+          "mean": 0.125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 8.984,
+        "output_tokens_per_second_mean": 59.841825
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "本机通用、翻译和长上下文任务的首选之一。",
+        "en": "One of the best local choices for general, translation, and long-context work."
+      },
+      "caution": {
+        "zh": "RC1 代码得分为 0；视觉绝对分也很低。",
+        "en": "RC1 code score is 0 and absolute vision performance is low."
+      }
+    },
+    {
+      "model": "glm-ocr:latest",
+      "short_name": "glm-ocr",
+      "digest": "6effedd0dc8aec66ad86c94b8099395376e212f22c87a9d7147c422f7e447be4",
+      "parameter_size": "1.1B",
+      "quantization": "F16",
+      "disk_size_gib": 2.067,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "tools",
+        "vision"
+      ],
+      "role": {
+        "zh": "OCR 专用",
+        "en": "OCR specialist"
+      },
+      "official_model": "zai-org/GLM-OCR",
+      "official_source_url": "https://huggingface.co/zai-org/GLM-OCR",
+      "publisher_claim_summary": "1B OCR model; publisher reports OmniDocBench 94.62 and SDK throughput.",
+      "match_confidence": "EXACT_FAMILY_RUNTIME_VARIANT",
+      "scores": {
+        "ocr": {
+          "mean": 0.0,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": null,
+        "output_tokens_per_second_mean": null
+      },
+      "failures": {
+        "truncated": 10
+      },
+      "recommendation": {
+        "zh": "仅保留为官方 OCR 流程与 Ollama 集成差异的诊断对象。",
+        "en": "Retain only to diagnose the gap between the official OCR pipeline and the Ollama integration."
+      },
+      "caution": {
+        "zh": "10/10 输出截断，RC1 OCR 得分为 0。",
+        "en": "All 10 outputs truncated and RC1 OCR score is 0."
+      }
+    },
+    {
+      "model": "granite4.1-guardian:8b",
+      "short_name": "granite4.1-guardian:8b",
+      "digest": "f82c0882cec110279601307cdd632d868e29f16eaa59947bef51096e5f740492",
+      "parameter_size": "8.4B",
+      "quantization": "Q6_K",
+      "disk_size_gib": 6.407,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools"
+      ],
+      "role": {
+        "zh": "安全分类专用",
+        "en": "safety specialist"
+      },
+      "official_model": "ibm-granite/granite-guardian-4.1-8b",
+      "official_source_url": "https://huggingface.co/ibm-granite/granite-guardian-4.1-8b",
+      "publisher_claim_summary": "8B safety/risk-detection specialist with official risk taxonomy and evaluation guidance.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "safety": {
+          "mean": 1.0,
+          "records": 20,
+          "scored_records": 20,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": null,
+        "output_tokens_per_second_mean": null
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "当前安全输入/输出分类的首选专用模型。",
+        "en": "Current first choice for dedicated input/output safety classification."
+      },
+      "caution": {
+        "zh": "只应用于安全判定，不应当作聊天模型。",
+        "en": "Use only as a safety judge, not as a chat model."
+      }
+    },
+    {
+      "model": "granite4.1:8b",
+      "short_name": "granite4.1:8b",
+      "digest": "444af1c4b2fedd6b54041aca558e7300b0b3d5c0468c44619126240323ba2852",
+      "parameter_size": "8.8B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.981,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "ibm-granite/granite-4.1-8b",
+      "official_source_url": "https://huggingface.co/ibm-granite/granite-4.1-8b",
+      "publisher_claim_summary": "Official card publishes MMLU, MMLU-Pro, HumanEval and BFCL results.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.375,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.569444,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.5,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.966667,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 10.8125,
+        "output_tokens_per_second_mean": 43.044066
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "稳定的多语言通用助手与企业文本任务候选。",
+        "en": "Stable multilingual general assistant and enterprise-text candidate."
+      },
+      "caution": {
+        "zh": "代码与工具表现中等，不是本机这两项的第一选择。",
+        "en": "Code and tools are mid-tier rather than best-in-class locally."
+      }
+    },
+    {
+      "model": "granite4:7b-a1b-h",
+      "short_name": "granite4:7b-a1b-h",
+      "digest": "566b725534ea0e9824f844abe6a78e1ab6f7357f1efb549be94908cb681513bb",
+      "parameter_size": "6.9B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 3.94,
+      "context_length": 1048576,
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "IBM Granite 4 7B-A1B family",
+      "official_source_url": "https://huggingface.co/ibm-granite",
+      "publisher_claim_summary": "Hybrid/MoE Granite family; exact Ollama artifact mapping requires release metadata.",
+      "match_confidence": "FAMILY_MATCH",
+      "scores": {
+        "code": {
+          "mean": 0.6,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.361111,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.916667,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 3.703,
+        "output_tokens_per_second_mean": 133.329446
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "速度优先的代码、翻译和工具调用候选。",
+        "en": "Speed-oriented candidate for code, translation, and tool use."
+      },
+      "caution": {
+        "zh": "通用核心分仅 0.361，且精确上游制品映射仍需确认。",
+        "en": "Core score is only 0.361 and the exact upstream artifact mapping remains uncertain."
+      }
+    },
+    {
+      "model": "hf.co/ibm-granite/granite-vision-4.1-4b-GGUF:Q4_K_M",
+      "short_name": "Granite Vision 4B",
+      "digest": "b4e09c173a61e28b963fc043aa86715045a50587a17a735529132fde8f979aa1",
+      "parameter_size": "3.4B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 3.038,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "tools",
+        "vision"
+      ],
+      "role": {
+        "zh": "视觉/多模态候选",
+        "en": "vision or multimodal candidate"
+      },
+      "official_model": "ibm-granite/granite-vision-4.1-4b",
+      "official_source_url": "https://huggingface.co/ibm-granite/granite-vision-4.1-4b",
+      "publisher_claim_summary": "4B document/vision specialist; official card provides document-understanding evaluations.",
+      "match_confidence": "EXACT_QUANTIZED_DERIVATIVE",
+      "scores": {
+        "code": {
+          "mean": 0.25,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.194444,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "ocr": {
+          "mean": 0.1,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.0,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.883333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "vision": {
+          "mean": 0.125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 5.14,
+        "output_tokens_per_second_mean": 87.757064
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "轻量文档视觉集成实验和翻译。",
+        "en": "Lightweight document-vision integration experiments and translation."
+      },
+      "caution": {
+        "zh": "视觉 0.125、OCR 0.100，当前任务上未复现强文档理解。",
+        "en": "Vision 0.125 and OCR 0.100 did not reproduce strong document understanding on current fixtures."
+      }
+    },
+    {
+      "model": "hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M",
+      "short_name": "Qwen3-8B Q4",
+      "digest": "f1ab988bb6ceec875a24553886116b82b15aa804e9cb6a374a2e5e1133dd0b7d",
+      "parameter_size": "8.19B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.682,
+      "context_length": 32768,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "Qwen/Qwen3-8B",
+      "official_source_url": "https://huggingface.co/Qwen/Qwen3-8B",
+      "publisher_claim_summary": "8.2B total, 32K native context; official card describes thinking/non-thinking modes.",
+      "match_confidence": "EXACT_QUANTIZED_DERIVATIVE",
+      "scores": {
+        "code": {
+          "mean": 0.625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.777778,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.5,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.75,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 1.0,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 13.0,
+        "output_tokens_per_second_mean": 46.703305
+      },
+      "failures": {
+        "truncated": 2
+      },
+      "recommendation": {
+        "zh": "当前最适合作为默认本地通用/Agent 基线的模型。",
+        "en": "The strongest current default for the local general/agent baseline."
+      },
+      "caution": {
+        "zh": "长上下文仅 0.250，并出现 2 次截断；仍需按任务选择。",
+        "en": "Long-context scored 0.250 with two truncations; still choose by task."
+      }
+    },
+    {
+      "model": "hf.co/tiiuae/Falcon-H1R-7B-GGUF:Q4_K_M",
+      "short_name": "Falcon-H1R-7B",
+      "digest": "7a8fccc56374707c68bd2f899aeaf06b7977a71a5ea1f34b81d4c0afecd77552",
+      "parameter_size": "7.59B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.283,
+      "context_length": 262144,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "tiiuae/Falcon-H1R-7B",
+      "official_source_url": "https://huggingface.co/tiiuae/Falcon-H1R-7B",
+      "publisher_claim_summary": "7B reasoning model; publisher reports AIME, LiveCodeBench, GPQA-D and MMLU-Pro.",
+      "match_confidence": "EXACT_QUANTIZED_DERIVATIVE",
+      "scores": {
+        "code": {
+          "mean": 0.375,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.652778,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "medical": {
+          "mean": 0.666667,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.5,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.95,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 14.0705,
+        "output_tokens_per_second_mean": 42.693971
+      },
+      "failures": {
+        "truncated": 2
+      },
+      "recommendation": {
+        "zh": "推理、通用与医疗文本的稳健对照模型。",
+        "en": "A solid comparison model for reasoning, general, and medical text tasks."
+      },
+      "caution": {
+        "zh": "代码得分 0.375，性能慢于若干 4B/混合架构模型。",
+        "en": "Code scored 0.375 and it is slower than several 4B or hybrid alternatives."
+      }
+    },
+    {
+      "model": "hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL",
+      "short_name": "SmolLM3-3B",
+      "digest": "49c1cb13df5f6647f0a1765a23d420f08a60bf844b1730054c59b271ea99804b",
+      "parameter_size": "3.08B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 1.807,
+      "context_length": 65536,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "HuggingFaceTB/SmolLM3-3B",
+      "official_source_url": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "publisher_claim_summary": "3B dual-mode reasoning model; official card publishes separate thinking and non-thinking results.",
+      "match_confidence": "EXACT_QUANTIZED_DERIVATIVE",
+      "scores": {
+        "code": {
+          "mean": 0.125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.097222,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.0,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.3,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.0,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.85,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 4.586,
+        "output_tokens_per_second_mean": 99.918998
+      },
+      "failures": {
+        "truncated": 2
+      },
+      "recommendation": {
+        "zh": "小体积、快速翻译和轻量文本处理。",
+        "en": "Small, fast model for translation and lightweight text processing."
+      },
+      "caution": {
+        "zh": "核心、代码和工具表现弱，不宜承担复杂 Agent 工作。",
+        "en": "Weak core, code, and tools performance; avoid complex agent work."
+      }
+    },
+    {
+      "model": "huggingface.co/llmware/phi-4-mini-gguf:latest",
+      "short_name": "Phi-4-mini GGUF",
+      "digest": "812893abf9e42b8b19361eff7b2f4355ccdef03bfae6283c316ca0fb286e14d0",
+      "parameter_size": "3.84B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 2.321,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "microsoft/Phi-4-mini-instruct",
+      "official_source_url": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "publisher_claim_summary": "3.8B, 128K; official card publishes MMLU and BBH results.",
+      "match_confidence": "QUANTIZED_DERIVATIVE_REPACKAGER",
+      "scores": {
+        "code": {
+          "mean": 0.2375,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.361111,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.0,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.8,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 5.039,
+        "output_tokens_per_second_mean": 80.733901
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "低占用普通问答和翻译备选。",
+        "en": "Low-footprint fallback for ordinary Q&A and translation."
+      },
+      "caution": {
+        "zh": "代码 0.237、工具 0，复杂任务收益有限。",
+        "en": "Code 0.237 and tools 0 limit its value for complex work."
+      }
+    },
+    {
+      "model": "huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest",
+      "short_name": "DS-R1-Qwen3-8B",
+      "digest": "1a41a532bd9af10aa092d04bcd0ed7a20c9f4f39bf592d9cea55f46efae6b2f9",
+      "parameter_size": "8.19B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.682,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools"
+      ],
+      "role": {
+        "zh": "推理候选",
+        "en": "reasoning candidate"
+      },
+      "official_model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "official_source_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "publisher_claim_summary": "8B distilled reasoning model with official math and reasoning evaluations.",
+      "match_confidence": "EXACT_QUANTIZED_DERIVATIVE",
+      "scores": {
+        "code": {
+          "mean": 0.6125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.0,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.0,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.43,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.0,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.916667,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 13.227,
+        "output_tokens_per_second_mean": 45.897476
+      },
+      "failures": {
+        "absolute_timeout": 2,
+        "runtime_anomaly": 7,
+        "stream_interrupted_after_output": 5,
+        "truncated": 13
+      },
+      "recommendation": {
+        "zh": "离线推理或代码草案，适合允许失败重试的研究场景。",
+        "en": "Offline reasoning or code drafts where research workflows tolerate failures."
+      },
+      "caution": {
+        "zh": "核心为 0，2 次绝对超时、7 个异常和 13 次截断。",
+        "en": "Core scored 0 with two absolute timeouts, seven anomalies, and 13 truncations."
+      }
+    },
+    {
+      "model": "kaelri/hy-mt2:7b-q4_K_M",
+      "short_name": "kaelri/hy-mt2:7b-q4_K_M",
+      "digest": "1981e6ac165f7a519ae9fd6571b78284dae89d6d8fa7bd11ab20c1c7a7f89144",
+      "parameter_size": "7.5B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.307,
+      "context_length": 262144,
+      "capabilities": [
+        "completion"
+      ],
+      "role": {
+        "zh": "翻译专用",
+        "en": "translation specialist"
+      },
+      "official_model": "tencent/Hy-MT2-7B",
+      "official_source_url": "https://huggingface.co/tencent/Hy-MT2-7B",
+      "publisher_claim_summary": "7B translation specialist with publisher-reported multilingual translation evaluations.",
+      "match_confidence": "QUANTIZED_DERIVATIVE_REPACKAGER",
+      "scores": {
+        "translation": {
+          "mean": 0.8,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": null,
+        "output_tokens_per_second_mean": null
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "专用翻译对照模型。",
+        "en": "Dedicated translation comparison model."
+      },
+      "caution": {
+        "zh": "翻译 0.800，低于本轮多个通用模型；不要外推到其他能力。",
+        "en": "Translation 0.800 trails several general models here; do not extrapolate to other capabilities."
+      }
+    },
+    {
+      "model": "lfm2.5:8b",
+      "short_name": "lfm2.5:8b",
+      "digest": "9cf756159fc2f3b9128c6a3f544ec90c5e9b8afdbb4179a57b8aea9de589cfb2",
+      "parameter_size": "8.5B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.802,
+      "context_length": 128000,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "LiquidAI/LFM2.5-8B-A1B",
+      "official_source_url": "https://huggingface.co/LiquidAI/LFM2.5-8B-A1B",
+      "publisher_claim_summary": "8B-A1B efficient hybrid model; official card reports instruction, code and tool-use evaluations.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.375,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.072222,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.0,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.5,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.75,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.883333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 6.2735,
+        "output_tokens_per_second_mean": 137.066797
+      },
+      "failures": {
+        "truncated": 2
+      },
+      "recommendation": {
+        "zh": "速度优先的工具调用与推理候选。",
+        "en": "Speed-first candidate for tool use and reasoning."
+      },
+      "caution": {
+        "zh": "核心仅 0.072、长上下文为 0，不适合作为通用默认模型。",
+        "en": "Core 0.072 and long-context 0 make it unsuitable as a general default."
+      }
+    },
+    {
+      "model": "llama3.2:3b",
+      "short_name": "llama3.2:3b",
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "parameter_size": "3.2B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 1.881,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "meta-llama/Llama-3.2-3B-Instruct",
+      "official_source_url": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "publisher_claim_summary": "3B instruction model with official multilingual text evaluations.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.6125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.277778,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.866667,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 4.531,
+        "output_tokens_per_second_mean": 97.052676
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "轻量代码、工具调用和多语言文本。",
+        "en": "Lightweight code, tool use, and multilingual text work."
+      },
+      "caution": {
+        "zh": "核心 0.278，复杂指令可靠性有限。",
+        "en": "Core 0.278 indicates limited reliability on complex instructions."
+      }
+    },
+    {
+      "model": "medgemma1.5:4b",
+      "short_name": "medgemma1.5:4b",
+      "digest": "433252621ab154668b5d8be6aff6c1b771bacba045e46e6193da8d6ad1630f2c",
+      "parameter_size": "4.3B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 3.11,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "role": {
+        "zh": "医疗/多模态专用",
+        "en": "medical/multimodal specialist"
+      },
+      "official_model": "Google MedGemma 1.5 4B",
+      "official_source_url": "https://developers.google.com/health-ai-developer-foundations/medgemma/model-card",
+      "publisher_claim_summary": "4B medical multimodal specialist; official guidance requires task-specific validation.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "medical": {
+          "mean": 0.0,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "ocr": {
+          "mean": 0.0,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": null,
+        "output_tokens_per_second_mean": null
+      },
+      "failures": {
+        "truncated": 1
+      },
+      "recommendation": {
+        "zh": "仅用于医疗模型集成诊断和未来定向补测。",
+        "en": "Use only for medical-model integration diagnosis and future targeted retesting."
+      },
+      "caution": {
+        "zh": "医疗与 OCR 均为 0；不得据此用于真实医疗决策。",
+        "en": "Medical and OCR both scored 0; never use this result for real clinical decisions."
+      }
+    },
+    {
+      "model": "minicpm-v4.6:latest",
+      "short_name": "minicpm-v4.6",
+      "digest": "e95583acac773b45d95469c069db44808c87295f924183f4c942d52616b2d132",
+      "parameter_size": "752.16M",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 1.525,
+      "context_length": 262144,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools",
+        "vision"
+      ],
+      "role": {
+        "zh": "视觉/多模态候选",
+        "en": "vision or multimodal candidate"
+      },
+      "official_model": "openbmb/MiniCPM-V-4_6",
+      "official_source_url": "https://huggingface.co/openbmb/MiniCPM-V-4_6",
+      "publisher_claim_summary": "Multimodal MiniCPM-V 4.6 family; local parameter metadata should not be treated as authoritative provenance.",
+      "match_confidence": "FAMILY_MATCH_RUNTIME_METADATA_ODD",
+      "scores": {
+        "code": {
+          "mean": 0.0875,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.097222,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.0,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "ocr": {
+          "mean": 0.0,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.4,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.5,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.933333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "vision": {
+          "mean": 0.0,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 3.4375,
+        "output_tokens_per_second_mean": 208.428566
+      },
+      "failures": {
+        "truncated": 2
+      },
+      "recommendation": {
+        "zh": "极快的翻译和轻量文本候选。",
+        "en": "Extremely fast candidate for translation and lightweight text."
+      },
+      "caution": {
+        "zh": "视觉/OCR 为 0，且本地参数元数据存在身份异常。",
+        "en": "Vision/OCR scored 0 and local parameter metadata has identity anomalies."
+      }
+    },
+    {
+      "model": "ministral-3:8b",
+      "short_name": "ministral-3:8b",
+      "digest": "1922accd5827ebe6829e536369195db25eaf664528dc66206d646ea3bb386b71",
+      "parameter_size": "8.9B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 5.609,
+      "context_length": 262144,
+      "capabilities": [
+        "completion",
+        "tools",
+        "vision"
+      ],
+      "role": {
+        "zh": "视觉/多模态候选",
+        "en": "vision or multimodal candidate"
+      },
+      "official_model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "official_source_url": "https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512",
+      "publisher_claim_summary": "8B instruction model; official card describes long-context and multimodal capabilities.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.5125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.486111,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "ocr": {
+          "mean": 0.0,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.966667,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "vision": {
+          "mean": 0.125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 11.945,
+        "output_tokens_per_second_mean": 38.889081
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "均衡的多语言、代码、工具和多模态候选。",
+        "en": "Balanced multilingual, code, tool, and multimodal candidate."
+      },
+      "caution": {
+        "zh": "视觉绝对分只有 0.125，速度也不占优。",
+        "en": "Absolute vision score is only 0.125 and speed is not a strength."
+      }
+    },
+    {
+      "model": "mistral:7b",
+      "short_name": "mistral:7b",
+      "digest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf",
+      "parameter_size": "7.2B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.073,
+      "context_length": 32768,
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "mistralai/Mistral-7B-Instruct-v0.3",
+      "official_source_url": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3",
+      "publisher_claim_summary": "7B instruction family with function-calling support; local tag revision is not explicit.",
+      "match_confidence": "FAMILY_ONLY_LOCAL_REVISION_UNVERIFIED",
+      "scores": {
+        "code": {
+          "mean": 0.35,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.361111,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.0,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.25,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.9,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 10.383,
+        "output_tokens_per_second_mean": 52.131946
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "稳定的传统 7B 多语言基线。",
+        "en": "Stable traditional 7B multilingual baseline."
+      },
+      "caution": {
+        "zh": "工具 0.250、长上下文 0，已被更新模型在多项任务超过。",
+        "en": "Tools 0.250 and long-context 0 trail newer models on several tasks."
+      }
+    },
+    {
+      "model": "nemotron-3-nano:4b",
+      "short_name": "nemotron-3-nano:4b",
+      "digest": "6cc467f054393a55e98a74098abde0c762ffb6d1d8cd64becf30458f38886197",
+      "parameter_size": "4.0B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 2.643,
+      "context_length": 262144,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "nvidia/NVIDIA-Nemotron-3-Nano-4B-FP8",
+      "official_source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-FP8",
+      "publisher_claim_summary": "4B efficient model; official card provides reasoning, coding and agentic evaluations.",
+      "match_confidence": "FAMILY_MATCH_DIFFERENT_QUANTIZATION",
+      "scores": {
+        "code": {
+          "mean": 0.5,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.625,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "medical": {
+          "mean": 0.833333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.4,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.375,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.733333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 5.1565,
+        "output_tokens_per_second_mean": 74.661793
+      },
+      "failures": {
+        "tool_not_found": 1
+      },
+      "recommendation": {
+        "zh": "4B 级通用、医疗文本和中速 Agent 任务的优先候选。",
+        "en": "Priority 4B candidate for general, medical-text, and medium-speed agent tasks."
+      },
+      "caution": {
+        "zh": "翻译较弱且出现 1 次未知工具调用；医疗结果不代表临床安全。",
+        "en": "Translation is weaker and one unknown tool call occurred; medical results do not imply clinical safety."
+      }
+    },
+    {
+      "model": "olmo-3:7b-instruct",
+      "short_name": "olmo-3:7b-instruct",
+      "digest": "ea72df8c85d75c6783ab0d00278803c53a634fc9d0fe38d3fd4ab6f35adbdbb2",
+      "parameter_size": "7.3B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.165,
+      "context_length": 65536,
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "allenai/Olmo-3-7B-Instruct",
+      "official_source_url": "https://huggingface.co/allenai/Olmo-3-7B-Instruct",
+      "publisher_claim_summary": "7B instruction variant with official evaluation tables and open training documentation.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.25,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.527778,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.5,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.933333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 8.492,
+        "output_tokens_per_second_mean": 44.196813
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "开放研究、通用文本和翻译的可解释对照。",
+        "en": "Transparent comparison model for open research, general text, and translation."
+      },
+      "caution": {
+        "zh": "代码 0.250，综合表现未达到本轮最强组。",
+        "en": "Code 0.250 and overall track results do not reach the strongest group."
+      }
+    },
+    {
+      "model": "olmo-3:7b-think",
+      "short_name": "olmo-3:7b-think",
+      "digest": "b8d4c92ac9c103f858f4f09a418b62de8ca1abf1b20b4020006346535634dd35",
+      "parameter_size": "7.3B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.165,
+      "context_length": 65536,
+      "capabilities": [
+        "completion",
+        "thinking"
+      ],
+      "role": {
+        "zh": "推理候选",
+        "en": "reasoning candidate"
+      },
+      "official_model": "allenai/Olmo-3-7B-Think",
+      "official_source_url": "https://huggingface.co/allenai/Olmo-3-7B-Think",
+      "publisher_claim_summary": "7B thinking variant with official reasoning evaluations.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.75,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.569444,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.43,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.6,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 14.1405,
+        "output_tokens_per_second_mean": 43.094604
+      },
+      "failures": {
+        "absolute_timeout": 1,
+        "runtime_anomaly": 1,
+        "truncated": 1,
+        "truncated_before_final": 7
+      },
+      "recommendation": {
+        "zh": "允许较长等待时的代码与推理研究。",
+        "en": "Code and reasoning research when longer waits are acceptable."
+      },
+      "caution": {
+        "zh": "7 次 final 前截断和 1 次超时，不适合时间敏感交互。",
+        "en": "Seven before-final truncations and one timeout make it unsuitable for latency-sensitive interaction."
+      }
+    },
+    {
+      "model": "openbmb/minicpm5:Q4_K_M",
+      "short_name": "MiniCPM5-1B",
+      "digest": "08239e8f70e09fc079ff3b5c4f011fd846d452ae9ba4e4b4c40e526bd4950ded",
+      "parameter_size": "1.1B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 0.641,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "openbmb/MiniCPM5-1B",
+      "official_source_url": "https://huggingface.co/openbmb/MiniCPM5-1B",
+      "publisher_claim_summary": "1.08B total hybrid reasoning/tool model with 131K context claim.",
+      "match_confidence": "EXACT_QUANTIZED_DERIVATIVE",
+      "scores": {
+        "code": {
+          "mean": 0.6875,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.138889,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.0,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.23,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.5,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.85,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 2.1245,
+        "output_tokens_per_second_mean": 250.481413
+      },
+      "failures": {
+        "tool_loop_limit": 2,
+        "truncated": 9
+      },
+      "recommendation": {
+        "zh": "超轻量、极高吞吐的代码和翻译候选。",
+        "en": "Ultra-light, very high-throughput candidate for code and translation."
+      },
+      "caution": {
+        "zh": "核心与推理较弱，并有 9 次截断和 2 次工具循环上限。",
+        "en": "Weak core/reasoning with nine truncations and two tool-loop limits."
+      }
+    },
+    {
+      "model": "ornith:9b",
+      "short_name": "ornith:9b",
+      "digest": "a75697c145891910e312c95e4a9fc1ccb8653e5ef543b23b0403a4665b82fd91",
+      "parameter_size": "9.0B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 5.243,
+      "context_length": 262144,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "UNVERIFIED",
+      "official_source_url": null,
+      "publisher_claim_summary": "No authoritative exact model card was matched during this audit.",
+      "match_confidence": "UNVERIFIED_LOCAL_TAG",
+      "scores": {
+        "code": {
+          "mean": 0.7625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.627778,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.0,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.5,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.933333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 11.664,
+        "output_tokens_per_second_mean": 40.055988
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "代码、通用和翻译任务的强力本地候选。",
+        "en": "Strong local candidate for code, general, and translation tasks."
+      },
+      "caution": {
+        "zh": "推理为 0，且尚未匹配到可信的精确官方模型卡。",
+        "en": "Reasoning scored 0 and no authoritative exact model card was matched."
+      }
+    },
+    {
+      "model": "phi4-mini-reasoning:latest",
+      "short_name": "phi4-mini-reasoning",
+      "digest": "3ca8c2865ce91b6be853a25e56edfefa4f473db55a391611989b753ecf0fa419",
+      "parameter_size": "3.8B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 2.936,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "role": {
+        "zh": "推理候选",
+        "en": "reasoning candidate"
+      },
+      "official_model": "microsoft/Phi-4-mini-reasoning",
+      "official_source_url": "https://huggingface.co/microsoft/Phi-4-mini-reasoning",
+      "publisher_claim_summary": "3.8B, 128K reasoning specialist trained for mathematical reasoning.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.3625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.097222,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.0,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.4,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.7,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 9.8285,
+        "output_tokens_per_second_mean": 65.26982
+      },
+      "failures": {
+        "truncated": 9
+      },
+      "recommendation": {
+        "zh": "数学推理实验和轻量离线分析。",
+        "en": "Mathematical reasoning experiments and lightweight offline analysis."
+      },
+      "caution": {
+        "zh": "9 次截断，核心、代码和工具表现均有限。",
+        "en": "Nine truncations with limited core, code, and tools performance."
+      }
+    },
+    {
+      "model": "phi4-mini:latest",
+      "short_name": "phi4-mini",
+      "digest": "78fad5d182a7c33065e153a5f8ba210754207ba9d91973f57dffa7f487363753",
+      "parameter_size": "3.8B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 2.321,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "microsoft/Phi-4-mini-instruct",
+      "official_source_url": "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+      "publisher_claim_summary": "3.8B, 128K instruction model; official card publishes MMLU and BBH results.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.1125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.277778,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "medical": {
+          "mean": 0.166667,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.0,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.833333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 4.789,
+        "output_tokens_per_second_mean": 80.818837
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "快速普通文本与翻译备选。",
+        "en": "Fast fallback for ordinary text and translation."
+      },
+      "caution": {
+        "zh": "核心 0.278、代码 0.113、工具 0。",
+        "en": "Core 0.278, code 0.113, and tools 0."
+      }
+    },
+    {
+      "model": "qwen3-embedding:latest",
+      "short_name": "qwen3-embedding",
+      "digest": "64b933495768fbd3b87c20583d379728a07471e0c66733a9df87cd1901b3c44b",
+      "parameter_size": "7.6B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.356,
+      "context_length": 40960,
+      "capabilities": [
+        "embedding",
+        "tools"
+      ],
+      "role": {
+        "zh": "向量嵌入专用",
+        "en": "embedding specialist"
+      },
+      "official_model": "Qwen/Qwen3-Embedding-8B",
+      "official_source_url": "https://huggingface.co/Qwen/Qwen3-Embedding-8B",
+      "publisher_claim_summary": "8B embedding specialist; official card reports multilingual MTEB results.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "embedding": {
+          "mean": 1.0,
+          "records": 12,
+          "scored_records": 12,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": null,
+        "output_tokens_per_second_mean": null
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "当前本地语义检索和向量嵌入的明确首选。",
+        "en": "Clear current choice for local semantic retrieval and embeddings."
+      },
+      "caution": {
+        "zh": "小型夹具 1.000 不等于复现官方 MTEB；不能用于文本生成。",
+        "en": "A perfect small-fixture score does not reproduce MTEB and the model is not for text generation."
+      }
+    },
+    {
+      "model": "qwen3-vl:8b",
+      "short_name": "qwen3-vl:8b",
+      "digest": "901cae73216286ea8c5aba8b46d307ff7188f737285ec500c795a12f05225d28",
+      "parameter_size": "8.8B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 5.719,
+      "context_length": 262144,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools",
+        "vision"
+      ],
+      "role": {
+        "zh": "视觉/多模态候选",
+        "en": "vision or multimodal candidate"
+      },
+      "official_model": "Qwen/Qwen3-VL-8B-Instruct",
+      "official_source_url": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct",
+      "publisher_claim_summary": "8B vision-language instruction model with official multimodal evaluations.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.8625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.569444,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "ocr": {
+          "mean": 0.1,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.4,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.75,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.7,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "vision": {
+          "mean": 0.125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 16.3125,
+        "output_tokens_per_second_mean": 38.170342
+      },
+      "failures": {
+        "absolute_timeout": 2,
+        "runtime_anomaly": 2,
+        "truncated": 1,
+        "truncated_before_final": 2
+      },
+      "recommendation": {
+        "zh": "当前代码与工具任务很强的多模态候选。",
+        "en": "Strong current code and tools candidate with multimodal capability."
+      },
+      "caution": {
+        "zh": "视觉仅 0.125，且有超时与 final 前截断；不要因模型名假定视觉可靠。",
+        "en": "Vision is only 0.125 with timeouts and before-final truncation; do not infer visual reliability from the name."
+      }
+    },
+    {
+      "model": "qwen3.5:4b",
+      "short_name": "qwen3.5:4b",
+      "digest": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+      "parameter_size": "4.7B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 3.157,
+      "context_length": 262144,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools",
+        "vision"
+      ],
+      "role": {
+        "zh": "视觉/多模态候选",
+        "en": "vision or multimodal candidate"
+      },
+      "official_model": "Qwen/Qwen3.5-4B",
+      "official_source_url": "https://huggingface.co/Qwen/Qwen3.5-4B",
+      "publisher_claim_summary": "4B current Qwen family model; official card publishes capability and benchmark tables.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.3,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.611111,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "medical": {
+          "mean": 0.5,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "ocr": {
+          "mean": 0.1,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.3,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.533333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "vision": {
+          "mean": 0.125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 7.1015,
+        "output_tokens_per_second_mean": 67.765336
+      },
+      "failures": {
+        "truncated_before_final": 16
+      },
+      "recommendation": {
+        "zh": "4B 级通用、工具和轻量多模态候选。",
+        "en": "4B-class candidate for general, tools, and lightweight multimodal work."
+      },
+      "caution": {
+        "zh": "16 次 final 前截断；长输出必须显式控制。",
+        "en": "Sixteen before-final truncations require strict control of long outputs."
+      }
+    },
+    {
+      "model": "qwen3.5:9b",
+      "short_name": "qwen3.5:9b",
+      "digest": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+      "parameter_size": "9.7B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 6.142,
+      "context_length": 262144,
+      "capabilities": [
+        "completion",
+        "thinking",
+        "tools",
+        "vision"
+      ],
+      "role": {
+        "zh": "视觉/多模态候选",
+        "en": "vision or multimodal candidate"
+      },
+      "official_model": "Qwen/Qwen3.5-9B",
+      "official_source_url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+      "publisher_claim_summary": "9B current Qwen family model; official card publishes capability and benchmark tables.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.1375,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.694444,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.5,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "medical": {
+          "mean": 0.666667,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "ocr": {
+          "mean": 0.0,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "reasoning": {
+          "mean": 0.4,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.516667,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        },
+        "vision": {
+          "mean": 0.125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 13.1795,
+        "output_tokens_per_second_mean": 41.210048
+      },
+      "failures": {
+        "truncated_before_final": 9
+      },
+      "recommendation": {
+        "zh": "通用和长上下文任务的高质量候选。",
+        "en": "High-quality candidate for general and long-context tasks."
+      },
+      "caution": {
+        "zh": "代码和翻译明显弱于同级候选，并有 9 次 final 前截断。",
+        "en": "Code and translation trail peers, with nine before-final truncations."
+      }
+    },
+    {
+      "model": "rnj-1:latest",
+      "short_name": "rnj-1",
+      "digest": "d20e29ab8d0f11423b1e8da33764c8bdafc1d0abbb9971f68edd0f6d4176435f",
+      "parameter_size": "8.3B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 4.763,
+      "context_length": 32768,
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "EssentialAI/rnj-1",
+      "official_source_url": "https://huggingface.co/EssentialAI/rnj-1",
+      "publisher_claim_summary": "8B code/STEM family; official card distinguishes base and instruction variants.",
+      "match_confidence": "FAMILY_ONLY_BASE_VS_INSTRUCT_UNVERIFIED",
+      "scores": {
+        "code": {
+          "mean": 0.675,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.402778,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.25,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.625,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.933333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 2.9685,
+        "output_tokens_per_second_mean": 43.754814
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "响应快、适合代码、STEM 和翻译的实用模型。",
+        "en": "Responsive practical model for code, STEM, and translation."
+      },
+      "caution": {
+        "zh": "核心只有 0.403，仍需强提示和结果校验。",
+        "en": "Core is only 0.403, so strong prompting and validation remain necessary."
+      }
+    },
+    {
+      "model": "shieldgemma:2b",
+      "short_name": "shieldgemma:2b",
+      "digest": "5aad5044d142232b67c4d531aecc022165f06ba40235a60b3a77824c66dfc360",
+      "parameter_size": "2.6B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 1.591,
+      "context_length": 8192,
+      "capabilities": [
+        "completion"
+      ],
+      "role": {
+        "zh": "安全分类专用",
+        "en": "safety specialist"
+      },
+      "official_model": "google/shieldgemma-2b",
+      "official_source_url": "https://huggingface.co/google/shieldgemma-2b",
+      "publisher_claim_summary": "2B safety content-moderation specialist targeting four harm categories.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "safety": {
+          "mean": 0.75,
+          "records": 20,
+          "scored_records": 20,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": null,
+        "output_tokens_per_second_mean": null
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "资源较低时的安全内容初筛。",
+        "en": "Low-resource first-pass safety screening."
+      },
+      "caution": {
+        "zh": "安全准确率 0.750，低于 Granite Guardian；关键场景需复核。",
+        "en": "Safety accuracy 0.750 trails Granite Guardian; review high-impact decisions."
+      }
+    },
+    {
+      "model": "smollm2:1.7b",
+      "short_name": "smollm2:1.7b",
+      "digest": "cef4a1e09247f018ca0c482ad4c2ce1474aba5e87f245dacf97f07948d05d8b4",
+      "parameter_size": "1.7B",
+      "quantization": "Q8_0",
+      "disk_size_gib": 1.695,
+      "context_length": 8192,
+      "capabilities": [
+        "completion",
+        "tools"
+      ],
+      "role": {
+        "zh": "通用候选",
+        "en": "general candidate"
+      },
+      "official_model": "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "official_source_url": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "publisher_claim_summary": "1.7B compact instruction model with official small-model evaluations.",
+      "match_confidence": "EXACT_FAMILY_RUNTIME_REVISION_UNVERIFIED",
+      "scores": {
+        "code": {
+          "mean": 0.45,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "core": {
+          "mean": 0.236111,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0
+        },
+        "long_context": {
+          "mean": 0.0,
+          "records": 2,
+          "scored_records": 2,
+          "coverage": 1.0
+        },
+        "tools": {
+          "mean": 0.125,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.783333,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": 4.0155,
+        "output_tokens_per_second_mean": 113.638194
+      },
+      "failures": {
+        "tool_loop_limit": 5
+      },
+      "recommendation": {
+        "zh": "低资源文本生成、翻译和简单代码草案。",
+        "en": "Low-resource text generation, translation, and simple code drafts."
+      },
+      "caution": {
+        "zh": "核心和工具较弱，并出现 5 次工具循环上限。",
+        "en": "Weak core/tools performance with five tool-loop limits."
+      }
+    },
+    {
+      "model": "starcoder2:7b",
+      "short_name": "starcoder2:7b",
+      "digest": "1550ab21b10d3b3a53bcb13e628f3de773d9dbabe814d2315e5c0d8b9f3ef7e6",
+      "parameter_size": "7B",
+      "quantization": "Q4_0",
+      "disk_size_gib": 3.765,
+      "context_length": 16384,
+      "capabilities": [
+        "completion",
+        "insert"
+      ],
+      "role": {
+        "zh": "代码补全专用",
+        "en": "code-completion specialist"
+      },
+      "official_model": "bigcode/starcoder2-7b",
+      "official_source_url": "https://huggingface.co/bigcode/starcoder2-7b",
+      "publisher_claim_summary": "7B code-completion base model, not an instruction-tuned chat model; official card reports HumanEval.",
+      "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
+      "scores": {
+        "code": {
+          "mean": 0.0,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": null,
+        "output_tokens_per_second_mean": null
+      },
+      "failures": {
+        "truncated": 1
+      },
+      "recommendation": {
+        "zh": "仅在专门的代码补全/FIM 流程中继续研究。",
+        "en": "Continue only in a dedicated code-completion or FIM workflow."
+      },
+      "caution": {
+        "zh": "它是基础补全模型，RC1 指令式纯函数代码得分为 0，当前比较并不匹配其原生用途。",
+        "en": "It is a base completion model; RC1 instruction-style pure-function code scored 0 and does not match its native use."
+      }
+    },
+    {
+      "model": "translategemma:latest",
+      "short_name": "translategemma",
+      "digest": "c49d986b0764f5881c476eb21435bb62b7abc62347aab3d4a6071e811be510a1",
+      "parameter_size": "4.3B",
+      "quantization": "Q4_K_M",
+      "disk_size_gib": 3.072,
+      "context_length": 131072,
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "role": {
+        "zh": "翻译专用",
+        "en": "translation specialist"
+      },
+      "official_model": "google/translategemma-4b-it",
+      "official_source_url": "https://huggingface.co/google/translategemma-4b-it",
+      "publisher_claim_summary": "4B translation specialist; official model card defines multimodal translation usage.",
+      "match_confidence": "FAMILY_MATCH_LOCAL_TAG_SIZE_4B",
+      "scores": {
+        "ocr": {
+          "mean": 0.0,
+          "records": 10,
+          "scored_records": 10,
+          "coverage": 1.0
+        },
+        "translation": {
+          "mean": 0.9,
+          "records": 6,
+          "scored_records": 6,
+          "coverage": 1.0
+        }
+      },
+      "performance": {
+        "wall_seconds_p50": null,
+        "output_tokens_per_second_mean": null
+      },
+      "failures": {},
+      "recommendation": {
+        "zh": "稳定的专用翻译模型和翻译质量对照。",
+        "en": "Stable dedicated translation model and translation-quality comparator."
+      },
+      "caution": {
+        "zh": "不要把其 OCR 为 0 外推为翻译能力问题，也不要当通用聊天模型。",
+        "en": "Do not treat OCR 0 as a translation failure or use it as a general chat model."
+      }
+    }
+  ]
+}
