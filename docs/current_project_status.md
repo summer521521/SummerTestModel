@@ -1,5 +1,35 @@
 # SummerTestModel 当前项目任务总账
 
+## 2026-08-12 RC1 当前状态
+
+当前正式开发体系为 **SummerTestModel Benchmark 1.0-rc1**。旧 V1、20260730 incremental 和 V2 Stable Snapshot 均为 `Legacy Experimental Evidence`，保留用于审计，但不继承旧分数、不与 RC1 混榜。
+
+### 已完成
+
+- 本地正式 baseline 已覆盖 39/39 个计划模型，共 1938 条逻辑记录和 1938 份私有 raw；缺失 raw、重复 inference 和未收口基础设施失败均为 0。
+- 评分器 `1.0-rc1.1` 已修复 `CORE_PRACT_04` 对对象数组调用 `set()` 的崩溃，三条旧 scoring error 均通过 offline regrade 修复，模型回答未改变、未补跑。
+- 云端参考测试独立完成：2 个可用模型 142 条任务记录；3 个服务端 HTTP 410 条目保留为 availability evidence，不作为能力 0 分。
+- 已生成独立赛道、性能、失败分类和官方来源映射；没有 overall universal score，specialist 不因不适用赛道扣分。
+- 已提供新增单个模型的机械流程：显式指定现有 reference assignment，只跑新 digest，逐题落盘、可 resume、raw 私有、结果追加导出。
+
+### 当前限制
+
+- 这是本机 practical usability snapshot，不是严格控制变量实验。Ollama 版本、量化、digest、机器和运行日期被记录；patch drift 本身不再是 blocker。
+- 7 条 absolute timeout、104 条 truncation-related 和 19 条 runtime anomaly 是当前运行事实；不可把它们改写成网络错误。
+- Vision/OCR 题量小且评分严格，当前结果标为 experimental。
+- 官方 model card 数据和 RC1 采用不同题库、runtime、精度与 scoring，只能作为发布者声明背景，不能数值相减或宣称复现。
+- 模型 retention 全部为 `UNASSESSED`，未做 keeper/dominated/淘汰判断。
+
+### 保留与清理
+
+- 必须保留：RC1 private raw/state、sanitized public results、冻结 manifest/private benchmark、inventory、历史 V1/V2 evidence、日志和 handoff。
+- 可重建缓存（`__pycache__`、`.pytest_cache`）不纳入 Git；历史 benchmark 和私有 evidence 不因目录大而删除。
+- 真正迁移或删除 legacy evidence 仍需用户单独批准，详见 `docs/legacy_cleanup_plan.md`。
+
+---
+
+以下为 V2 收口时的历史审计记录。
+
 ## 审计范围
 
 本账基于仓库规则文件、README、`model_report.md`、V1 results、20260730 incremental run、20260731 V2 smoke、20260731 V2 comprehensive、`runs/derived`、runner/scorer/validation scripts、run state/logs/manifests、Git history 和当前工作树整理。历史 raw response 只读保留。
@@ -35,6 +65,6 @@
 
 当前唯一需要在发布前完成的阻塞项是：完成派生报告、工作簿、JSON/CSV/XLSX、raw hash、隐私扫描和 Git diff 验证。Ollama 连接拒绝本身不是发布 blocker，因为已有完整错误证据且不会进入能力零分。
 
-## 发布判定
+## 历史发布判定
 
 本次发布名称为 **SummerTestModel V2 Stable Snapshot**：它是 existing-data-first 的、诚实的部分覆盖快照，不声称永久 benchmark 完成或全模型可比。Future work requires user review before implementation.

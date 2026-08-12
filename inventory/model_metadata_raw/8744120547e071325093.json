@@ -1,0 +1,12 @@
+{
+  "model": "gpt-oss:120b-cloud",
+  "digest": "569662207105c69bb0eca2f79a3fdf8691ad6301def477a5ec66f8e8bae237e3",
+  "modelfile": null,
+  "template": null,
+  "system": null,
+  "capabilities": [
+    "completion",
+    "tools",
+    "thinking"
+  ]
+}

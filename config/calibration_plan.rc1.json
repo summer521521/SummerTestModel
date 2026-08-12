@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "benchmark_version": "1.0-rc1",
+  "mode": "mock_or_explicit_user_authorization_only",
+  "calibration_approved": false,
+  "entries": [
+    {"model": "nemotron-3-nano:4b", "task_ids": ["CORE_FMT_01", "CORE_MATH_01", "CODE_01", "TRANS_01", "CTX8_01", "PERF_01", "TOOL_01"]},
+    {"model": "olmo-3:7b-think", "task_ids": ["RSN_02", "RSN_04"]},
+    {"model": "functiongemma:270m", "task_ids": ["TOOL_01", "TOOL_04"]},
+    {"model": "qwen3.5:4b", "task_ids": ["VIS_01", "OCR_01"]},
+    {"model": "qwen3-embedding:latest", "task_ids": ["EMB_Q01"]},
+    {"model": "shieldgemma:2b", "task_ids": ["SAFE01", "UNSAFE01"]},
+    {"model": "granite4.1-guardian:8b", "task_ids": ["SAFE01", "UNSAFE01"]}
+  ],
+  "semantic_correctness_is_not_a_gate": true,
+  "gates": ["runtime_path", "raw_persistence", "scorer_path", "thinking_separation", "tool_loop", "image_path", "embed_path", "safety_parser", "resume"]
+}

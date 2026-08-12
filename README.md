@@ -1,10 +1,56 @@
 # SummerTestModel
 
-A reproducible benchmark set for comparing local and cloud Ollama models on practical agent tasks. The benchmark focuses on small local models up to about 9B parameters plus selected cloud models connected through Ollama.
+A practical, reproducible benchmark for interesting and capable small Ollama models on one consumer Windows laptop. The formal RC1 baseline focuses on installed local models at or below roughly 9B parameters; selected cloud models are reported only as a separate reference scope.
+
+## Current release candidate: Benchmark 1.0-rc1
+
+The current snapshot is a real-machine usability study, not a tightly controlled laboratory benchmark. The Ollama version, model digest and quantization, machine profile, task/scorer version, and run date are recorded with each run. A later Ollama patch release is not automatically a blocker; API/capability failure, corrupt evidence, manifest mismatch, or missing private payload remains blocking.
+
+- Local baseline: 39/39 planned models, 1,938 task records, 1,938 private raw files, no missing raw and no duplicate inference key.
+- Publication scorer: `1.0-rc1.1`; three `CORE_PRACT_04` scorer crashes were fixed and all raw evidence was regraded offline without model reruns.
+- Runtime outcomes: 7 absolute timeouts, 104 truncation-related records, 19 runtime anomalies, 0 unresolved scoring errors, and 0 infrastructure-incomplete records.
+- Cloud reference: `gpt-oss:120b-cloud` and `minimax-m3:cloud` completed 142 tasks. Three other catalog entries returned provider HTTP 410 and are availability failures, not capability zeroes.
+- No universal overall score is produced. Core, reasoning, code, translation, tools, vision, OCR, long context, embedding, safety, medical, and performance are interpreted separately.
+- Vision/OCR remain experimental. Retention is still `UNASSESSED` for every model.
+
+Start with the [RC1 results report](docs/rc1_results.md), [failure analysis](docs/rc1_failure_analysis.md), [official-source comparison policy](docs/official_claims_comparison.md), and machine-readable [track scores](public_results/rc1_track_scores.csv). The sanitized local and cloud records are in [public_results](public_results/); immutable inference raw remains under Git-ignored `private_runs/`.
+
+## Add one model later
+
+Adding a model does not require rerunning the existing baseline. The incremental tool records the exact installed digest, requires the user to select an existing frozen reference assignment, validates declared capabilities, runs only the new model, checkpoints every task, resumes without duplicating completed inference, and exports a new sanitized result file.
+
+```powershell
+python scripts/incremental_model.py inspect --model "new-model:tag"
+python scripts/incremental_model.py prepare --model "new-model:tag" --reference-model "existing-model:tag"
+python scripts/incremental_model.py run --model "new-model:tag" --reference-model "existing-model:tag" --allow-inference
+```
+
+See [Incremental model workflow](docs/INCREMENTAL_MODELS.md). The reference choice is explicit: the executor never guesses capabilities from a model name and never invents new tasks or scorer rules.
+
+## Repository map
+
+```text
+config/                    # frozen RC1 manifests, profiles and policies
+private_benchmark/         # private tasks/GT/specs; Git ignored
+private_runs/              # immutable inference evidence/state; Git ignored
+public_results/            # sanitized derived result snapshots and CSVs
+scripts/rc1_runner.py      # formal checkpoint/resume execution pipeline
+scripts/incremental_model.py
+inventory/                 # installed digests/capabilities and official-source map
+docs/                      # current reports, failure analysis and workflows
+benchmark_20260629/        # preserved legacy experimental evidence
+legacy_evidence/           # local-only pre-RC1 evidence recovered during consolidation
+```
+
+## Legacy experimental evidence
+
+Everything below this heading belongs to older V1/V2/incremental systems. Their scores use different tasks and scorers and must not be mixed with Benchmark 1.0-rc1.
+
+Additional pre-RC1 files recovered from the former outer workspace are catalogued in [legacy_evidence](legacy_evidence/README.md). They are preserved for auditability, not as current recommendations or comparable benchmark scores.
 
 ![Latest safe non-code score chart](docs/score_chart_20260730.svg)
 
-## Summary
+### V1 summary
 
 - Best overall callable model in this run: `gpt-oss:120b-cloud` with 59/70.
 - Best local model in this run: `ornith:9b` with 52/70.
@@ -13,7 +59,7 @@ A reproducible benchmark set for comparing local and cloud Ollama models on prac
 - Models that require subscription access were removed from this published dataset and are not treated as tested.
 - Scores are automatic first-pass scores. They are useful for regression tracking and triage, but high-impact conclusions should still be reviewed manually.
 
-## Newly Added Models - 2026-07-01
+### Newly Added Models - 2026-07-01
 
 | Model | Score | Overall Rank |
 | --- | --- | --- |
@@ -23,7 +69,7 @@ A reproducible benchmark set for comparing local and cloud Ollama models on prac
 | `huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest` | 28/70 | 20 |
 | `qwen3.5:4b` | 7/70 | 26 |
 
-## Test Content
+### Test Content
 
 The suite contains seven 10-point tasks:
 
@@ -39,7 +85,7 @@ The suite contains seven 10-point tasks:
 
 Full prompts are in [benchmark_20260629/test_suite.md](benchmark_20260629/test_suite.md).
 
-## Test Process
+### Test Process
 
 - Runner: [benchmark.py](benchmark_20260629/scripts/benchmark.py).
 - Interface: Ollama local API `/api/generate`.
@@ -48,7 +94,7 @@ Full prompts are in [benchmark_20260629/test_suite.md](benchmark_20260629/test_s
 - Machine metadata: [machine.json](benchmark_20260629/results/machine.json).
 - Scored outputs: [scores.csv](benchmark_20260629/results/scores.csv) and [scores.xlsx](benchmark_20260629/results/scores.xlsx).
 
-## Test Environment
+### Test Environment
 
 | Item | Value |
 | --- | --- |
@@ -61,7 +107,7 @@ Full prompts are in [benchmark_20260629/test_suite.md](benchmark_20260629/test_s
 
 Machine identifiers, usernames, absolute local paths, shell tokens, and temporary directories are intentionally not included.
 
-## Overall Results
+### Overall Results
 
 | Rank | Model | Type | Score | Percent | Errors | Avg seconds |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -92,7 +138,7 @@ Machine identifiers, usernames, absolute local paths, shell tokens, and temporar
 | 25 | `starcoder2:7b` | Local | 10/70 | 14.3% | 0 | 18.29 |
 | 26 | `qwen3.5:4b` | Local | 7/70 | 10.0% | 0 | 28.78 |
 
-## Score Matrix
+### Score Matrix
 
 | Model | Total | Format | Math | Retrieval | Translation | Reliability | Code | Planning |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -123,7 +169,7 @@ Machine identifiers, usernames, absolute local paths, shell tokens, and temporar
 | `starcoder2:7b` | 10 | 0 | 0 | 2 | 5 | 3 | 0 | 0 |
 | `qwen3.5:4b` | 7 | 0 | 0 | 2 | 2 | 3 | 0 | 0 |
 
-## Notable Findings
+### Notable Findings
 
 - Overall: `gpt-oss:120b-cloud` is the strongest model in this automated run, especially on JSON, math, retrieval, reliability, code, and translation.
 - Local standout: `ornith:9b` is the strongest local <=9B-class result here, matching or beating several cloud models in this task mix.
@@ -132,7 +178,7 @@ Machine identifiers, usernames, absolute local paths, shell tokens, and temporar
 - Anti-hallucination leaders: `gpt-oss:120b-cloud` (10/10), `devstral-2:123b-cloud` (10/10), `ornith:9b` (10/10), `qwen3-coder:480b-cloud` (10/10), `qwen3-coder-next:cloud` (10/10).
 - Planning remains the hardest task: best planning scores were `devstral-2:123b-cloud` (4/10), `qwen3-coder:480b-cloud` (4/10), `hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL` (4/10), `huggingface.co/llmware/phi-4-mini-gguf:latest` (4/10), `llama3.2:3b` (4/10).
 
-## Repository Layout
+### Legacy Repository Layout
 
 ```text
 benchmark_20260629/
@@ -145,7 +191,7 @@ benchmark_20260629/
 docs/score_chart.svg         # README summary chart
 ```
 
-## Latest Incremental Run - 2026-07-30
+### Latest Incremental Run - 2026-07-30
 
 The 2026-07-30 unattended run is stored separately from the historical 2026-06-29/07-01 data. It recorded 288 structured results across the currently installed model inventory. See [the run report](benchmark_20260629/runs/20260730_incremental/final_report.md), [validated core scores](benchmark_20260629/runs/20260730_incremental/core_validated.csv), [specialist scores](benchmark_20260629/runs/20260730_incremental/specialist_validated.csv), and [the workbook](benchmark_20260629/runs/20260730_incremental/scores.xlsx).
 
@@ -155,15 +201,15 @@ The 2026-07-30 unattended run is stored separately from the historical 2026-06-2
 - `devstral-2:123b-cloud`, `qwen3-coder:480b-cloud`, and `qwen3-coder-next:cloud` returned HTTP 410 for every request and are reported as unavailable, not as zero-capability models.
 - The code task is now safety-gated. Answers that cannot pass an AST allowlist and isolated subprocess check are `unsafe_to_execute`; they are excluded from the strict 70-point total instead of executing untrusted model output.
 
-## Notes
+### Notes
 
 - The benchmark intentionally mixes general tasks and agent-relevant tasks, so specialist models may look weak outside their intended domain.
 - `qwen3-embedding` was excluded because it is an embedding model, not a text generation model.
 - Subscription-gated cloud models were removed from this dataset rather than published as failures.
 
-## 20260731_v2_comprehensive
+### 20260731_v2_comprehensive
 
-### V2 Stable Snapshot
+#### V2 Stable Snapshot
 
 本节是基于既有 raw evidence 的离线收口，不恢复中断任务，也不新增模型、题库或全量重测。它与 V1 七题 70 分榜及 20260730 incremental run 独立，三者不能混合排名。
 
@@ -173,13 +219,13 @@ The 2026-07-30 unattended run is stored separately from the historical 2026-06-2
 - canonical 记录：1567；原始尝试：1974；可评分：1246；基础设施失败：263。
 - raw response、`results.jsonl` 和 legacy scores 保持不变；`offline_regrade.csv` 并列保存 legacy 与 publication 派生结果。
 
-### Comparison Boundaries
+#### Comparison Boundaries
 
 - General/Core、Reasoning、Code、Translation、Vision、OCR、Safety、Tools 分别展示；specialist 不进入普通 Core 总榜。
 - 仅有可评分记录进入能力得分分母；network/server/timeout/unavailable 不作为能力 0 分。
 - coverage 表示该模型在此赛道已有记录的完成比例，不表示整个模型清单覆盖率。OCR 分数为文本语义重叠，重复退化/截断仍由 coverage 和状态单列。long-context、embedding、performance 与 robustness 没有足够 V2 数据时不建立榜单。
 
-### Existing-data Results
+#### Existing-data Results
 
 | 赛道 | 第一名 | 得分 | 已有记录 coverage |
 | --- | --- | ---: | ---: |
@@ -198,7 +244,7 @@ The 2026-07-30 unattended run is stored separately from the historical 2026-06-2
 
 完整报告：[final_report.md](benchmark_20260629/runs/20260731_v2_comprehensive/final_report.md)；表格：[all_results.csv](benchmark_20260629/runs/20260731_v2_comprehensive/all_results.csv)、[scores.xlsx](benchmark_20260629/runs/20260731_v2_comprehensive/scores.xlsx)；失败分类：[failures.csv](benchmark_20260629/runs/20260731_v2_comprehensive/failures.csv)。
 
-### Reproduce and Increment
+#### Reproduce and Increment
 
 1. `ollama pull <model>`，再运行 capability reconnaissance；不要以模型名猜测能力。
 2. 只对新模型运行适用赛道，使用独立 run directory，并保留 raw response、digest 与状态。

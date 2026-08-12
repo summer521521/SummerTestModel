@@ -1,0 +1,29 @@
+{
+  "schema_version": 2,
+  "benchmark_version": "1.0-rc1",
+  "scorer_version": "1.0-rc1.1",
+  "ollama_api": "http://127.0.0.1:11434",
+  "inventory_path": "inventory/model_inventory.json",
+  "benchmark_manifest": "config/benchmark_manifest.rc1.json",
+  "task_manifest": "config/task_manifest.rc1.public.json",
+  "scorer_manifest": "config/scorer_manifest.rc1.public.json",
+  "model_execution_plan": "config/model_execution_plan.rc1.public.json",
+  "private_package_manifest": "private_benchmark/1.0-rc1/private_package_manifest.json",
+  "calibration_approved": false,
+  "generation_profiles": "config/generation_profiles.rc1.json",
+  "retry_policy": "config/retry_policy.rc1.json",
+  "manifest_hashes": {
+    "benchmark_manifest": "db41d1693d4a66980aad8858762f1eefcf4819c3389d088da860d194f7024845",
+    "task_manifest": "3c358ffd10898c074c04674d81c2cf4ad9e34d5bb1e51cc908716b0d505b60ec",
+    "scorer_manifest": "042ad0a96549df77e1292c30b1a33c5fb5b69c55973e1fd5a003b7e6bda6b880",
+    "model_execution_plan": "d525db22f34142693cd6e5dea2d728651f517dc749417ba44eedb53ceff224c6",
+    "generation_profiles": "6bdbb77cb250f85610621154909aa787e65a9faee4ebc170520cc318c384e99e",
+    "retry_policy": "e64a69d04d16d40046f24930969fd4c99152a958b585e4e3bf75d868594d1eb5",
+    "model_runtime_defaults": "d2356ba9f34af67777a78c003327acb83daf4c2f45ae6958b4a48766cec357f6"
+  },
+  "output_dir": "work/pending-run",
+  "single_model_concurrency": true,
+  "unload_between_models": "keep_alive_zero_then_healthcheck",
+  "warmup_behavior": "none_unless_manifest",
+  "model_runtime_defaults": "inventory/model_runtime_defaults.rc1.json"
+}

@@ -1,0 +1,11 @@
+{
+  "collected_at": "2026-08-12T14:25:01+08:00",
+  "ollama_cli_version": "0.32.6",
+  "ollama_server_version": "0.32.6",
+  "api_reachable": true,
+  "inventory_entries": 44,
+  "loaded_models_after_run": 0,
+  "launch_mode": "hidden app with local serve child",
+  "version_policy": "record_current_not_strict_patch_gate",
+  "privacy_note": "User name and executable absolute paths omitted."
+}

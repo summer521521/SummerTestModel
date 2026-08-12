@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "benchmark_version": "1.0-rc1",
+  "scorer_version": "1.0-rc1.1",
+  "scorers": [
+    {
+      "scorer_id": "core_deterministic_v1",
+      "track": "core",
+      "implementation": "scripts/scorers.py:score_core",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "reasoning_deterministic_v1",
+      "track": "reasoning",
+      "implementation": "scripts/scorers.py:score_reasoning",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "code_hidden_tests_v1",
+      "track": "code",
+      "implementation": "scripts/scorers.py:score_code",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "translation_checklist_v1",
+      "track": "translation",
+      "implementation": "scripts/scorers.py:score_translation",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "tool_trace_validator_v1",
+      "track": "tools",
+      "implementation": "scripts/scorers.py:score_tools",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "vision_structured_v1",
+      "track": "vision",
+      "implementation": "scripts/scorers.py:score_vision",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "ocr_cer_v1",
+      "track": "ocr",
+      "implementation": "scripts/scorers.py:score_ocr",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "long_context_exact_v1",
+      "track": "long_context",
+      "implementation": "scripts/scorers.py:score_long_context",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "cosine_retrieval_v1",
+      "track": "embedding",
+      "implementation": "scripts/scorers.py:score_embedding",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "classification_metrics_v1",
+      "track": "safety",
+      "implementation": "scripts/scorers.py:score_safety",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "medical_structured_v1",
+      "track": "medical",
+      "implementation": "scripts/scorers.py:score_medical",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "performance_telemetry_v1",
+      "track": "performance",
+      "implementation": "scripts/scorers.py:score_performance",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    },
+    {
+      "scorer_id": "provenance_token_extractor_v1",
+      "track": "diagnostic",
+      "implementation": "scripts/scorers.py:score_diagnostic",
+      "sha256": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e",
+      "private_scoring_spec": true,
+      "uses_llm_judge": false
+    }
+  ]
+}

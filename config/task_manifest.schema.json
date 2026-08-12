@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen task manifest",
+  "type": "object",
+  "required": ["benchmark_version", "tasks", "task_count"],
+  "properties": {
+    "benchmark_version": {"type": "string"},
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["task_id", "version", "track", "category", "profile", "scorer_id", "scored", "diagnostic_only", "prompt_sha256", "ground_truth_sha256", "scoring_spec_sha256", "assets", "private_payload_present"],
+        "properties": {
+          "task_id": {"type": "string"},
+          "version": {"type": "string"},
+          "version": {"const": "1.0-rc1"},
+          "track": {"type": "string"},
+          "category": {"type": "string"},
+          "profile": {"type": "string"},
+          "scorer_id": {"type": "string"},
+          "scored": {"type": "boolean"},
+          "diagnostic_only": {"type": "boolean"},
+          "prompt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "ground_truth_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+          "scoring_spec_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "assets": {"type": "array", "items": {"type": "object", "required": ["path", "sha256"], "properties":{"path":{"type":"string"},"sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"}}}},
+          "private_payload_present": {"const": true},
+          "telemetry_only": {"type":"boolean"}
+        },
+        "allOf": [{"if":{"properties":{"diagnostic_only":{"const":true}}},"then":{"properties":{"ground_truth_sha256":{"type":"null"}}},"else":{"if":{"properties":{"telemetry_only":{"const":true}}},"then":{"properties":{"ground_truth_sha256":{"type":"null"}}},"else":{"properties":{"ground_truth_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"}}}}}],
+        "additionalProperties": true
+      }
+    }
+  }
+}

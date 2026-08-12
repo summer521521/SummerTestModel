@@ -1,0 +1,5 @@
+﻿model,test_id,category,score,max_score,elapsed_sec,error,note
+smollm2:1.7b,format_json,格式遵循,5,10,8.48,,total 错；code 错
+smollm2:1.7b,math_reasoning,推理,0,10,0.65,,时间错；次数错
+llama3.2:3b,format_json,格式遵循,5,10,40.84,,total 错；code 错
+llama3.2:3b,math_reasoning,推理,0,10,12.47,,时间错；次数错

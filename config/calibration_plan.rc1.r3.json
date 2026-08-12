@@ -1,0 +1,56 @@
+{
+  "schema_version": 3,
+  "benchmark_version": "1.0-rc1",
+  "mode": "calibration_r3_only",
+  "capability_sampling_policy": "native_artifact",
+  "formal_entries": [
+    {"model": "functiongemma:270m", "task_ids": ["TOOL_01", "TOOL_04"]},
+    {"model": "qwen3.5:4b", "task_ids": ["VIS_01"]},
+    {"model": "qwen3-embedding:latest", "task_ids": ["EMB_Q01"]},
+    {"model": "nemotron-3-nano:4b", "task_ids": ["PERF_COLD_01", "PERF_WARM_01"]},
+    {"model": "phi4-mini:latest", "task_ids": ["PERF_COLD_01", "PERF_WARM_01"]},
+    {"model": "shieldgemma:2b", "task_ids": ["SAFE01", "UNSAFE01"]},
+    {"model": "granite4.1-guardian:8b", "task_ids": ["SAFE01", "UNSAFE01"]}
+  ],
+  "thinking_probe": {
+    "model": "qwen3.5:4b",
+    "task_id": "CAL_R3_THINK_PROBE",
+    "profile": "calibration_thinking_probe",
+    "prompt": "What is 2 + 2? Give the final answer as 4.",
+    "request_profile": {
+      "num_ctx": 4096,
+      "num_predict": 4096,
+      "inactivity_timeout_seconds": 180,
+      "absolute_timeout_seconds": 300,
+      "practical_soft_limit_seconds": 120,
+      "think": true,
+      "keep_alive_seconds": 300
+    }
+  },
+  "native_sampling_models": ["qwen3.5:4b", "nemotron-3-nano:4b", "phi4-mini:latest"],
+  "preload_models": ["qwen3.5:4b", "nemotron-3-nano:4b"],
+  "performance_tasks": ["PERF_COLD_01", "PERF_WARM_01"],
+  "performance_requirements": {
+    "requests_per_model": 2,
+    "eval_count_minimum_for_comparable_warm": 128,
+    "required_server_fields": ["eval_count", "eval_duration", "total_duration"],
+    "short_generation_statuses": ["short_generation", "generation_speed_not_comparable"]
+  },
+  "gates": [
+    "native_sampling_request",
+    "thinking_separation",
+    "preload_path",
+    "timing_fields",
+    "performance_cold_warm",
+    "performance_comparability_probe",
+    "tool_loop",
+    "image_path",
+    "embed_path",
+    "safety_parser",
+    "scorer_path",
+    "resume_dedup",
+    "raw_persistence",
+    "hash_integrity"
+  ],
+  "semantic_correctness_is_not_a_gate": true
+}

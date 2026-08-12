@@ -1,0 +1,8 @@
+﻿model,test_id,category,score,max_score,elapsed_sec,error,note
+qwen3.5:4b,format_json,格式遵循,0,10,39.11,,没有输出可解析 JSON
+qwen3.5:4b,math_reasoning,推理,0,10,27.69,,时间错；次数错
+qwen3.5:4b,long_context,长上下文,2,10,27.07,,目标项目错
+qwen3.5:4b,translation_terms,翻译,2,10,26.03,,丢失 RAG；丢失 KV cache；丢失 LoRA；丢失 p95 latency；丢失 tenant_id；约束语气不足；租户隔离表达弱；长度异常
+qwen3.5:4b,anti_hallucination,可靠性,3,10,26.9,,没有承认信息不足；没有保留已知事实
+qwen3.5:4b,code_bugfix,代码,0,10,27.71,,没有给出目标函数
+qwen3.5:4b,planning_schedule,规划,0,10,26.98,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失

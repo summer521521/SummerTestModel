@@ -1,5 +1,21 @@
 # Scoring Changelog
 
+## 1.0-rc1.1
+
+- Freeze date: 2026-08-12.
+- Benchmark/task version: `1.0-rc1`.
+- Source run: `private_runs/rc1_baseline_20260809`.
+- Raw responses and original public result were not modified; the new publication sidecar is `public_results/rc1_baseline_20260809.scorer-1.0-rc1.1.jsonl`.
+- All 1,938 immutable raw records were offline regraded. Three previous scoring errors were repaired; the new derivation has zero scoring errors.
+
+### Corrected implementation defect
+
+`CORE_PRACT_04` accepted a JSON list and converted it directly to a Python `set`. A model response containing JSON objects therefore raised `TypeError: unhashable type: 'dict'` rather than receiving a normal invalid-answer score. The scorer now first requires every list element to be a string. Valid string arrays retain the frozen semantics; object arrays receive score zero without crashing.
+
+Affected old score records: `granite4:7b-a1b-h`, `olmo-3:7b-instruct`, and `hf.co/ibm-granite/granite-vision-4.1-4b-GGUF:Q4_K_M`, all on `CORE_PRACT_04`.
+
+This is a robustness correction, not a new task, answer, weight, or semantic rule.
+
 ## v2.2.0-offline
 
 - Freeze date: 2026-08-08.

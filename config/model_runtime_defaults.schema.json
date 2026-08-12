@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RC1 public model runtime defaults snapshot",
+  "type": "object",
+  "required": ["schema_version", "benchmark_version", "ollama_version", "models"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "benchmark_version": {"type": "string", "const": "1.0-rc1"},
+    "collected_at": {"type": ["string", "null"]},
+    "ollama_version": {"type": ["string", "null"]},
+    "source": {"type": "string"},
+    "models": {
+      "type": "array",
+      "minItems": 39,
+      "maxItems": 39,
+      "items": {
+        "type": "object",
+        "required": ["exact_name", "digest", "modelfile_sha256", "visible_declared_defaults", "stop_count", "template_present", "system_present"],
+        "properties": {
+          "exact_name": {"type": "string", "minLength": 1},
+          "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "modelfile_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "visible_declared_defaults": {"type": "object", "required": ["temperature", "top_k", "top_p", "min_p", "repeat_penalty"], "properties": {"temperature": {"type": ["number", "string", "null"]}, "top_k": {"type": ["number", "string", "null"]}, "top_p": {"type": ["number", "string", "null"]}, "min_p": {"type": ["number", "string", "null"]}, "repeat_penalty": {"type": ["number", "string", "null"]}}, "additionalProperties": false},
+          "stop_count": {"type": "integer", "minimum": 0},
+          "template_present": {"type": "boolean"},
+          "system_present": {"type": "boolean"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
