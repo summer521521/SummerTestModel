@@ -39,11 +39,14 @@ scripts/incremental_model.py
 inventory/                 # installed digests/capabilities and official-source map
 docs/                      # current reports, failure analysis and workflows
 benchmark_20260629/        # preserved legacy experimental evidence
+legacy_evidence/           # local-only pre-RC1 evidence recovered during consolidation
 ```
 
 ## Legacy experimental evidence
 
 Everything below this heading belongs to older V1/V2/incremental systems. Their scores use different tasks and scorers and must not be mixed with Benchmark 1.0-rc1.
+
+Additional pre-RC1 files recovered from the former outer workspace are catalogued in [legacy_evidence](legacy_evidence/README.md). They are preserved for auditability, not as current recommendations or comparable benchmark scores.
 
 ![Latest safe non-code score chart](docs/score_chart_20260730.svg)
 

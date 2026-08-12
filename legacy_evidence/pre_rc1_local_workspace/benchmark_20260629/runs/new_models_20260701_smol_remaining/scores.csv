@@ -1,0 +1,4 @@
+﻿model,test_id,category,score,max_score,elapsed_sec,error,note
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,anti_hallucination,可靠性,10,10,6.5,,拒绝编造且保留已知信息
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,code_bugfix,代码,0,10,13.8,,没有给出目标函数
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,planning_schedule,规划,4,10,13.59,,没有明确有解；C 在 D 前不清；12:00-13:00 禁行处理不清

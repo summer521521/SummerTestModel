@@ -1,0 +1,26 @@
+﻿model,test_id,category,score,max_score,elapsed_sec,error,note
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,format_json,格式遵循,10,10,34.05,,完全正确
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,math_reasoning,推理,0,10,51.76,,时间错；次数错
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,long_context,长上下文,10,10,27.93,,正确定位
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,translation_terms,翻译,9,10,35.25,,租户隔离表达弱
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,anti_hallucination,可靠性,10,10,17.21,,拒绝编造且保留已知信息
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,code_bugfix,代码,0,10,50.03,,没有给出目标函数
+hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M,planning_schedule,规划,0,10,55.06,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清；F 完成时间不清；关键任务缺失
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,format_json,格式遵循,0,10,117.47,,没有输出可解析 JSON
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,math_reasoning,推理,5,10,114.61,,次数错
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,long_context,长上下文,9,10,43.37,,混入干扰项
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,translation_terms,翻译,7,10,35.7,,仍含中文；租户隔离表达弱
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,anti_hallucination,可靠性,5,10,43.13,,没有保留已知事实；疑似编造细节
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,code_bugfix,代码,0,10,110.26,,没有给出目标函数
+huggingface.co/lmstudio-community/DeepSeek-R1-0528-Qwen3-8B-GGUF:latest,planning_schedule,规划,2,10,108.64,,没有明确有解；A/恢复安排不清；C 在 D 前不清；12:00-13:00 禁行处理不清
+huggingface.co/llmware/phi-4-mini-gguf:latest,format_json,格式遵循,5,10,22.69,,total 错；code 错
+huggingface.co/llmware/phi-4-mini-gguf:latest,math_reasoning,推理,0,10,10.44,,时间错；次数错
+huggingface.co/llmware/phi-4-mini-gguf:latest,long_context,长上下文,3,10,3.14,,目标项目错；混入干扰项
+huggingface.co/llmware/phi-4-mini-gguf:latest,translation_terms,翻译,6,10,2.92,,丢失 KV cache；丢失 p95 latency；租户隔离表达弱；长度异常
+huggingface.co/llmware/phi-4-mini-gguf:latest,anti_hallucination,可靠性,3,10,4.97,,没有承认信息不足；没有保留已知事实
+huggingface.co/llmware/phi-4-mini-gguf:latest,code_bugfix,代码,10,10,6.2,,单元测试全通过
+huggingface.co/llmware/phi-4-mini-gguf:latest,planning_schedule,规划,4,10,52.36,,没有明确有解；C 在 D 前不清；12:00-13:00 禁行处理不清
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,format_json,格式遵循,2,10,25.58,,字段不全；total 错；code 错；JSON 外有额外文本
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,math_reasoning,推理,5,10,14.3,,时间错
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,long_context,长上下文,9,10,13.54,,混入干扰项
+hf.co/unsloth/SmolLM3-3B-GGUF:UD-Q4_K_XL,translation_terms,翻译,6,10,9.36,,仍含中文；租户隔离表达弱；长度异常
