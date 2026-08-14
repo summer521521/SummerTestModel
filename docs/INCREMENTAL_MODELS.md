@@ -45,9 +45,15 @@ Then regenerate aggregate public tables:
 
 ```powershell
 python scripts/build_rc1_publication.py
+python scripts/build_project_report.py
+Push-Location site
+npm test
+Pop-Location
 ```
 
-The current aggregate publication builder summarizes the fixed RC1 baseline and cloud reference snapshot. A newly finalized model remains an additive result file until the user explicitly approves adding it to the aggregate snapshot.
+`build_rc1_publication.py` preserves the strict RC1 baseline and cloud reference. `build_project_report.py` rebuilds the bilingual practical report and website dataset from approved sanitized aggregate files. A newly finalized model remains an additive result until the user explicitly approves adding it to the aggregate snapshot; no existing model is rerun automatically.
+
+If an incremental run needs the practical scorer, regrade its existing raw offline and publish a new dated sanitized snapshot. Never copy private prompts, ground truth, answers, state, or raw paths into `public_results/`.
 
 ## Choosing a reference
 

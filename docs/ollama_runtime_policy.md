@@ -6,7 +6,7 @@ SummerTestModel is a practical-local benchmark. The current Ollama client/server
 
 Windows maintenance flags, background-load variation, and Ollama version differences are publication metadata and limitations. They are not automatically capability failures or reasons to discard an otherwise complete run.
 
-The post-run snapshot on 2026-08-12 records Ollama client/server `0.32.6`, 44 inventory entries, HTTP API available, and zero loaded models. See `environment/runtime_snapshot_20260812.json`.
+The strict post-run snapshot on 2026-08-12 records Ollama client/server `0.32.6`, 44 inventory entries, HTTP API available, and zero loaded models. The 2026-08-14 targeted recovery recorded Ollama `0.32.9`; all eight target digests matched and no model artifact changed. These versions identify their respective evidence sets rather than defining a permanent compatibility gate. See `environment/runtime_snapshot_20260812.json` and the sanitized recovery handoff.
 
 ## What was changed before the baseline
 

@@ -1,4 +1,6 @@
-# SummerTestModel Benchmark 1.0-rc1 Results
+# SummerTestModel Benchmark 1.0-rc1 Strict Baseline Reference
+
+> This document preserves the original strict scorer view. The current project-facing result is the [practical final report](final_report.en.md), backed by [practical track scores](../public_results/rc1_practical_track_scores.csv) and the [50-item recovery comparison](../public_results/rc1_practical_recovery_20260813.csv). The strict data below has not been overwritten.
 
 ## Publication boundary
 

@@ -1,0 +1,15 @@
+track,category,count
+code,code_test_failure,125
+code,protocol_only_failure,6
+code,true_wrong_answer,32
+core,no_usable_final,1
+core,protocol_only_failure,80
+core,true_wrong_answer,14
+long_context,no_usable_final,1
+long_context,true_wrong_answer,5
+performance,telemetry_only,58
+reasoning,no_usable_final,4
+reasoning,true_wrong_answer,36
+safety,true_wrong_answer,5
+tools,tool_partial_success,188
+vision,true_wrong_answer,8

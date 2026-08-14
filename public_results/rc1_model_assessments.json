@@ -1,5 +1,8 @@
 {
   "benchmark_version": "1.0-rc1",
+  "result_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
+  "strict_baseline_replaced": false,
+  "published_snapshot": "2026-08-14",
   "models": [
     {
       "model": "deepscaler:1.5b",
@@ -24,42 +27,73 @@
       "match_confidence": "FAMILY_MATCH",
       "scores": {
         "code": {
-          "mean": 0.6125,
+          "mean": 0.665,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.665,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.6125
         },
         "core": {
-          "mean": 0.138889,
+          "mean": 0.802083,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.802083,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.138889
         },
         "long_context": {
-          "mean": 0.0,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "reasoning": {
-          "mean": 0.453333,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.453333
         },
         "tools": {
-          "mean": 0.0,
+          "mean": 0.47875,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.47875,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "translation": {
           "mean": 0.716667,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.716667,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.716667
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 9.0235,
         "output_tokens_per_second_mean": 69.678137
@@ -72,8 +106,8 @@
         "en": "Low-cost candidate for fast reasoning or code drafts."
       },
       "caution": {
-        "zh": "通用、工具与长上下文结果弱；有 3 次截断。",
-        "en": "Weak core, tools, and long-context results; three truncations."
+        "zh": "工具表现偏弱，且仍有 3 次截断；复杂 Agent 任务需复核。",
+        "en": "Tools remain weak and three truncations remain; validate complex agent work."
       }
     },
     {
@@ -98,12 +132,18 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "ocr": {
-          "mean": 0.384059,
+          "mean": 0.792388,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.792388,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.384059
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": null,
         "output_tokens_per_second_mean": null
@@ -114,8 +154,8 @@
         "en": "The most promising local OCR specialist in the current track."
       },
       "caution": {
-        "zh": "语义分仅 0.384，仍不足以视为可靠生产 OCR。",
-        "en": "Semantic score is only 0.384; not production-reliable OCR yet."
+        "zh": "实用语义分 0.792，但题量仍小，尚不足以视为可靠生产 OCR。",
+        "en": "Practical semantic score is 0.792, but the small fixture set is not production evidence."
       }
     },
     {
@@ -141,60 +181,89 @@
       "match_confidence": "FAMILY_ONLY_LOCAL_TAG_AMBIGUOUS",
       "scores": {
         "code": {
-          "mean": 0.75,
+          "mean": 0.775,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.775,
+          "recovery_attempted": 1,
+          "recovery_selected": 1,
+          "strict_mean": 0.75
         },
         "core": {
-          "mean": 0.166667,
+          "mean": 0.517708,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.517708,
+          "recovery_attempted": 2,
+          "recovery_selected": 2,
+          "strict_mean": 0.166667
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 1,
+          "recovery_selected": 1,
+          "strict_mean": 0.25
         },
         "reasoning": {
-          "mean": 0.4,
+          "mean": 0.777778,
           "records": 10,
-          "scored_records": 10,
-          "coverage": 1.0
+          "scored_records": 9,
+          "coverage": 0.9,
+          "completion_rate": 0.9,
+          "completion_adjusted_mean": 0.7,
+          "recovery_attempted": 2,
+          "recovery_selected": 1,
+          "strict_mean": 0.4
         },
         "tools": {
-          "mean": 0.125,
+          "mean": 0.4875,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.4875,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.125
         },
         "translation": {
           "mean": 0.95,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.95,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.95
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 12.7895,
         "output_tokens_per_second_mean": 44.320596
       },
       "failures": {
-        "absolute_timeout": 2,
-        "runtime_anomaly": 9,
+        "absolute_timeout": 1,
         "stream_interrupted_after_output": 7,
-        "truncated": 8,
-        "truncated_before_final": 4
+        "truncated": 10
       },
       "recommendation": {
         "zh": "适合容忍等待时间的代码与翻译辅助。",
         "en": "Useful for code and translation when latency is acceptable."
       },
       "caution": {
-        "zh": "2 次绝对超时、9 个运行异常及多次截断，不适合稳定交互默认模型。",
-        "en": "Two absolute timeouts, nine runtime anomalies, and repeated truncation make it a poor default interactive model."
+        "zh": "宽松恢复后仍有 1 次超时、1 次截断和 7 次流中断，不适合稳定交互默认模型。",
+        "en": "After recovery it still has one timeout, one truncation, and seven interrupted streams, so it is not a stable interactive default."
       }
     },
     {
@@ -219,12 +288,18 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "tools": {
-          "mean": 0.0,
+          "mean": 0.574792,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.574792,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": null,
         "output_tokens_per_second_mean": null
@@ -235,8 +310,8 @@
         "en": "Keep as a tiny tool-router research target."
       },
       "caution": {
-        "zh": "RC1 工具得分为 0；当前模板/调用链尚未证明可用。",
-        "en": "RC1 tools score is 0; the current template and tool path are not yet proven usable."
+        "zh": "实用工具分 0.575，适合作为极小路由器实验而非复杂多轮 Agent。",
+        "en": "Practical Tools is 0.575; treat it as a tiny routing experiment, not a complex multi-turn agent."
       }
     },
     {
@@ -258,24 +333,40 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.0,
+          "mean": 0.2,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.2,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "core": {
-          "mean": 0.361111,
+          "mean": 0.827083,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.827083,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.361111
         },
         "translation": {
           "mean": 0.833333,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.833333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.833333
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 8.961,
         "output_tokens_per_second_mean": 58.540815
@@ -286,8 +377,8 @@
         "en": "Lightweight translation, summarization, and ordinary text work."
       },
       "caution": {
-        "zh": "代码为 0，当前清单也未确认其多模态执行能力。",
-        "en": "Code scored 0, and multimodal execution was not confirmed by the current manifest."
+        "zh": "代码仅 0.200，当前清单也未确认其多模态执行能力。",
+        "en": "Code is only 0.200, and multimodal execution was not confirmed by the current manifest."
       }
     },
     {
@@ -315,54 +406,95 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.0,
+          "mean": 0.2,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.2,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "core": {
-          "mean": 0.736111,
+          "mean": 0.879167,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.879167,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.736111
         },
         "long_context": {
-          "mean": 0.5,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5
         },
         "ocr": {
-          "mean": 0.0,
+          "mean": 0.143284,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.143284,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "reasoning": {
-          "mean": 0.4,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.4
         },
         "tools": {
-          "mean": 0.625,
+          "mean": 0.905,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.905,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.625
         },
         "translation": {
           "mean": 1.0,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 1.0
         },
         "vision": {
-          "mean": 0.125,
+          "mean": 0.875,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.875,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.125
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 8.984,
         "output_tokens_per_second_mean": 59.841825
@@ -373,8 +505,8 @@
         "en": "One of the best local choices for general, translation, and long-context work."
       },
       "caution": {
-        "zh": "RC1 代码得分为 0；视觉绝对分也很低。",
-        "en": "RC1 code score is 0 and absolute vision performance is low."
+        "zh": "实用重评后代码仍仅 0.200；应按文本/长上下文优势使用。",
+        "en": "Code remains only 0.200 after practical regrading; use it for its text and long-context strengths."
       }
     },
     {
@@ -400,12 +532,18 @@
       "match_confidence": "EXACT_FAMILY_RUNTIME_VARIANT",
       "scores": {
         "ocr": {
-          "mean": 0.0,
+          "mean": 0.81,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 0.0,
+          "completion_adjusted_mean": 0.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": null,
         "output_tokens_per_second_mean": null
@@ -414,12 +552,12 @@
         "truncated": 10
       },
       "recommendation": {
-        "zh": "仅保留为官方 OCR 流程与 Ollama 集成差异的诊断对象。",
-        "en": "Retain only to diagnose the gap between the official OCR pipeline and the Ollama integration."
+        "zh": "可作为 OCR 语义识别研究对象，但必须配合去重和终止控制。",
+        "en": "Useful for OCR semantic-recognition research with explicit deduplication and termination control."
       },
       "caution": {
-        "zh": "10/10 输出截断，RC1 OCR 得分为 0。",
-        "en": "All 10 outputs truncated and RC1 OCR score is 0."
+        "zh": "语义分 0.810，但 10/10 输出截断、完成率 0%；不能按 0.810 当作可交付 OCR。",
+        "en": "Semantic score is 0.810, but all 10 outputs truncated and completion is 0%; this is not deliverable OCR."
       }
     },
     {
@@ -448,9 +586,15 @@
           "mean": 1.0,
           "records": 20,
           "scored_records": 20,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 1.0
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": null,
         "output_tokens_per_second_mean": null
@@ -487,36 +631,62 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.375,
-          "records": 8,
-          "scored_records": 8,
-          "coverage": 1.0
-        },
-        "core": {
-          "mean": 0.569444,
-          "records": 24,
-          "scored_records": 24,
-          "coverage": 1.0
-        },
-        "long_context": {
-          "mean": 0.25,
-          "records": 4,
-          "scored_records": 4,
-          "coverage": 1.0
-        },
-        "tools": {
           "mean": 0.5,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.5,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.375
+        },
+        "core": {
+          "mean": 0.84375,
+          "records": 24,
+          "scored_records": 24,
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.84375,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.569444
+        },
+        "long_context": {
+          "mean": 1.0,
+          "records": 4,
+          "scored_records": 4,
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
+        },
+        "tools": {
+          "mean": 0.883542,
+          "records": 8,
+          "scored_records": 8,
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.883542,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5
         },
         "translation": {
           "mean": 0.966667,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.966667,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.966667
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 10.8125,
         "output_tokens_per_second_mean": 43.044066
@@ -553,36 +723,62 @@
       "match_confidence": "FAMILY_MATCH",
       "scores": {
         "code": {
-          "mean": 0.6,
+          "mean": 0.68,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.68,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.6
         },
         "core": {
-          "mean": 0.361111,
+          "mean": 0.702083,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.702083,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.361111
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "tools": {
-          "mean": 0.625,
+          "mean": 0.888542,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.888542,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.625
         },
         "translation": {
           "mean": 0.916667,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.916667,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.916667
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 3.703,
         "output_tokens_per_second_mean": 133.329446
@@ -593,8 +789,8 @@
         "en": "Speed-oriented candidate for code, translation, and tool use."
       },
       "caution": {
-        "zh": "通用核心分仅 0.361，且精确上游制品映射仍需确认。",
-        "en": "Core score is only 0.361 and the exact upstream artifact mapping remains uncertain."
+        "zh": "实用 Core 为 0.702，但精确上游制品映射仍需确认。",
+        "en": "Practical Core is 0.702, but the exact upstream artifact mapping remains uncertain."
       }
     },
     {
@@ -620,48 +816,84 @@
       "match_confidence": "EXACT_QUANTIZED_DERIVATIVE",
       "scores": {
         "code": {
-          "mean": 0.25,
+          "mean": 0.3,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.3,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "core": {
-          "mean": 0.194444,
+          "mean": 0.702083,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.702083,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.194444
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "ocr": {
-          "mean": 0.1,
+          "mean": 0.369929,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.369929,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.1
         },
         "tools": {
-          "mean": 0.0,
+          "mean": 0.47,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.47,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "translation": {
           "mean": 0.883333,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.883333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.883333
         },
         "vision": {
-          "mean": 0.125,
+          "mean": 0.875,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.875,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.125
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 5.14,
         "output_tokens_per_second_mean": 87.757064
@@ -672,8 +904,8 @@
         "en": "Lightweight document-vision integration experiments and translation."
       },
       "caution": {
-        "zh": "视觉 0.125、OCR 0.100，当前任务上未复现强文档理解。",
-        "en": "Vision 0.125 and OCR 0.100 did not reproduce strong document understanding on current fixtures."
+        "zh": "视觉 0.875、OCR 0.370；视觉选择题改善明显，但 OCR 仍不可靠。",
+        "en": "Vision is 0.875 and OCR 0.370; visual fixtures improved, but OCR remains unreliable."
       }
     },
     {
@@ -699,42 +931,73 @@
       "match_confidence": "EXACT_QUANTIZED_DERIVATIVE",
       "scores": {
         "code": {
-          "mean": 0.625,
+          "mean": 0.7,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.7,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.625
         },
         "core": {
-          "mean": 0.777778,
+          "mean": 0.879167,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.879167,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.777778
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "reasoning": {
-          "mean": 0.5,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5
         },
         "tools": {
-          "mean": 0.75,
+          "mean": 0.909375,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.909375,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.75
         },
         "translation": {
           "mean": 1.0,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 1.0
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 13.0,
         "output_tokens_per_second_mean": 46.703305
@@ -747,8 +1010,8 @@
         "en": "The strongest current default for the local general/agent baseline."
       },
       "caution": {
-        "zh": "长上下文仅 0.250，并出现 2 次截断；仍需按任务选择。",
-        "en": "Long-context scored 0.250 with two truncations; still choose by task."
+        "zh": "长上下文实用分 1.000，但只有 4 条夹具且仍有 2 次截断。",
+        "en": "Long-context practical score is 1.000 on only four fixtures, with two truncations still recorded."
       }
     },
     {
@@ -774,48 +1037,84 @@
       "match_confidence": "EXACT_QUANTIZED_DERIVATIVE",
       "scores": {
         "code": {
-          "mean": 0.375,
+          "mean": 0.5,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.5,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.375
         },
         "core": {
-          "mean": 0.652778,
+          "mean": 0.879167,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.879167,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.652778
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "medical": {
-          "mean": 0.666667,
+          "mean": 0.780556,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.780556,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.666667
         },
         "reasoning": {
-          "mean": 0.5,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5
         },
         "tools": {
-          "mean": 0.625,
+          "mean": 0.906875,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.906875,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.625
         },
         "translation": {
           "mean": 0.95,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.95,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.95
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 14.0705,
         "output_tokens_per_second_mean": 42.693971
@@ -828,8 +1127,8 @@
         "en": "A solid comparison model for reasoning, general, and medical text tasks."
       },
       "caution": {
-        "zh": "代码得分 0.375，性能慢于若干 4B/混合架构模型。",
-        "en": "Code scored 0.375 and it is slower than several 4B or hybrid alternatives."
+        "zh": "代码为 0.500，且性能慢于若干 4B/混合架构模型。",
+        "en": "Code is 0.500 and it is slower than several 4B or hybrid alternatives."
       }
     },
     {
@@ -858,39 +1157,70 @@
           "mean": 0.125,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.125,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.125
         },
         "core": {
-          "mean": 0.097222,
+          "mean": 0.75625,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.75625,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.097222
         },
         "long_context": {
-          "mean": 0.0,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "reasoning": {
-          "mean": 0.3,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.3
         },
         "tools": {
-          "mean": 0.0,
+          "mean": 0.4825,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.4825,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "translation": {
           "mean": 0.85,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.85,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.85
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 4.586,
         "output_tokens_per_second_mean": 99.918998
@@ -929,36 +1259,62 @@
       "match_confidence": "QUANTIZED_DERIVATIVE_REPACKAGER",
       "scores": {
         "code": {
-          "mean": 0.2375,
+          "mean": 0.315,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.315,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.2375
         },
         "core": {
-          "mean": 0.361111,
+          "mean": 0.722917,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.722917,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.361111
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "tools": {
-          "mean": 0.0,
+          "mean": 0.4775,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.4775,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "translation": {
           "mean": 0.8,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.8
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 5.039,
         "output_tokens_per_second_mean": 80.733901
@@ -969,8 +1325,8 @@
         "en": "Low-footprint fallback for ordinary Q&A and translation."
       },
       "caution": {
-        "zh": "代码 0.237、工具 0，复杂任务收益有限。",
-        "en": "Code 0.237 and tools 0 limit its value for complex work."
+        "zh": "代码 0.315、工具 0.477，复杂任务仍需强校验。",
+        "en": "Code 0.315 and Tools 0.477 still require strong validation on complex work."
       }
     },
     {
@@ -996,49 +1352,79 @@
       "match_confidence": "EXACT_QUANTIZED_DERIVATIVE",
       "scores": {
         "code": {
-          "mean": 0.6125,
+          "mean": 0.665,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.665,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.6125
         },
         "core": {
-          "mean": 0.0,
+          "mean": 0.429167,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.429167,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "long_context": {
-          "mean": 0.0,
+          "mean": 0.75,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.75,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "reasoning": {
-          "mean": 0.43,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.43
         },
         "tools": {
-          "mean": 0.0,
+          "mean": 0.485,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.485,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "translation": {
           "mean": 0.916667,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.916667,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.916667
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 13.227,
         "output_tokens_per_second_mean": 45.897476
       },
       "failures": {
         "absolute_timeout": 2,
-        "runtime_anomaly": 7,
         "stream_interrupted_after_output": 5,
         "truncated": 13
       },
@@ -1047,8 +1433,8 @@
         "en": "Offline reasoning or code drafts where research workflows tolerate failures."
       },
       "caution": {
-        "zh": "核心为 0，2 次绝对超时、7 个异常和 13 次截断。",
-        "en": "Core scored 0 with two absolute timeouts, seven anomalies, and 13 truncations."
+        "zh": "实用 Core 仅 0.429，且原运行仍保留较多超时、异常与截断证据。",
+        "en": "Practical Core is only 0.429, with substantial timeout, anomaly, and truncation evidence retained."
       }
     },
     {
@@ -1075,9 +1461,15 @@
           "mean": 0.8,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.8
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": null,
         "output_tokens_per_second_mean": null
@@ -1115,42 +1507,73 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.375,
+          "mean": 0.5,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.5,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.375
         },
         "core": {
-          "mean": 0.072222,
+          "mean": 0.8375,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8375,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.072222
         },
         "long_context": {
-          "mean": 0.0,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "reasoning": {
-          "mean": 0.5,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5
         },
         "tools": {
-          "mean": 0.75,
+          "mean": 0.909375,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.909375,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.75
         },
         "translation": {
           "mean": 0.883333,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.883333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.883333
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 6.2735,
         "output_tokens_per_second_mean": 137.066797
@@ -1163,8 +1586,8 @@
         "en": "Speed-first candidate for tool use and reasoning."
       },
       "caution": {
-        "zh": "核心仅 0.072、长上下文为 0，不适合作为通用默认模型。",
-        "en": "Core 0.072 and long-context 0 make it unsuitable as a general default."
+        "zh": "实用 Core 0.838、Tools 0.909，但仍需用更大题集验证泛化。",
+        "en": "Practical Core 0.838 and Tools 0.909 are promising, but broader fixtures are needed for generalization."
       }
     },
     {
@@ -1189,36 +1612,62 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.6125,
+          "mean": 0.615,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.615,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.6125
         },
         "core": {
-          "mean": 0.277778,
+          "mean": 0.747917,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.747917,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.277778
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "tools": {
-          "mean": 0.625,
+          "mean": 0.819792,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.819792,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.625
         },
         "translation": {
           "mean": 0.866667,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.866667,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.866667
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 4.531,
         "output_tokens_per_second_mean": 97.052676
@@ -1229,8 +1678,8 @@
         "en": "Lightweight code, tool use, and multilingual text work."
       },
       "caution": {
-        "zh": "核心 0.278，复杂指令可靠性有限。",
-        "en": "Core 0.278 indicates limited reliability on complex instructions."
+        "zh": "实用 Core 0.748；复杂指令仍应结合工具与代码结果复核。",
+        "en": "Practical Core is 0.748; complex instructions still need validation against tool and code behavior."
       }
     },
     {
@@ -1255,18 +1704,29 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "medical": {
-          "mean": 0.0,
+          "mean": 0.716667,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.716667,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "ocr": {
-          "mean": 0.0,
+          "mean": 0.488209,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 0.9,
+          "completion_adjusted_mean": 0.439388,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": null,
         "output_tokens_per_second_mean": null
@@ -1279,8 +1739,8 @@
         "en": "Use only for medical-model integration diagnosis and future targeted retesting."
       },
       "caution": {
-        "zh": "医疗与 OCR 均为 0；不得据此用于真实医疗决策。",
-        "en": "Medical and OCR both scored 0; never use this result for real clinical decisions."
+        "zh": "医疗 0.717、OCR 0.488；题量很小，绝不可用于真实医疗决策。",
+        "en": "Medical is 0.717 and OCR 0.488 on small fixtures; never use this for real clinical decisions."
       }
     },
     {
@@ -1307,54 +1767,95 @@
       "match_confidence": "FAMILY_MATCH_RUNTIME_METADATA_ODD",
       "scores": {
         "code": {
-          "mean": 0.0875,
+          "mean": 0.22,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.22,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0875
         },
         "core": {
-          "mean": 0.097222,
+          "mean": 0.8625,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8625,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.097222
         },
         "long_context": {
-          "mean": 0.0,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "ocr": {
-          "mean": 0.0,
+          "mean": 0.462835,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.462835,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "reasoning": {
-          "mean": 0.4,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.4
         },
         "tools": {
-          "mean": 0.5,
+          "mean": 0.909375,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.909375,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5
         },
         "translation": {
           "mean": 0.933333,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.933333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.933333
         },
         "vision": {
-          "mean": 0.0,
+          "mean": 0.75,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.75,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 3.4375,
         "output_tokens_per_second_mean": 208.428566
@@ -1367,8 +1868,8 @@
         "en": "Extremely fast candidate for translation and lightweight text."
       },
       "caution": {
-        "zh": "视觉/OCR 为 0，且本地参数元数据存在身份异常。",
-        "en": "Vision/OCR scored 0 and local parameter metadata has identity anomalies."
+        "zh": "视觉 0.750、OCR 0.463，但本地参数元数据仍存在身份异常。",
+        "en": "Vision is 0.750 and OCR 0.463, but local parameter metadata still has identity anomalies."
       }
     },
     {
@@ -1394,48 +1895,84 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.5125,
+          "mean": 0.585,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.585,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5125
         },
         "core": {
-          "mean": 0.486111,
+          "mean": 0.879167,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.879167,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.486111
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "ocr": {
-          "mean": 0.0,
+          "mean": 0.547768,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.547768,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "tools": {
-          "mean": 0.625,
+          "mean": 0.876042,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.876042,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.625
         },
         "translation": {
           "mean": 0.966667,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.966667,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.966667
         },
         "vision": {
-          "mean": 0.125,
+          "mean": 0.75,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.75,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.125
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 11.945,
         "output_tokens_per_second_mean": 38.889081
@@ -1446,8 +1983,8 @@
         "en": "Balanced multilingual, code, tool, and multimodal candidate."
       },
       "caution": {
-        "zh": "视觉绝对分只有 0.125，速度也不占优。",
-        "en": "Absolute vision score is only 0.125 and speed is not a strength."
+        "zh": "视觉为 0.750，仍受 8 条小型夹具限制，速度也不占优。",
+        "en": "Vision is 0.750 on only eight fixtures, and speed is not a strength."
       }
     },
     {
@@ -1472,36 +2009,62 @@
       "match_confidence": "FAMILY_ONLY_LOCAL_REVISION_UNVERIFIED",
       "scores": {
         "code": {
-          "mean": 0.35,
+          "mean": 0.48,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.48,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.35
         },
         "core": {
-          "mean": 0.361111,
+          "mean": 0.747917,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.747917,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.361111
         },
         "long_context": {
-          "mean": 0.0,
+          "mean": 0.75,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.75,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "tools": {
-          "mean": 0.25,
+          "mean": 0.766875,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.766875,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "translation": {
           "mean": 0.9,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.9,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.9
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 10.383,
         "output_tokens_per_second_mean": 52.131946
@@ -1512,8 +2075,8 @@
         "en": "Stable traditional 7B multilingual baseline."
       },
       "caution": {
-        "zh": "工具 0.250、长上下文 0，已被更新模型在多项任务超过。",
-        "en": "Tools 0.250 and long-context 0 trail newer models on several tasks."
+        "zh": "工具 0.767、长上下文 0.750；仍不是当前各赛道首选。",
+        "en": "Tools 0.767 and Long Context 0.750 are useful but not current track leaders."
       }
     },
     {
@@ -1539,48 +2102,84 @@
       "match_confidence": "FAMILY_MATCH_DIFFERENT_QUANTIZATION",
       "scores": {
         "code": {
-          "mean": 0.5,
+          "mean": 0.6,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.6,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5
         },
         "core": {
-          "mean": 0.625,
+          "mean": 0.808333,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.808333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.625
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "medical": {
-          "mean": 0.833333,
+          "mean": 0.8,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.833333
         },
         "reasoning": {
-          "mean": 0.4,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.4
         },
         "tools": {
-          "mean": 0.375,
+          "mean": 0.82625,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 0.875,
+          "completion_adjusted_mean": 0.722969,
+          "recovery_attempted": 1,
+          "recovery_selected": 0,
+          "strict_mean": 0.375
         },
         "translation": {
           "mean": 0.733333,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.733333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.733333
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 5.1565,
         "output_tokens_per_second_mean": 74.661793
@@ -1619,36 +2218,62 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.25,
+          "mean": 0.4,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.4,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "core": {
-          "mean": 0.527778,
+          "mean": 0.831944,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.831944,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.527778
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "tools": {
-          "mean": 0.5,
+          "mean": 0.822292,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.822292,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5
         },
         "translation": {
           "mean": 0.933333,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.933333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.933333
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 8.492,
         "output_tokens_per_second_mean": 44.196813
@@ -1659,8 +2284,8 @@
         "en": "Transparent comparison model for open research, general text, and translation."
       },
       "caution": {
-        "zh": "代码 0.250，综合表现未达到本轮最强组。",
-        "en": "Code 0.250 and overall track results do not reach the strongest group."
+        "zh": "代码 0.400，综合表现仍未达到本轮最强组。",
+        "en": "Code 0.400 and the overall profile still trail the strongest group."
       }
     },
     {
@@ -1685,53 +2310,78 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.75,
+          "mean": 0.9,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.9,
+          "recovery_attempted": 1,
+          "recovery_selected": 1,
+          "strict_mean": 0.75
         },
         "core": {
-          "mean": 0.569444,
+          "mean": 0.836957,
           "records": 24,
-          "scored_records": 24,
-          "coverage": 1.0
+          "scored_records": 23,
+          "coverage": 0.958333,
+          "completion_rate": 0.958333,
+          "completion_adjusted_mean": 0.802083,
+          "recovery_attempted": 1,
+          "recovery_selected": 0,
+          "strict_mean": 0.569444
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
-          "scored_records": 4,
-          "coverage": 1.0
+          "scored_records": 3,
+          "coverage": 0.75,
+          "completion_rate": 0.75,
+          "completion_adjusted_mean": 0.75,
+          "recovery_attempted": 1,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "reasoning": {
-          "mean": 0.43,
+          "mean": 0.777778,
           "records": 10,
-          "scored_records": 10,
-          "coverage": 1.0
+          "scored_records": 9,
+          "coverage": 0.9,
+          "completion_rate": 0.9,
+          "completion_adjusted_mean": 0.7,
+          "recovery_attempted": 1,
+          "recovery_selected": 0,
+          "strict_mean": 0.43
         },
         "translation": {
-          "mean": 0.6,
+          "mean": 0.85,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.85,
+          "recovery_attempted": 2,
+          "recovery_selected": 2,
+          "strict_mean": 0.6
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 14.1405,
         "output_tokens_per_second_mean": 43.094604
       },
       "failures": {
         "absolute_timeout": 1,
-        "runtime_anomaly": 1,
         "truncated": 1,
-        "truncated_before_final": 7
+        "truncated_before_final": 4
       },
       "recommendation": {
         "zh": "允许较长等待时的代码与推理研究。",
         "en": "Code and reasoning research when longer waits are acceptable."
       },
       "caution": {
-        "zh": "7 次 final 前截断和 1 次超时，不适合时间敏感交互。",
-        "en": "Seven before-final truncations and one timeout make it unsuitable for latency-sensitive interaction."
+        "zh": "宽松恢复后仍有 2 次 final 前截断和 1 次超时，不适合时间敏感交互。",
+        "en": "After recovery it still has two before-final truncations and one timeout, so it is unsuitable for latency-sensitive interaction."
       }
     },
     {
@@ -1757,48 +2407,78 @@
       "match_confidence": "EXACT_QUANTIZED_DERIVATIVE",
       "scores": {
         "code": {
-          "mean": 0.6875,
+          "mean": 0.725,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.725,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.6875
         },
         "core": {
-          "mean": 0.138889,
+          "mean": 0.802083,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.802083,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.138889
         },
         "long_context": {
-          "mean": 0.0,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "reasoning": {
-          "mean": 0.23,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.23
         },
         "tools": {
-          "mean": 0.5,
+          "mean": 0.890625,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.890625,
+          "recovery_attempted": 2,
+          "recovery_selected": 2,
+          "strict_mean": 0.5
         },
         "translation": {
           "mean": 0.85,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.85,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.85
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 2.1245,
         "output_tokens_per_second_mean": 250.481413
       },
       "failures": {
-        "tool_loop_limit": 2,
         "truncated": 9
       },
       "recommendation": {
@@ -1806,8 +2486,8 @@
         "en": "Ultra-light, very high-throughput candidate for code and translation."
       },
       "caution": {
-        "zh": "核心与推理较弱，并有 9 次截断和 2 次工具循环上限。",
-        "en": "Weak core/reasoning with nine truncations and two tool-loop limits."
+        "zh": "实用重评表现明显改善，但仍有 2 次截断；超轻量优势不等于复杂任务可靠性。",
+        "en": "Practical regrading improves its profile, but two truncations remain; tiny size does not imply complex-task reliability."
       }
     },
     {
@@ -1833,42 +2513,73 @@
       "match_confidence": "UNVERIFIED_LOCAL_TAG",
       "scores": {
         "code": {
-          "mean": 0.7625,
+          "mean": 0.81,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.81,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.7625
         },
         "core": {
-          "mean": 0.627778,
+          "mean": 0.808333,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.808333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.627778
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 0.5,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.5,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "reasoning": {
-          "mean": 0.0,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "tools": {
-          "mean": 0.5,
+          "mean": 0.883542,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.883542,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5
         },
         "translation": {
           "mean": 0.933333,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.933333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.933333
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 11.664,
         "output_tokens_per_second_mean": 40.055988
@@ -1879,8 +2590,8 @@
         "en": "Strong local candidate for code, general, and translation tasks."
       },
       "caution": {
-        "zh": "推理为 0，且尚未匹配到可信的精确官方模型卡。",
-        "en": "Reasoning scored 0 and no authoritative exact model card was matched."
+        "zh": "推理实用分 0.800，但尚未匹配到可信的精确官方模型卡。",
+        "en": "Practical Reasoning is 0.800, but no authoritative exact model card was matched."
       }
     },
     {
@@ -1905,42 +2616,73 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.3625,
+          "mean": 0.415,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.415,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.3625
         },
         "core": {
-          "mean": 0.097222,
+          "mean": 0.827083,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.827083,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.097222
         },
         "long_context": {
-          "mean": 0.0,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "reasoning": {
-          "mean": 0.4,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.4
         },
         "tools": {
-          "mean": 0.125,
+          "mean": 0.4875,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.4875,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.125
         },
         "translation": {
           "mean": 0.7,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.7,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.7
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 9.8285,
         "output_tokens_per_second_mean": 65.26982
@@ -1953,8 +2695,8 @@
         "en": "Mathematical reasoning experiments and lightweight offline analysis."
       },
       "caution": {
-        "zh": "9 次截断，核心、代码和工具表现均有限。",
-        "en": "Nine truncations with limited core, code, and tools performance."
+        "zh": "仍保留多次截断证据；实用分改善不等于时间敏感任务稳定。",
+        "en": "Multiple truncations remain; improved practical scores do not imply latency-sensitive stability."
       }
     },
     {
@@ -1979,42 +2721,73 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.1125,
+          "mean": 0.24,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.24,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.1125
         },
         "core": {
-          "mean": 0.277778,
+          "mean": 0.610972,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.610972,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.277778
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "medical": {
-          "mean": 0.166667,
+          "mean": 0.663889,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.663889,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.166667
         },
         "tools": {
-          "mean": 0.0,
+          "mean": 0.4775,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.4775,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "translation": {
           "mean": 0.833333,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.833333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.833333
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 4.789,
         "output_tokens_per_second_mean": 80.818837
@@ -2025,8 +2798,8 @@
         "en": "Fast fallback for ordinary text and translation."
       },
       "caution": {
-        "zh": "核心 0.278、代码 0.113、工具 0。",
-        "en": "Core 0.278, code 0.113, and tools 0."
+        "zh": "核心 0.611、代码 0.240、工具 0.477，复杂 Agent 能力有限。",
+        "en": "Core 0.611, Code 0.240, and Tools 0.477 limit complex agent use."
       }
     },
     {
@@ -2054,9 +2827,15 @@
           "mean": 1.0,
           "records": 12,
           "scored_records": 12,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 1.0
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": null,
         "output_tokens_per_second_mean": null
@@ -2095,71 +2874,110 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.8625,
+          "mean": 0.89,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.89,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.8625
         },
         "core": {
-          "mean": 0.569444,
+          "mean": 0.879167,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.879167,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.569444
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "ocr": {
-          "mean": 0.1,
+          "mean": 0.723389,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.723389,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.1
         },
         "reasoning": {
-          "mean": 0.4,
+          "mean": 0.7,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.7,
+          "recovery_attempted": 1,
+          "recovery_selected": 1,
+          "strict_mean": 0.4
         },
         "tools": {
-          "mean": 0.75,
+          "mean": 0.909375,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.909375,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.75
         },
         "translation": {
-          "mean": 0.7,
+          "mean": 1.0,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 2,
+          "recovery_selected": 2,
+          "strict_mean": 0.7
         },
         "vision": {
-          "mean": 0.125,
+          "mean": 1.0,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.125
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 16.3125,
         "output_tokens_per_second_mean": 38.170342
       },
       "failures": {
-        "absolute_timeout": 2,
-        "runtime_anomaly": 2,
-        "truncated": 1,
-        "truncated_before_final": 2
+        "absolute_timeout": 1,
+        "truncated": 1
       },
       "recommendation": {
-        "zh": "当前代码与工具任务很强的多模态候选。",
-        "en": "Strong current code and tools candidate with multimodal capability."
+        "zh": "当前代码、工具与视觉最均衡的多模态候选。",
+        "en": "The strongest current balance across code, tools, and vision."
       },
       "caution": {
-        "zh": "视觉仅 0.125，且有超时与 final 前截断；不要因模型名假定视觉可靠。",
-        "en": "Vision is only 0.125 with timeouts and before-final truncation; do not infer visual reliability from the name."
+        "zh": "仍有 1 次超时和 1 次截断；视觉 1.000 只代表 8 条小型夹具。",
+        "en": "One timeout and one truncation remain; Vision 1.000 covers only eight small fixtures."
       }
     },
     {
@@ -2186,74 +3004,120 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.3,
+          "mean": 0.44,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.44,
+          "recovery_attempted": 1,
+          "recovery_selected": 1,
+          "strict_mean": 0.3
         },
         "core": {
-          "mean": 0.611111,
+          "mean": 0.84375,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.84375,
+          "recovery_attempted": 1,
+          "recovery_selected": 1,
+          "strict_mean": 0.611111
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "medical": {
-          "mean": 0.5,
+          "mean": 0.8,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5
         },
         "ocr": {
-          "mean": 0.1,
+          "mean": 0.743779,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.743779,
+          "recovery_attempted": 5,
+          "recovery_selected": 5,
+          "strict_mean": 0.1
         },
         "reasoning": {
-          "mean": 0.3,
+          "mean": 0.625,
           "records": 10,
-          "scored_records": 10,
-          "coverage": 1.0
+          "scored_records": 8,
+          "coverage": 0.8,
+          "completion_rate": 0.8,
+          "completion_adjusted_mean": 0.5,
+          "recovery_attempted": 2,
+          "recovery_selected": 0,
+          "strict_mean": 0.3
         },
         "tools": {
-          "mean": 0.625,
+          "mean": 0.88625,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.88625,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.625
         },
         "translation": {
-          "mean": 0.533333,
+          "mean": 0.966667,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.966667,
+          "recovery_attempted": 3,
+          "recovery_selected": 3,
+          "strict_mean": 0.533333
         },
         "vision": {
-          "mean": 0.125,
+          "mean": 0.875,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.875,
+          "recovery_attempted": 4,
+          "recovery_selected": 4,
+          "strict_mean": 0.125
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 7.1015,
         "output_tokens_per_second_mean": 67.765336
       },
       "failures": {
-        "truncated_before_final": 16
+        "truncated_before_final": 2
       },
       "recommendation": {
         "zh": "4B 级通用、工具和轻量多模态候选。",
         "en": "4B-class candidate for general, tools, and lightweight multimodal work."
       },
       "caution": {
-        "zh": "16 次 final 前截断；长输出必须显式控制。",
-        "en": "Sixteen before-final truncations require strict control of long outputs."
+        "zh": "定向恢复选用了 14 条改善结果，但仍有 2 次 final 前截断；长输出需控制。",
+        "en": "Targeted recovery selected 14 improved results, but two before-final truncations remain; long outputs still need control."
       }
     },
     {
@@ -2280,74 +3144,118 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "code": {
-          "mean": 0.1375,
+          "mean": 0.41,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.41,
+          "recovery_attempted": 1,
+          "recovery_selected": 1,
+          "strict_mean": 0.1375
         },
         "core": {
-          "mean": 0.694444,
+          "mean": 0.879167,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.879167,
+          "recovery_attempted": 1,
+          "recovery_selected": 1,
+          "strict_mean": 0.694444
         },
         "long_context": {
-          "mean": 0.5,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.5
         },
         "medical": {
-          "mean": 0.666667,
+          "mean": 0.8,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.666667
         },
         "ocr": {
-          "mean": 0.0,
+          "mean": 0.657809,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.657809,
+          "recovery_attempted": 2,
+          "recovery_selected": 2,
+          "strict_mean": 0.0
         },
         "reasoning": {
-          "mean": 0.4,
+          "mean": 0.8,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.8,
+          "recovery_attempted": 1,
+          "recovery_selected": 1,
+          "strict_mean": 0.4
         },
         "tools": {
-          "mean": 0.625,
+          "mean": 0.904375,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.904375,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.625
         },
         "translation": {
-          "mean": 0.516667,
+          "mean": 0.966667,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.966667,
+          "recovery_attempted": 3,
+          "recovery_selected": 3,
+          "strict_mean": 0.516667
         },
         "vision": {
-          "mean": 0.125,
+          "mean": 0.875,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.875,
+          "recovery_attempted": 1,
+          "recovery_selected": 1,
+          "strict_mean": 0.125
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 13.1795,
         "output_tokens_per_second_mean": 41.210048
       },
-      "failures": {
-        "truncated_before_final": 9
-      },
+      "failures": {},
       "recommendation": {
         "zh": "通用和长上下文任务的高质量候选。",
         "en": "High-quality candidate for general and long-context tasks."
       },
       "caution": {
-        "zh": "代码和翻译明显弱于同级候选，并有 9 次 final 前截断。",
-        "en": "Code and translation trail peers, with nine before-final truncations."
+        "zh": "9 条恢复结果全部形成可评分输出；代码 0.410 仍弱于同级代码候选。",
+        "en": "All nine recovery items became scoreable, but Code 0.410 still trails peer code candidates."
       }
     },
     {
@@ -2372,36 +3280,62 @@
       "match_confidence": "FAMILY_ONLY_BASE_VS_INSTRUCT_UNVERIFIED",
       "scores": {
         "code": {
-          "mean": 0.675,
+          "mean": 0.59,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.59,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.675
         },
         "core": {
-          "mean": 0.402778,
+          "mean": 0.829167,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.829167,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.402778
         },
         "long_context": {
-          "mean": 0.25,
+          "mean": 1.0,
           "records": 4,
           "scored_records": 4,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 1.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.25
         },
         "tools": {
-          "mean": 0.625,
+          "mean": 0.888542,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.888542,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.625
         },
         "translation": {
           "mean": 0.933333,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.933333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.933333
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 2.9685,
         "output_tokens_per_second_mean": 43.754814
@@ -2412,8 +3346,8 @@
         "en": "Responsive practical model for code, STEM, and translation."
       },
       "caution": {
-        "zh": "核心只有 0.403，仍需强提示和结果校验。",
-        "en": "Core is only 0.403, so strong prompting and validation remain necessary."
+        "zh": "实用 Core 0.829，但仍需强提示和结果校验。",
+        "en": "Practical Core is 0.829, but strong prompting and validation remain necessary."
       }
     },
     {
@@ -2437,12 +3371,18 @@
       "match_confidence": "EXACT_FAMILY_QUANTIZED_RUNTIME",
       "scores": {
         "safety": {
-          "mean": 0.75,
+          "mean": 0.708333,
           "records": 20,
           "scored_records": 20,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.708333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.75
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": null,
         "output_tokens_per_second_mean": null
@@ -2453,8 +3393,8 @@
         "en": "Low-resource first-pass safety screening."
       },
       "caution": {
-        "zh": "安全准确率 0.750，低于 Granite Guardian；关键场景需复核。",
-        "en": "Safety accuracy 0.750 trails Granite Guardian; review high-impact decisions."
+        "zh": "安全综合分 0.708，低于 Granite Guardian；关键场景需复核。",
+        "en": "Safety composite is 0.708, below Granite Guardian; review high-impact decisions."
       }
     },
     {
@@ -2479,50 +3419,76 @@
       "match_confidence": "EXACT_FAMILY_RUNTIME_REVISION_UNVERIFIED",
       "scores": {
         "code": {
-          "mean": 0.45,
+          "mean": 0.56,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.56,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.45
         },
         "core": {
-          "mean": 0.236111,
+          "mean": 0.58125,
           "records": 24,
           "scored_records": 24,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.58125,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.236111
         },
         "long_context": {
-          "mean": 0.0,
+          "mean": 0.5,
           "records": 2,
           "scored_records": 2,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.5,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "tools": {
-          "mean": 0.125,
+          "mean": 0.732292,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 0.75,
+          "completion_adjusted_mean": 0.549219,
+          "recovery_attempted": 5,
+          "recovery_selected": 3,
+          "strict_mean": 0.125
         },
         "translation": {
           "mean": 0.783333,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.783333,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.783333
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": 4.0155,
         "output_tokens_per_second_mean": 113.638194
       },
       "failures": {
-        "tool_loop_limit": 5
+        "tool_loop_limit": 2
       },
       "recommendation": {
         "zh": "低资源文本生成、翻译和简单代码草案。",
         "en": "Low-resource text generation, translation, and simple code drafts."
       },
       "caution": {
-        "zh": "核心和工具较弱，并出现 5 次工具循环上限。",
-        "en": "Weak core/tools performance with five tool-loop limits."
+        "zh": "工具恢复明显改善，但仍有 2 次工具循环上限；复杂 Agent 任务需限制轮次。",
+        "en": "Tool recovery improved substantially, but two loop-limit events remain; cap rounds for complex agent work."
       }
     },
     {
@@ -2550,9 +3516,15 @@
           "mean": 0.0,
           "records": 8,
           "scored_records": 8,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.0,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": null,
         "output_tokens_per_second_mean": null
@@ -2591,18 +3563,29 @@
       "match_confidence": "FAMILY_MATCH_LOCAL_TAG_SIZE_4B",
       "scores": {
         "ocr": {
-          "mean": 0.0,
+          "mean": 0.602692,
           "records": 10,
           "scored_records": 10,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.602692,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.0
         },
         "translation": {
           "mean": 0.9,
           "records": 6,
           "scored_records": 6,
-          "coverage": 1.0
+          "coverage": 1.0,
+          "completion_rate": 1.0,
+          "completion_adjusted_mean": 0.9,
+          "recovery_attempted": 0,
+          "recovery_selected": 0,
+          "strict_mean": 0.9
         }
       },
+      "score_basis": "practical-regrade-1 with selected rc1-relaxed-recovery-v1 evidence",
       "performance": {
         "wall_seconds_p50": null,
         "output_tokens_per_second_mean": null
@@ -2613,8 +3596,8 @@
         "en": "Stable dedicated translation model and translation-quality comparator."
       },
       "caution": {
-        "zh": "不要把其 OCR 为 0 外推为翻译能力问题，也不要当通用聊天模型。",
-        "en": "Do not treat OCR 0 as a translation failure or use it as a general chat model."
+        "zh": "OCR 0.603 仍非其原生定位；不要外推为通用聊天或文档模型。",
+        "en": "OCR 0.603 is outside its native role; do not extrapolate to general chat or document understanding."
       }
     }
   ]

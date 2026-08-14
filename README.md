@@ -8,9 +8,9 @@ SummerTestModel evaluates interesting and capable small Ollama models on one con
 
 **Interactive bilingual website:** [summertestmodel-benchmark.walker-ethan.chatgpt.site](https://summertestmodel-benchmark.walker-ethan.chatgpt.site)
 
-## Current baseline
+## Current practical snapshot
 
-This is the canonical result set for the project. It covers every local model installed and selected for the RC1 run; future models will be evaluated incrementally against the same frozen tasks and scorers.
+This is the default public view for the project. The original strict RC1 baseline remains immutable; the practical snapshot regrades all existing raw evidence offline and selects only better, scoreable outcomes from one explicitly marked 50-item targeted recovery. Future models will be evaluated incrementally against the same task system.
 
 | Item | Current result |
 | --- | --- |
@@ -22,7 +22,9 @@ This is the canonical result set for the project. It covers every local model in
 | Infrastructure-incomplete records | 0 |
 | Benchmark version | `1.0-rc1` |
 | Publication scorer | `1.0-rc1.1` |
-| Ollama runtime snapshot | `0.32.6` |
+| Practical scorer | `practical-regrade-1` |
+| Targeted recovery | 50 attempted; 39 selected; 6 capability items still lack a scoreable final |
+| Ollama runtime snapshots | `0.32.6` strict baseline; `0.32.9` targeted recovery |
 
 The run reflects practical usability on this machine, not a tightly controlled laboratory environment. Runtime and Ollama versions are recorded with each snapshot instead of being permanent compatibility gates.
 
@@ -30,20 +32,22 @@ The run reflects practical usability on this machine, not a tightly controlled l
 
 There is no universal overall score. General, reasoning, code, translation, tools, vision, OCR, long-context, embedding, safety, medical, and performance results are interpreted within their own tracks. Specialist models are not penalized for tracks that do not apply to them.
 
-Selected local track leaders from the completed baseline:
+Selected local practical leaders below are ranked with completion in view. The complete table retains strict means, practical means, coverage, completion, and recovery counts.
 
 | Track | Leading observed model | Mean score |
 | --- | --- | ---: |
-| Core | `hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M` | 0.778 |
-| Reasoning | `hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M`, `hf.co/tiiuae/Falcon-H1R-7B-GGUF:Q4_K_M`, `lfm2.5:8b` | 0.500 |
-| Code | `qwen3-vl:8b` | 0.863 |
-| Translation | `gemma4:e4b`, `hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M` | 1.000 |
-| Tools | `hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M`, `lfm2.5:8b`, `qwen3-vl:8b` | 0.750 |
+| Core | Six models tie, including Qwen3-8B Q4, Qwen3-VL, Gemma4, Qwen3.5 9B | 0.879 |
+| Reasoning | Thirteen models tie; current fixtures do not separate the top group | 0.800 |
+| Code | `olmo-3:7b-think` | 0.900 |
+| Translation | `gemma4:e4b`, Qwen3-8B Q4, `qwen3-vl:8b` | 1.000 |
+| Tools | Qwen3-8B Q4, `lfm2.5:8b`, `minicpm-v4.6`, `qwen3-vl:8b` | 0.909 |
+| Vision | `qwen3-vl:8b` | 1.000 |
+| OCR | `deepseek-ocr:latest` | 0.792 with 100% completion |
 | Embedding | `qwen3-embedding:latest` | 1.000 |
 | Safety | `granite4.1-guardian:8b` | 1.000 |
-| Medical | `nemotron-3-nano:4b` | 0.833 |
+| Medical | Nemotron 4B, Qwen3.5 4B, Qwen3.5 9B | 0.800 |
 
-Vision and OCR remain experimental because their current fixture sets are small and strict. Retention remains `UNASSESSED`; the project does not yet label models as keepers or dominated.
+Vision and OCR remain experimental because their fixture sets are small and semantic score can diverge sharply from completion. Retention remains `UNASSESSED`; the project does not yet label models as keepers or dominated.
 
 Start here:
 
@@ -52,7 +56,9 @@ Start here:
 - [Full RC1 results report](docs/rc1_results.md)
 - [Current model report](model_report.md)
 - [Structured 39-model assessments](public_results/rc1_model_assessments.json)
-- [Track scores](public_results/rc1_track_scores.csv)
+- [Practical track scores](public_results/rc1_practical_track_scores.csv)
+- [Targeted recovery comparison](public_results/rc1_practical_recovery_20260813.csv)
+- [Strict baseline track scores](public_results/rc1_track_scores.csv)
 - [Performance telemetry](public_results/rc1_performance.csv)
 - [Failure analysis](docs/rc1_failure_analysis.md)
 - [Sanitized local result records](public_results/rc1_baseline_20260809.jsonl)
@@ -69,7 +75,7 @@ The cloud reference is separate from the 39-model local baseline. Two cloud mode
 | RAM | 31.8 GiB |
 | GPU | NVIDIA GeForce RTX 4060 Laptop GPU, 8 GiB VRAM |
 | Python | 3.12.10 |
-| Ollama | 0.32.6 for the published RC1 snapshot |
+| Ollama | 0.32.6 for strict baseline; 0.32.9 for targeted recovery |
 
 See [machine profile](docs/machine_profile.md) and [runtime policy](docs/ollama_runtime_policy.md) for details.
 

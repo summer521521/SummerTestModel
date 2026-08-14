@@ -1,46 +1,46 @@
-# SummerTestModel Benchmark 1.0-rc1 Model Report
+# SummerTestModel Benchmark 1.0-rc1 Practical Model Report
 
 [English] · [简体中文](model_report.zh-CN.md) · [Complete phase report](docs/final_report.en.md) · [Interactive website](https://summertestmodel-benchmark.walker-ethan.chatgpt.site)
 
 ## Scope
 
-This report covers the current normalized project baseline only:
+This report covers the current practical snapshot built on the normalized baseline:
 
 - 39/39 selected local models completed;
 - 1,938 task records and 1,938 immutable private raw files;
 - benchmark version `1.0-rc1`;
-- publication scorer `1.0-rc1.1`;
+- strict publication scorer `1.0-rc1.1` and practical scorer `practical-regrade-1`;
+- 50 targeted recovery attempts across eight models, with 39 selected into the practical view;
 - no missing raw, duplicate inference keys, unresolved scoring errors, or infrastructure-incomplete task records.
 
-The results describe practical local usability on the recorded Windows/Ollama machine. They are not a universal model ranking and should not be combined with older project experiments or publisher leaderboard scores.
+The original strict baseline is unchanged. Practical scores come from offline regrading plus explicitly marked selected recovery evidence. They describe local usability on the recorded Windows/Ollama machine, not a universal ranking or a publisher-benchmark equivalent.
 
 ## Local results by track
 
 | Track | Leading observed model | RC1 within-track mean | Notes |
 | --- | --- | ---: | --- |
-| Core | `hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M` | 0.778 | 24 scored records |
-| Reasoning | `hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M`, `hf.co/tiiuae/Falcon-H1R-7B-GGUF:Q4_K_M`, `lfm2.5:8b` | 0.500 | tied leaders |
-| Code | `qwen3-vl:8b` | 0.863 | 8 scored records |
-| Translation | `gemma4:e4b`, `hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M` | 1.000 | tied leaders |
-| Tools | `hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M`, `lfm2.5:8b`, `qwen3-vl:8b` | 0.750 | tied leaders |
-| Long context | `gemma4:e4b`, `qwen3.5:9b` | 0.500 | tied leaders |
+| Core | Gemma4, Qwen3-8B Q4, Falcon H1R, Ministral3, Qwen3-VL, Qwen3.5 9B | 0.879 | six-way tie |
+| Reasoning | 13 models | 0.800 | current fixtures do not separate the top group |
+| Code | `olmo-3:7b-think` | 0.900 | 8/8 completed |
+| Translation | `gemma4:e4b`, Qwen3-8B Q4, `qwen3-vl:8b` | 1.000 | tied leaders |
+| Tools | Qwen3-8B Q4, `lfm2.5:8b`, `minicpm-v4.6`, `qwen3-vl:8b` | 0.909 | tied leaders |
+| Long context | 23 models | 1.000 | only four fixtures; low discrimination |
 | Embedding | `qwen3-embedding:latest` | 1.000 | specialist track |
 | Safety | `granite4.1-guardian:8b` | 1.000 | specialist track |
-| Medical | `nemotron-3-nano:4b` | 0.833 | specialist/application track |
-| OCR | `deepseek-ocr:latest` | 0.384 | experimental |
-| Vision | `gemma4:e4b`, `hf.co/ibm-granite/granite-vision-4.1-4b-GGUF:Q4_K_M`, `ministral-3:8b` | 0.125 | experimental, tied leaders |
+| Medical | Nemotron 4B, Qwen3.5 4B, Qwen3.5 9B | 0.800 | application track; not clinical validation |
+| OCR | `deepseek-ocr:latest` | 0.792 | 100% completion; GLM-OCR semantic 0.810 but 0% completion |
+| Vision | `qwen3-vl:8b` | 1.000 | experimental, eight fixtures |
 
-Complete model-by-track rows are available in [public_results/rc1_track_scores.csv](public_results/rc1_track_scores.csv). Performance telemetry is reported separately and adds no capability points.
+Complete practical model-by-track rows are available in [public_results/rc1_practical_track_scores.csv](public_results/rc1_practical_track_scores.csv), with the strict table retained in [public_results/rc1_track_scores.csv](public_results/rc1_track_scores.csv). Performance telemetry is separate and adds no capability points.
 
 ## Runtime and scoring outcomes
 
-- 7 absolute timeouts;
-- 104 truncation-related records;
-- 19 runtime anomalies;
-- 0 unresolved scoring errors after offline regrading;
-- 0 infrastructure failures in the completed local task records.
+- targeted recovery: 50/50 accounted, 39 selected;
+- selected practical snapshot: 5 absolute timeouts and 74 truncation-related records;
+- six recovered capability items still lack a scoreable final;
+- 0 unresolved scoring errors and 0 infrastructure-incomplete records.
 
-Three `CORE_PRACT_04` scorer crashes were corrected in scorer `1.0-rc1.1`. Existing raw responses were regraded offline; no model inference was repeated for that repair. Detailed classifications are in [docs/rc1_failure_analysis.md](docs/rc1_failure_analysis.md).
+Three `CORE_PRACT_04` scorer crashes were corrected in scorer `1.0-rc1.1`. The practical regrade also separates semantic, protocol, completion, repetition, tool dimensions, and safety confusion metrics. Detailed classifications are in [docs/rc1_failure_analysis.md](docs/rc1_failure_analysis.md), and the 50-item comparison is public in [public_results/rc1_practical_recovery_20260813.csv](public_results/rc1_practical_recovery_20260813.csv).
 
 ## Cloud reference
 

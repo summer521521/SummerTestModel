@@ -1,9 +1,10 @@
 # SummerTestModel report site
 
-This directory contains the bilingual interactive site for the current **SummerTestModel Benchmark 1.0-rc1** snapshot.
+This directory contains the bilingual interactive site for the current **SummerTestModel Benchmark 1.0-rc1 practical snapshot**.
 
 - Production: <https://summertestmodel-benchmark.walker-ethan.chatgpt.site>
-- Source data: `data/rc1_model_assessments.json`
+- Source data: `data/rc1_model_assessments.json`, generated from the sanitized practical regrade and selected targeted recovery result.
+- Strict baseline: retained unchanged under `public_results/`; it is not overwritten by the practical view.
 - Public only: no private tasks, raw model responses, or run state are included.
 - Languages: Simplified Chinese and English share the same structured dataset.
 

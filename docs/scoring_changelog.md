@@ -1,5 +1,24 @@
 # Scoring Changelog
 
+## practical-regrade-1
+
+- Publication date: 2026-08-14.
+- Benchmark/task version: `1.0-rc1`; strict scorer `1.0-rc1.1` remains unchanged.
+- All 1,938 strict raw records were regraded offline. One authorized recovery attempted 50 preselected records across eight models; 39 scoreable improvements were selected into the practical view.
+- The strict public JSONL and all strict raw hashes remain unchanged. Practical results are a separate dated snapshot, never an overwrite.
+
+### Practical interpretation
+
+- Infrastructure failures are null, not capability zero. Performance remains telemetry-only.
+- Core separates semantic and protocol credit; Reasoning uses semantic credit; Code combines isolated hidden-test pass rate and protocol behavior.
+- Tools validate name sequence, required fields, typed values, order, final facts, and efficiency. A missing tool or loop limit is capped and remains visibly annotated.
+- OCR separates semantic similarity, completion, and repetition degeneration. A truncated but semantically correct transcript can receive semantic credit but not completion credit.
+- Safety reports TP/TN/FP/FN, Accuracy, Precision, Recall, and F1; the track score is `50% Accuracy + 50% F1`.
+- Medical combines semantic extraction, safety language, and protocol behavior, but is not clinical validation.
+- Practical recovery is selected only when it turns an unscored strict item into a scoreable result or improves an existing practical score. Original and recovery outcomes remain linked in the public comparison.
+
+Machine-readable formulas are frozen in [`config/practical_scoring_policy.rc1.json`](../config/practical_scoring_policy.rc1.json); recovery limits are in [`config/relaxed_recovery_policy.rc1.json`](../config/relaxed_recovery_policy.rc1.json).
+
 ## 1.0-rc1.1
 
 - Freeze date: 2026-08-12.

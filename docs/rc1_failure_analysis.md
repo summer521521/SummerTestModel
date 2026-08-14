@@ -4,6 +4,12 @@
 
 The completed baseline has no missing raw evidence, duplicate inference, runner exception, or unresolved infrastructure failure. The visible error population is dominated by bounded generation/truncation, non-terminal streams after meaningful output, tool-loop behavior, and one corrected scorer implementation defect.
 
+## Practical recovery outcome
+
+On 2026-08-14, a one-attempt relaxed recovery completed all 50 preselected records across eight models. Thirty-nine results were selected because they produced a scoreable result where the strict outcome was unscored; six capability records still lacked a scoreable final, and two Performance records remained telemetry-only by design. The selected practical snapshot now contains 5 absolute timeouts and 74 truncation-related records. One `nemotron-3-nano:4b / TOOL_07` call still used an unknown tool, and two SmolLM2 records retain `tool_loop_limit`.
+
+The recovery did not overwrite strict raw or strict public results. See [`rc1_practical_recovery_20260813.csv`](../public_results/rc1_practical_recovery_20260813.csv) for the sanitized comparison and [`rc1_practical_failure_counts.csv`](../public_results/rc1_practical_failure_counts.csv) for current derived counts.
+
 ## Scorer defect corrected offline
 
 `CORE_PRACT_04` previously raised `TypeError: unhashable type: 'dict'` for three models because the scorer converted an object-containing array to a set. The scorer now validates every list element is a string before set comparison. Raw responses were not changed; all 1,938 records were regraded with scorer `1.0-rc1.1`, repairing all three scorer errors.
@@ -28,4 +34,4 @@ Affected models: `granite4:7b-a1b-h`, `olmo-3:7b-instruct`, and `hf.co/ibm-grani
 
 ## Machine-readable counts
 
-See `public_results/rc1_failure_counts.csv`.
+See `public_results/rc1_practical_failure_counts.csv` for the current practical view and `public_results/rc1_failure_counts.csv` for the preserved strict baseline.

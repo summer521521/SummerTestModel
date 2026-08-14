@@ -21,6 +21,17 @@
     "retry_policy": "e64a69d04d16d40046f24930969fd4c99152a958b585e4e3bf75d868594d1eb5",
     "model_runtime_defaults": "d2356ba9f34af67777a78c003327acb83daf4c2f45ae6958b4a48766cec357f6"
   },
+  "manifest_file_hashes": {
+    "benchmark_manifest": "2f7df851753f1587cec7dd1daffd2885b3204e26d96863d84d60b89d1d1f4d99",
+    "task_manifest": "27dda4553dc8e2c6eac6ee22cef1d709c7fb01242ad5a631990306d2e2b8c903",
+    "scorer_manifest": "1d168a2ebd7267fc90d2e499e6dd5251add3dedbf3072a464b7fa78b1a48d0b9",
+    "model_execution_plan": "7f7107937f5307f9efa099d534624274d74b8c7acd7a5e588cac94d8013e3b75",
+    "generation_profiles": "6bdbb77cb250f85610621154909aa787e65a9faee4ebc170520cc318c384e99e",
+    "retry_policy": "e64a69d04d16d40046f24930969fd4c99152a958b585e4e3bf75d868594d1eb5",
+    "model_runtime_defaults": "620e029f812029bdb042fcd78b01417977b858af5aee1ae968f744bb444109a1",
+    "private_package_manifest": "f8086f75cc9e36c4e10f816676dde080774f657dccfa075dd404691d3beb2877",
+    "scorer_implementation": "546ba0d2981c11b280485d1c11100021d15364a766718e62f3d6214fa5cf3c3e"
+  },
   "output_dir": "work/pending-run",
   "single_model_concurrency": true,
   "unload_between_models": "keep_alive_zero_then_healthcheck",

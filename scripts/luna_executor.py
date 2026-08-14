@@ -31,6 +31,31 @@ def pending_markers(value: Any, prefix: str = "") -> list[str]:
 def file_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
+
+def manifest_file_paths(config: dict[str, Any]) -> dict[str, Path | None]:
+    """Resolve byte-integrity targets independently of logical identity hashes."""
+    paths: dict[str, Path | None] = {}
+    for key in ("benchmark_manifest", "task_manifest", "scorer_manifest", "model_execution_plan", "generation_profiles", "retry_policy", "model_runtime_defaults", "private_package_manifest"):
+        value = config.get(key)
+        paths[key] = ROOT / str(value) if value not in (None, PENDING) else None
+    paths["scorer_implementation"] = ROOT / "scripts" / "scorers.py"
+    return paths
+
+
+def validate_manifest_file_hashes(config: dict[str, Any]) -> list[dict[str, str]]:
+    """Validate current file bytes without changing frozen logical identities."""
+    expected = config.get("manifest_file_hashes")
+    if not isinstance(expected, dict):
+        if config.get("benchmark_version") != "1.0-rc1":
+            return []
+        return [{"check": "manifest_file_hashes", "status": "FAIL", "detail": "missing manifest_file_hashes"}]
+    checks: list[dict[str, str]] = []
+    for key, path in manifest_file_paths(config).items():
+        actual = file_sha256(path) if path and path.is_file() else None
+        wanted = expected.get(key)
+        checks.append({"check": f"hash:{key}", "status": "PASS" if wanted and actual == wanted else "FAIL", "detail": f"expected={wanted};actual={actual}"})
+    return checks
+
 def schema_check(document: Path, schema: Path) -> tuple[bool,str]:
     try:
         import jsonschema
@@ -116,12 +141,9 @@ def doctor(config_path: Path) -> tuple[str, list[dict[str, str]]]:
             checks.append({"check":"scorer_referential_integrity","status":"PASS" if not ref_errors else "FAIL","detail":"all task scorer IDs/tracks/entrypoints resolve" if not ref_errors else ",".join(ref_errors)})
         except Exception as exc:
             checks.append({"check":"rc1_policy_files","status":"FAIL","detail":f"{type(exc).__name__}: {exc}"})
-    hashes = config.get("manifest_hashes") if isinstance(config.get("manifest_hashes"), dict) else {}
-    for key, expected in hashes.items():
-        value = config.get(key)
-        path = ROOT / str(value) if value not in (None, PENDING) else None
-        actual = file_sha256(path) if path and path.is_file() else None
-        checks.append({"check": f"hash:{key}", "status": "PASS" if actual == expected else "FAIL", "detail": f"expected={expected};actual={actual}"})
+    # `manifest_hashes` is frozen logical identity material used by logical_key.
+    # Current byte integrity is checked only through the separate byte-hash map.
+    checks.extend(validate_manifest_file_hashes(config))
     try:
         inventory_data = load_json(inventory)
         inventory_digests = {item.get("exact_name"): item.get("digest") for item in inventory_data.get("models", [])}

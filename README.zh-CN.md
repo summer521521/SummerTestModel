@@ -8,9 +8,9 @@ SummerTestModel 用一台普通 Windows 游戏本，评测有趣且能力较强�
 
 **双语交互网站：**[summertestmodel-benchmark.walker-ethan.chatgpt.site](https://summertestmodel-benchmark.walker-ethan.chatgpt.site)
 
-## 当前正式基线
+## 当前实用快照
 
-这是项目当前唯一的规范化结果集。RC1 运行覆盖当时安装并纳入计划的全部本地模型；以后新增模型只需按冻结任务和评分器增量评测，不必重跑原来的 39 个模型。
+这是项目默认公开视图。原始严格 RC1 基线保持不可变；实用快照对全部已有 raw 离线重评，并只从一次明确标注的 50 条定向恢复中选择可评分且更好的结果。以后新增模型继续增量评测，不必重跑原来的 39 个模型。
 
 | 项目 | 当前结果 |
 | --- | --- |
@@ -22,7 +22,9 @@ SummerTestModel 用一台普通 Windows 游戏本，评测有趣且能力较强�
 | 基础设施未完成记录 | 0 |
 | Benchmark 版本 | `1.0-rc1` |
 | 发布评分器 | `1.0-rc1.1` |
-| Ollama 运行快照 | `0.32.6` |
+| 实用评分器 | `practical-regrade-1` |
+| 定向恢复 | 50 条尝试；39 条选用；6 条能力任务仍无可评分 final |
+| Ollama 运行快照 | 严格基线 `0.32.6`；定向恢复 `0.32.9` |
 
 这次结果描述的是本机实际可用性，不是严格控制所有变量的实验室测试。Ollama 与运行环境版本随每次快照记录，不再作为永久兼容门槛。
 
@@ -30,20 +32,22 @@ SummerTestModel 用一台普通 Windows 游戏本，评测有趣且能力较强�
 
 项目不计算万能总分。Core、Reasoning、Code、Translation、Tools、Vision、OCR、Long Context、Embedding、Safety、Medical 与 Performance 必须在各自赛道内解释；专用模型不会因不适用赛道被扣分。
 
-本地基线的代表性赛道领先者：
+以下实用赛道领先者按完成率共同解释；完整表同时保留严格分、实用分、coverage、完成率与恢复条数：
 
 | 赛道 | 本轮领先模型 | 赛道均值 |
 | --- | --- | ---: |
-| Core | `hf.co/lmstudio-community/Qwen3-8B-GGUF:Q4_K_M` | 0.778 |
-| Reasoning | Qwen3-8B Q4、Falcon-H1R-7B、`lfm2.5:8b` | 0.500 |
-| Code | `qwen3-vl:8b` | 0.863 |
-| Translation | `gemma4:e4b`、Qwen3-8B Q4 | 1.000 |
-| Tools | Qwen3-8B Q4、`lfm2.5:8b`、`qwen3-vl:8b` | 0.750 |
+| Core | 6 个模型并列，包括 Qwen3-8B Q4、Qwen3-VL、Gemma4、Qwen3.5 9B | 0.879 |
+| Reasoning | 13 个模型并列，当前夹具不足以区分头部 | 0.800 |
+| Code | `olmo-3:7b-think` | 0.900 |
+| Translation | `gemma4:e4b`、Qwen3-8B Q4、`qwen3-vl:8b` | 1.000 |
+| Tools | Qwen3-8B Q4、`lfm2.5:8b`、`minicpm-v4.6`、`qwen3-vl:8b` | 0.909 |
+| Vision | `qwen3-vl:8b` | 1.000 |
+| OCR | `deepseek-ocr:latest` | 0.792，完成率 100% |
 | Embedding | `qwen3-embedding:latest` | 1.000 |
 | Safety | `granite4.1-guardian:8b` | 1.000 |
-| Medical | `nemotron-3-nano:4b` | 0.833 |
+| Medical | Nemotron 4B、Qwen3.5 4B、Qwen3.5 9B | 0.800 |
 
-Vision 与 OCR 由于当前夹具少且评分严格，仍属于实验性结果。Retention 仍是 `UNASSESSED`；用途推荐不等于保留或删除决定。
+Vision 与 OCR 的夹具仍少，而且语义分可能与完成率明显分离，因此仍属于实验性结果。Retention 仍是 `UNASSESSED`；用途推荐不等于保留或删除决定。
 
 阅读入口：
 
@@ -52,7 +56,9 @@ Vision 与 OCR 由于当前夹具少且评分严格，仍属于实验性结果�
 - [RC1 完整结果说明](docs/rc1_results.md)
 - [当前模型报告](model_report.zh-CN.md)
 - [39 模型结构化评估](public_results/rc1_model_assessments.json)
-- [逐模型逐赛道数据](public_results/rc1_track_scores.csv)
+- [实用逐模型逐赛道数据](public_results/rc1_practical_track_scores.csv)
+- [定向恢复对照](public_results/rc1_practical_recovery_20260813.csv)
+- [严格基线逐赛道数据](public_results/rc1_track_scores.csv)
 - [性能遥测](public_results/rc1_performance.csv)
 - [失败分析](docs/rc1_failure_analysis.md)
 - [脱敏本地结果记录](public_results/rc1_baseline_20260809.jsonl)
@@ -69,7 +75,7 @@ Vision 与 OCR 由于当前夹具少且评分严格，仍属于实验性结果�
 | 内存 | 31.8 GiB |
 | GPU | NVIDIA GeForce RTX 4060 Laptop GPU，8 GiB VRAM |
 | Python | 3.12.10 |
-| Ollama | 发布 RC1 快照为 0.32.6 |
+| Ollama | 严格基线为 0.32.6；定向恢复为 0.32.9 |
 
 详见[机器配置](docs/machine_profile.md)与[运行时版本政策](docs/ollama_runtime_policy.md)。
 

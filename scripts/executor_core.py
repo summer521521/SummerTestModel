@@ -137,11 +137,12 @@ class CircuitBreaker:
 
 
 class EvidenceStore:
-    def __init__(self, run_dir: Path):
+    def __init__(self, run_dir: Path, extra_fields: dict[str, dict[str, Any]] | None = None):
         self.run_dir = run_dir
         self.events = run_dir / "events.jsonl"
         self.state_path = run_dir / "state.json"
         self.raw_dir = run_dir / "raw"
+        self.extra_fields = extra_fields or {}
         run_dir.mkdir(parents=True, exist_ok=True)
 
     def load_state(self) -> dict[str, Any]:
@@ -240,6 +241,16 @@ class EvidenceStore:
             "terminal_record_at": (response.get("timing") or {}).get("terminal_record_at"),
             "request_finished_at": response.get("request_finished_at") or (response.get("timing") or {}).get("request_finished_at"),
         }
+        # Optional derived-run metadata is inserted before the single atomic
+        # write so event.raw_sha256 always describes the final evidence file.
+        allowed_extra = {
+            "original_logical_key", "original_status", "recovery_reason",
+            "recovery_policy_id", "recovery_used", "effective_profile",
+            "effective_think", "effective_options", "current_ollama_version",
+        }
+        for field in allowed_extra:
+            if field in self.extra_fields.get(key, {}):
+                evidence[field] = self.extra_fields[key][field]
         payload = (json.dumps(evidence, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
         evidence["evidence_payload_sha256"] = sha256_bytes(payload)
         atomic_json(path, evidence)

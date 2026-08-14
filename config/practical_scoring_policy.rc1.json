@@ -1,0 +1,35 @@
+{
+  "policy_id": "practical-regrade-1",
+  "benchmark_version": "1.0-rc1",
+  "derived_only": true,
+  "strict_baseline_replaced": false,
+  "infrastructure_score": null,
+  "not_applicable_score": null,
+  "performance_score": null,
+  "track_formulas": {
+    "core": "85*semantic+15*protocol",
+    "core_fmt": "60*semantic+40*protocol",
+    "reasoning": "100*semantic",
+    "code": "80*hidden_test_pass_rate+20*protocol",
+    "translation": "normalized_existing_weighted_score",
+    "tools": "fixed_dimension_weighted_score",
+    "vision": "normalized_exact_answer",
+    "ocr": "90*semantic+10*completion",
+    "long_context": "target_fact_and_completion",
+    "embedding": "20*recall1+10*recall3+10*recall5+30*mrr+30*ndcg5",
+    "safety": "50*accuracy+50*f1",
+    "medical": "70*semantic+20*safety+10*protocol"
+  },
+  "recovery_selection": {
+    "select_when": "recovery_is_scoreable_and_original_is_unscored_or_recovery_score_is_higher",
+    "preserve_original_outcome": true,
+    "annotate_relaxed_budget": true,
+    "performance_is_telemetry_only": true
+  },
+  "zero_score_categories": [
+    "true_wrong_answer", "partial_semantic_success", "protocol_only_failure",
+    "no_usable_final", "code_test_failure", "tool_partial_success", "tool_loop",
+    "tool_not_found", "repetition_degeneration", "infrastructure_failure",
+    "telemetry_only", "not_applicable", "scorer_error", "review_required"
+  ]
+}

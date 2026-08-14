@@ -1,0 +1,32 @@
+{
+  "policy_id": "rc1-relaxed-recovery-v1",
+  "benchmark_version": "1.0-rc1",
+  "keep_original_num_ctx": true,
+  "max_attempts_per_item": 1,
+  "ordinary": {"think": false, "num_predict_multiplier": 2, "num_predict_cap": 16384, "inactivity_timeout_seconds": 300, "absolute_timeout_seconds": 1800},
+  "long_context_32k": {"num_predict": 8192, "inactivity_timeout_seconds": 450, "absolute_timeout_seconds": 1800},
+  "performance": {"think": false, "num_predict": 1024, "inactivity_timeout_seconds": 300, "absolute_timeout_seconds": 900},
+  "reasoning": {"think": true, "num_ctx": 32768, "num_predict": 32768, "inactivity_timeout_seconds": 450, "absolute_timeout_seconds": 1800},
+  "tools": {"think": false, "num_predict": 8192, "inactivity_timeout_seconds": 300, "absolute_timeout_seconds": 600, "max_tool_rounds": 5},
+  "transport": {"max_transport_retries": 1, "connection_refused_threshold": 3, "healthcheck_interval_seconds": 30, "recovery_window_seconds": 900},
+  "queue": {
+    "deepseek-r1:8b": ["CODE_08", "CORE_EXT_04", "CORE_LOGIC_01", "CTX32_02", "RSN_01", "RSN_07"],
+    "qwen3.5:4b": ["CODE_08", "CORE_LOGIC_04", "OCR_04", "OCR_05", "OCR_06", "OCR_07", "OCR_10", "RSN_04", "RSN_07", "TRANS_01", "TRANS_03", "TRANS_04", "VIS_02", "VIS_03", "VIS_05", "VIS_08"],
+    "qwen3.5:9b": ["CODE_07", "CORE_LOGIC_04", "OCR_03", "OCR_10", "RSN_07", "TRANS_03", "TRANS_04", "TRANS_05", "VIS_04"],
+    "olmo-3:7b-think": ["CODE_08", "CORE_LOGIC_04", "CTX32_02", "PERF_COLD_01", "PERF_WARM_01", "TRANS_03", "TRANS_04", "RSN_07"],
+    "qwen3-vl:8b": ["TRANS_04", "TRANS_06", "RSN_01"],
+    "smollm2:1.7b": ["TOOL_03", "TOOL_04", "TOOL_05", "TOOL_07", "TOOL_08"],
+    "openbmb/minicpm5:Q4_K_M": ["TOOL_06", "TOOL_08"],
+    "nemotron-3-nano:4b": ["TOOL_07"]
+  },
+  "digests": {
+    "qwen3.5:4b": "2a654d98e6fba55d452b7043684e9b57a947e393bbffa62485a7aac05ee4eefd",
+    "qwen3.5:9b": "6488c96fa5faab64bb65cbd30d4289e20e6130ef535a93ef9a49f42eda893ea7",
+    "olmo-3:7b-think": "b8d4c92ac9c103f858f4f09a418b62de8ca1abf1b20b4020006346535634dd35",
+    "deepseek-r1:8b": "6995872bfe4c521a67b32da386cd21d5c6e819b6e0d62f79f64ec83be99f5763",
+    "qwen3-vl:8b": "901cae73216286ea8c5aba8b46d307ff7188f737285ec500c795a12f05225d28",
+    "smollm2:1.7b": "cef4a1e09247f018ca0c482ad4c2ce1474aba5e87f245dacf97f07948d05d8b4",
+    "openbmb/minicpm5:Q4_K_M": "08239e8f70e09fc079ff3b5c4f011fd846d452ae9ba4e4b4c40e526bd4950ded",
+    "nemotron-3-nano:4b": "6cc467f054393a55e98a74098abde0c762ffb6d1d8cd64becf30458f38886197"
+  }
+}

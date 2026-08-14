@@ -4,7 +4,17 @@ import { useMemo, useState } from "react";
 import reportData from "../data/rc1_model_assessments.json";
 
 type Language = "zh" | "en";
-type Score = { mean: number; records: number; scored_records: number; coverage: number };
+type Score = {
+  mean: number;
+  records: number;
+  scored_records: number;
+  coverage: number;
+  completion_rate: number;
+  completion_adjusted_mean: number | null;
+  recovery_attempted: number;
+  recovery_selected: number;
+  strict_mean: number | null;
+};
 type Model = (typeof reportData.models)[number];
 
 const TRACKS = [
@@ -39,22 +49,22 @@ const trackLabels: Record<string, { zh: string; en: string }> = {
 const copy = {
   zh: {
     nav: ["结论", "设计", "赛道", "模型", "方法"],
-    eyebrow: "BENCHMARK 1.0 · RC1 STABLE SNAPSHOT",
+    eyebrow: "BENCHMARK 1.0 · RC1 PRACTICAL SNAPSHOT",
     titleA: "39 个本地模型，",
     titleB: "在同一台电脑上说话。",
     intro:
-      "一份关于小模型真实本地可用性的可复现记录。我们保留原始证据、分开能力与运行失败，并拒绝用一个万能总分掩盖模型的不同生态位。",
+      "一份关于小模型真实本地可用性的可复现记录。严格基线保持不变，默认展示实用离线重评与被选中的定向恢复证据，并拒绝用一个万能总分掩盖不同生态位。",
     openReport: "阅读完整报告",
     github: "查看 GitHub",
     current: "当前发布快照",
     metrics: ["本地模型", "任务记录", "正式赛道", "未完成基础设施记录"],
     takeawayTitle: "先给结论，再看榜单",
-    takeawayLead: "默认本地基线是 Qwen3-8B Q4；但真正的答案取决于你要解决的问题。",
+    takeawayLead: "Qwen3-8B Q4 与 Qwen3-VL 8B 是当前最均衡的通用参考；真正的答案仍取决于任务。",
     takeaways: [
-      ["通用与 Agent", "Qwen3-8B Q4 在 Core、推理、翻译、工具与代码之间最均衡。"],
-      ["高质量文本", "Gemma4 E4B 与 Qwen3.5 9B 更适合通用和长上下文；两者代码或截断风险不同。"],
+      ["通用与 Agent", "Qwen3-8B Q4 与 Qwen3-VL 都达到 Core 0.879、Tools 0.909；后者 Code 0.890。"],
+      ["高质量文本", "Gemma4 E4B 与 Qwen3.5 9B 适合通用和长上下文，但代码侧表现不同。"],
       ["速度优先", "Granite4 7B-A1B、LFM2.5 与 MiniCPM5 很快，但不能把吞吐当成能力。"],
-      ["专用工作", "Qwen3 Embedding、Granite Guardian 与 TranslateGemma 应在原生生态位内解释。"],
+      ["专用工作", "Qwen3 Embedding、Granite Guardian 与 OCR 模型必须结合完成率在原生生态位内解释。"],
     ],
     designTitle: "为什么没有一张“万能总榜”",
     designLead: "Benchmark 的目标不是复刻厂商 leaderboard，而是回答：这些模型在这台普通本地电脑上，实际能做什么？",
@@ -65,7 +75,7 @@ const copy = {
       ["身份稳定", "版本、manifest hash、模型 digest、profile 和 task ID 共同定义一条结果，修订版不会覆盖旧证据。"],
     ],
     leaderTitle: "各赛道分别看，才不会误导",
-    leaderLead: "每个分数是当前 RC1 题集内的 0–1 均值。Coverage 与样本数必须和分数一起阅读。",
+    leaderLead: "每个分数是实用评分的 0–1 赛道均值；排序同时考虑完成率。Coverage、完成率与样本数必须一起阅读。",
     explorerTitle: "39 个模型逐一查看",
     explorerLead: "筛选生态位或赛道，查看官方定位、本机实际得分、推荐用途和风险。Retention 仍为 UNASSESSED。",
     search: "搜索模型、定位或 capability…",
@@ -78,12 +88,12 @@ const copy = {
     caution: "注意事项",
     noScore: "无适用分数",
     runtimeTitle: "稳定性是能力的一部分，但不是能力分本身",
-    runtimeLead: "本轮没有基础设施未完成记录；超时和截断保留为模型在固定 practical-local boundary 下的运行表现。",
+    runtimeLead: "严格基线没有基础设施缺口。50 条定向恢复只替换可评分且更好的派生结果，原始证据始终保留。",
     runtimeNotes: [
-      ["7", "绝对超时"],
-      ["104", "截断相关记录"],
-      ["19", "运行异常"],
-      ["0", "未解决评分错误"],
+      ["50", "定向恢复记录"],
+      ["39", "被选用的恢复结果"],
+      ["6", "仍无可评分 final 的能力任务"],
+      ["0", "基础设施未完成"],
     ],
     methodTitle: "以后新增模型，不重跑原来的 39 个",
     methodLead: "拉取新模型后记录 digest，显式选择可比能力分配，只跑适用冻结赛道，再导出新的脱敏结果。",
@@ -95,22 +105,22 @@ const copy = {
   },
   en: {
     nav: ["Findings", "Design", "Tracks", "Models", "Method"],
-    eyebrow: "BENCHMARK 1.0 · RC1 STABLE SNAPSHOT",
+    eyebrow: "BENCHMARK 1.0 · RC1 PRACTICAL SNAPSHOT",
     titleA: "39 local models,",
     titleB: "one practical laptop.",
     intro:
-      "A reproducible account of real small-model usability. Raw evidence is preserved, capability is separated from infrastructure, and one universal score is deliberately avoided.",
+      "A reproducible account of real small-model usability. The strict baseline remains intact; practical offline regrading and selected targeted recovery are the default view, without a universal score.",
     openReport: "Read the full report",
     github: "View on GitHub",
     current: "Current release snapshot",
     metrics: ["local models", "task records", "formal tracks", "infrastructure-incomplete records"],
     takeawayTitle: "Conclusions before leaderboards",
-    takeawayLead: "Qwen3-8B Q4 is the default local baseline, but the right answer depends on the job.",
+    takeawayLead: "Qwen3-8B Q4 and Qwen3-VL 8B are the most balanced general references, but the right answer depends on the job.",
     takeaways: [
-      ["General and agents", "Qwen3-8B Q4 offers the best balance across Core, reasoning, translation, tools, and code."],
-      ["Quality text work", "Gemma4 E4B and Qwen3.5 9B are strong for general and long-context work, with different code and truncation risks."],
+      ["General and agents", "Qwen3-8B Q4 and Qwen3-VL both reach Core 0.879 and Tools 0.909; Qwen3-VL adds Code 0.890."],
+      ["Quality text work", "Gemma4 E4B and Qwen3.5 9B are strong for general and long-context work, with different code profiles."],
       ["Speed first", "Granite4 7B-A1B, LFM2.5, and MiniCPM5 are fast, but throughput is not capability."],
-      ["Specialist work", "Qwen3 Embedding, Granite Guardian, and TranslateGemma must be read in their native niches."],
+      ["Specialist work", "Qwen3 Embedding, Granite Guardian, and OCR models must be interpreted with completion in their native niches."],
     ],
     designTitle: "Why there is no universal leaderboard",
     designLead: "The benchmark does not recreate publisher leaderboards. It asks what these models can actually do on this ordinary local machine.",
@@ -121,7 +131,7 @@ const copy = {
       ["Stable identity", "Version, manifest hash, model digest, profile, and task ID define a result, so a revision never overwrites old evidence."],
     ],
     leaderTitle: "Track-by-track is the honest comparison",
-    leaderLead: "Scores are 0–1 means within the current RC1 fixtures. Coverage and record counts must be read beside every score.",
+    leaderLead: "Scores are 0–1 practical means, ranked with completion in view. Coverage, completion, and record counts must be read together.",
     explorerTitle: "Explore all 39 models",
     explorerLead: "Filter by niche or track to inspect publisher positioning, local scores, recommended use, and cautions. Retention remains UNASSESSED.",
     search: "Search model, role, or capability…",
@@ -134,12 +144,12 @@ const copy = {
     caution: "Caution",
     noScore: "No applicable score",
     runtimeTitle: "Stability is part of usability, not the score itself",
-    runtimeLead: "No local task remains infrastructure-incomplete. Timeouts and truncation remain model behavior under the fixed practical-local boundary.",
+    runtimeLead: "The strict baseline has no infrastructure gap. Targeted recovery replaces only scoreable, better derived outcomes while preserving original evidence.",
     runtimeNotes: [
-      ["7", "absolute timeouts"],
-      ["104", "truncation-related records"],
-      ["19", "runtime anomalies"],
-      ["0", "unresolved scorer errors"],
+      ["50", "targeted recovery records"],
+      ["39", "selected recovery results"],
+      ["6", "capability items still lacking a scoreable final"],
+      ["0", "infrastructure-incomplete"],
     ],
     methodTitle: "Add future models without rerunning the 39",
     methodLead: "Record the new digest, select an explicit comparable assignment, run only applicable frozen tracks, then export a new sanitized snapshot.",
@@ -157,6 +167,10 @@ function scoreFor(model: Model, track: string): Score | undefined {
 
 function formatScore(value: number | undefined) {
   return typeof value === "number" ? value.toFixed(3) : "—";
+}
+
+function rankingScore(score: Score | undefined) {
+  return score?.completion_adjusted_mean ?? score?.mean ?? -1;
 }
 
 export function ReportSite() {
@@ -177,14 +191,15 @@ export function ReportSite() {
         const ranked = reportData.models
           .map((model) => ({ model, score: scoreFor(model, trackId) }))
           .filter((row): row is { model: Model; score: Score } => Boolean(row.score))
-          .sort((a, b) => b.score.mean - a.score.mean);
+          .sort((a, b) => rankingScore(b.score) - rankingScore(a.score));
         if (!ranked.length) return null;
-        const top = ranked[0].score.mean;
+        const top = rankingScore(ranked[0].score);
         return {
           track: trackId,
           top,
           records: ranked[0].score.records,
-          names: ranked.filter((row) => row.score.mean === top).map((row) => row.model.short_name),
+          completion: ranked[0].score.completion_rate,
+          names: ranked.filter((row) => rankingScore(row.score) === top).map((row) => row.model.short_name),
         };
       }).filter(Boolean),
     [],
@@ -204,7 +219,7 @@ export function ReportSite() {
       })
       .sort((a, b) => {
         const sortTrack = track === "all" ? "core" : track;
-        const delta = (scoreFor(b, sortTrack)?.mean ?? -1) - (scoreFor(a, sortTrack)?.mean ?? -1);
+        const delta = rankingScore(scoreFor(b, sortTrack)) - rankingScore(scoreFor(a, sortTrack));
         return delta || a.short_name.localeCompare(b.short_name);
       });
   }, [lang, query, role, track]);
@@ -237,7 +252,7 @@ export function ReportSite() {
           </div>
         </div>
         <aside className="snapshot" aria-label={t.current}>
-          <div className="snapshot-head"><span>{t.current}</span><strong>2026.08.12</strong></div>
+          <div className="snapshot-head"><span>{t.current}</span><strong>2026.08.14</strong></div>
           <div className="snapshot-grid">
             {["39", "1,938", "12", "0"].map((value, index) => (
               <div key={value + index}><strong>{value}</strong><span>{t.metrics[index]}</span></div>
@@ -272,7 +287,7 @@ export function ReportSite() {
               <span className="leader-name" role="cell">{row.names.join(" · ")}</span>
               <span className="score" role="cell">{row.top.toFixed(3)}</span>
               <span className="bar" aria-hidden="true"><i style={{ width: `${row.top * 100}%` }} /></span>
-              <small>{row.records} records</small>
+              <small>{row.records} records · {Math.round(row.completion * 100)}% complete</small>
             </div>
           ))}
         </div>
@@ -292,7 +307,7 @@ export function ReportSite() {
             return (
               <article className="model-card" key={model.digest}>
                 <div className="model-head"><div><span className="role-tag">{model.role[lang]}</span><h3>{model.short_name}</h3><code>{model.parameter_size} · {model.quantization} · {model.disk_size_gib.toFixed(2)} GiB</code></div><strong className="model-score">{formatScore(selectedScore?.mean)}</strong></div>
-                <div className="score-strip">{Object.entries(model.scores).map(([name, score]) => <span key={name}><i>{trackLabels[name]?.[lang] ?? name}</i><b>{score.mean.toFixed(3)}</b></span>)}</div>
+                <div className="score-strip">{Object.entries(model.scores).map(([name, score]) => <span key={name}><i>{trackLabels[name]?.[lang] ?? name}</i><b>{score.mean.toFixed(3)}</b><small>{Math.round(score.completion_rate * 100)}% ✓{score.recovery_selected ? ` · R${score.recovery_selected}` : ""}</small></span>)}</div>
                 <dl><div><dt>{t.recommendation}</dt><dd>{model.recommendation[lang]}</dd></div><div><dt>{t.caution}</dt><dd>{model.caution[lang]}</dd></div></dl>
                 <div className="model-foot"><span>{model.capabilities.join(" · ") || t.noScore}</span>{model.official_source_url ? <a href={model.official_source_url} target="_blank" rel="noreferrer">{t.official} ↗</a> : <span>Source unresolved</span>}</div>
               </article>
@@ -312,7 +327,7 @@ export function ReportSite() {
         <aside className="boundary"><h3>{t.boundary}</h3><p>{t.boundaryText}</p></aside>
       </section>
 
-      <footer><div><strong>SummerTestModel</strong><span>Benchmark 1.0-rc1 · scorer 1.0-rc1.1</span></div><p>{t.footer}</p><a href="#top">↑ TOP</a></footer>
+      <footer><div><strong>SummerTestModel</strong><span>Benchmark 1.0-rc1 · practical-regrade-1</span></div><p>{t.footer}</p><a href="#top">↑ TOP</a></footer>
     </main>
   );
 }
